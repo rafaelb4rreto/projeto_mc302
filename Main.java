@@ -18,17 +18,18 @@ public class Main {
 		
 		prof.adicionarTutorado(a1);
 		
-		Materia m1 = new Materia("Geografia",1,4,"66A","10h");
+		Materia m1 = new Materia("Geografia","G 001",4,"66A","10h");
 		//System.out.println(m1.toString());
 		
-		Materia m2 = new Materia("Matematica",2,5,"66B","08h");
+		Materia m2 = new Materia("Matematica","MA002",5,"66B","08h");
 		
-		Materia m3 = new Materia("Calculo Avancado", 2, 4, "22A", "14h");
+		Materia m3 = new Materia("Calculo Avancado","MA666", 4, "22A", "14h");
 		
 		a1.adicionarMateria(m1);
 		a1.adicionarMateria(m2);
 		a2.adicionarMateria(m3);
 		a1.adicionarMateria(m3);
+		a1.removerMateria(m3);
 		System.out.println("\n"+a1);
 
 		System.out.println("\n"+a2);

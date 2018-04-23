@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Materia {
 	
 	private String nome;
-	private int codigo;
+	private String codigo;
 	private int creditos;
 	private String sala;
 	private ArrayList<AlunoMateria> alunosCadastrados;
@@ -11,7 +11,7 @@ public class Materia {
 
 	
 
-	public Materia(String nome, int codigo, int creditos, String sala,String horario) {
+	public Materia(String nome, String codigo, int creditos, String sala,String horario) {
 		this.nome = nome;
 		this.codigo = codigo;
 		this.creditos = creditos;
@@ -32,12 +32,12 @@ public class Materia {
 	}
 
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
@@ -92,7 +92,11 @@ public class Materia {
 	@Override
 	public String toString() {
 		
-		String out = "Alunos cadastrados em " + getNome() + ":\n";
+		String out = "Codigo da Materia: " + getCodigo();
+		out += "  Nome: " + getNome() + "\n";
+		out += "Sala: " + getSala();
+		out += "  Horario: " + getHorario() + "\n";
+		out += "Alunos cadastrados em " + getNome() + ":\n";
 		for(AlunoMateria am: alunosCadastrados) {
 			
 			out += "* " + am.getAluno().getRA() + " - ";

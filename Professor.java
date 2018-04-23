@@ -10,6 +10,7 @@ public class Professor extends Pessoa{
 	
 
 	public Professor(String nome,int idade,char sexo,String dataNascimento,String senha,String sala,int salario) {
+		
 		super(nome,idade,sexo,dataNascimento,senha);
 		materias = new ArrayList<Materia>();
 		tutorados = new ArrayList<Aluno>();
