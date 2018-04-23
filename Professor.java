@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Professor extends Pessoa{
 
-	private ArrayList<Materia> materias;
+	private ArrayList<ProfessorMateria> materias;
 	private ArrayList<Aluno> tutorados;
 	private String sala;
 	private int salario;
@@ -12,7 +12,7 @@ public class Professor extends Pessoa{
 	public Professor(String nome,int idade,char sexo,String dataNascimento,String senha,String sala,int salario) {
 		
 		super(nome,idade,sexo,dataNascimento,senha);
-		materias = new ArrayList<Materia>();
+		materias = new ArrayList<ProfessorMateria>();
 		tutorados = new ArrayList<Aluno>();
 		this.sala = sala;
 		this.salario = salario;
@@ -26,11 +26,11 @@ public class Professor extends Pessoa{
 		Professor.numMaxTutorados = numMaxTutorados;
 	}
 
-	public ArrayList<Materia> getMaterias() {
+	public ArrayList<ProfessorMateria> getMaterias() {
 		return materias;
 	}
 
-	public void setMaterias(ArrayList<Materia> materias) {
+	public void setMaterias(ArrayList<ProfessorMateria> materias) {
 		this.materias = materias;
 	}
 
@@ -57,6 +57,40 @@ public class Professor extends Pessoa{
 	public void setSalario(int salario) {
 		this.salario = salario;
 	}
+	
+	public boolean adicionarMateria(Materia materia) {
+		
+		for(ProfessorMateria prma: materias) {
+			
+			if(prma.getMateria() == materia) {
+				return false;
+			}
+		}
+		
+		if(materia.getProfessor() != null) {
+			return false;
+		}
+		
+		ProfessorMateria pm = new ProfessorMateria(this, materia);
+		materias.add(pm);
+		materia.setProfessor(this);
+		return true;		
+	}
+	
+	public boolean removerMateria(Materia materia) {
+		
+		for(ProfessorMateria profma: materias) {
+			
+			if(profma.getMateria() == materia) {
+				
+				materia.setProfessor(null);
+				materias.remove(profma);
+				return true;
+			}
+		}
+		return false;	
+	}
+	
 	
 	public boolean adicionarTutorado(Aluno aluno) {
 		if(tutorados.size() < numMaxTutorados) {

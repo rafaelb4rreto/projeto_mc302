@@ -9,6 +9,7 @@ public class Main {
 		//System.out.println(d.toString());
 		
 		Professor prof = new Professor("Joao",44,'M',"03/05/1974","abcd","134B",10000);
+		Professor prof2 = new Professor("Joaquim",44,'M',"03/05/1974","abcd","134B",10000);
 		//System.out.println(prof.toString());
 		Professor.setNumMaxTutorados(4);
 		
@@ -18,12 +19,15 @@ public class Main {
 		
 		prof.adicionarTutorado(a1);
 		
-		Materia m1 = new Materia("Geografia","G 001",4,"66A","10h");
+		Materia m1 = new Materia("Geografia","G 001",4,"66A","10h", Dia.SEGUNDA);
 		//System.out.println(m1.toString());
 		
-		Materia m2 = new Materia("Matematica","MA002",5,"66B","08h");
+		Materia m2 = new Materia("Matematica","MA002",5,"66B","08h",Dia.QUINTA);
 		
-		Materia m3 = new Materia("Calculo Avancado","MA666", 4, "22A", "14h");
+		Materia m3 = new Materia("Calculo Avancado","MA666", 4, "22A", "14h", Dia.SEXTA);
+		
+		prof.adicionarMateria(m3);
+		prof2.adicionarMateria(m3);
 		
 		a1.adicionarMateria(m1);
 		a1.adicionarMateria(m2);
@@ -35,6 +39,7 @@ public class Main {
 		System.out.println("\n"+a2);
 		
 		System.out.println("\n"+m3);
+		
 		
 		//		System.out.println("\n"+prof);
 		

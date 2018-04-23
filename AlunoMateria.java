@@ -36,10 +36,10 @@ public class AlunoMateria {
 	@Override
 	public String toString() {
 		
-		String info = "Aluno " + aluno.getNome() + "de RA " + 
+		String out = "Aluno " + aluno.getNome() + "de RA " + 
 				aluno.getRA() + "está matriculado na materia " 
 				+ materia.getNome() + "\n";
-		return info;
+		return out;
 	}
 
 	

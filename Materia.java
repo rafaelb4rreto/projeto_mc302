@@ -8,15 +8,18 @@ public class Materia {
 	private String sala;
 	private ArrayList<AlunoMateria> alunosCadastrados;
 	private String horario;
+	private Professor professor;
+	private Dia dia;
 
 	
 
-	public Materia(String nome, String codigo, int creditos, String sala,String horario) {
+	public Materia(String nome, String codigo, int creditos, String sala,String horario, Dia dia) {
 		this.nome = nome;
 		this.codigo = codigo;
 		this.creditos = creditos;
 		this.sala = sala;
 		this.horario = horario;
+		this.dia = dia;
 		alunosCadastrados = new ArrayList<AlunoMateria>();
 		
 	}
@@ -80,6 +83,22 @@ public class Materia {
 		this.horario = horario;
 	}
 	
+	
+	public Professor getProfessor() {
+		return professor;
+	}
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
+	public Dia getDia() {
+		return dia;
+	}
+	public void setDia(Dia dia) {
+		this.dia = dia;
+	}
+
+
 	public boolean removerAlunosCadastrados(AlunoMateria a) {
 		return alunosCadastrados.remove(a);
 	}
@@ -92,10 +111,13 @@ public class Materia {
 	@Override
 	public String toString() {
 		
-		String out = "Codigo da Materia: " + getCodigo();
-		out += "  Nome: " + getNome() + "\n";
-		out += "Sala: " + getSala();
-		out += "  Horario: " + getHorario() + "\n";
+		String out = "Materia: " + getCodigo();
+		out += " - " + getNome() + "\n";
+		out += "Dia: " + getDia();
+		out += "  Horario: " + getHorario();
+		out += "  Sala: " + getSala() + "\n";
+		out += "Numero de creditos: " + getCreditos() + "\n";
+		out += "Professor responsavel: " + getProfessor().getNome() + "\n";
 		out += "Alunos cadastrados em " + getNome() + ":\n";
 		for(AlunoMateria am: alunosCadastrados) {
 			
