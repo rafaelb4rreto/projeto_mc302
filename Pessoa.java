@@ -5,16 +5,19 @@ public class Pessoa {
 	private int idade;
 	private char sexo;
 	private String dataNascimento;
-	private final String RA;
+	private final long RA;
 	private String senha;
+	private static long numPessoas = 0;
 	
 	
-	public Pessoa(String nome,int idade,char sexo,String dataNascimento,String RA,String senha) {
+	public Pessoa(String nome,int idade,char sexo,String dataNascimento,String senha) {
+		
+		numPessoas++;
 		this.nome = nome;
 		this.idade = idade;
 		this.sexo = sexo;
 		this.dataNascimento = dataNascimento;
-		this.RA = RA;
+		this.RA = numPessoas;
 		this.senha = senha;
 	}
 	
@@ -42,7 +45,7 @@ public class Pessoa {
 	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	public String getRA() {
+	public long getRA() {
 		return RA;
 	}
 	public String getSenha() {

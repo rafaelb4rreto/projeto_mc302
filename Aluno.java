@@ -2,43 +2,33 @@ import java.util.ArrayList;
 
 public class Aluno extends Pessoa {
 	
-	private ArrayList<Materia> materias;
+	private ArrayList<AlunoMateria> materias;
 	private int serie;
 	private boolean tutoria;
 	private int advertencias;
 	private String periodo;
-	private ArrayList<Integer> notas;
 	private static int numAlunos = 0;
 	
-	public Aluno(String nome,int idade,char sexo,String dataNascimento,String RA,String senha,int serie,boolean tutoria,int advertencias,String periodo) {
-		super(nome,idade,sexo,dataNascimento,RA,senha);
+	public Aluno(String nome,int idade,char sexo,String dataNascimento,String senha,int serie,boolean tutoria,int advertencias,String periodo) {
+		
+		super(nome,idade,sexo,dataNascimento,senha);
 		this.serie = serie;
 		this.tutoria = tutoria;
 		this.advertencias = advertencias;
 		this.periodo = periodo;
-		materias = new ArrayList<Materia>();
-		notas = new ArrayList<Integer>();
+		materias = new ArrayList<AlunoMateria>();
 		numAlunos++;
 	}
 	
 	
-	
-	public ArrayList<Integer> getNotas() {
-		return notas;
+	public static int getNumAlunos() {
+		return numAlunos;
 	}
 
-
-
-	public void setNotas(ArrayList<Integer> notas) {
-		this.notas = notas;
-	}
-
-
-
-	public ArrayList<Materia> getMaterias() {
+	public ArrayList<AlunoMateria> getMaterias() {
 		return materias;
 	}
-	public void setMaterias(ArrayList<Materia> materias) {
+	public void setMaterias(ArrayList<AlunoMateria> materias) {
 		this.materias = materias;
 	}
 	public int getSerie() {
@@ -67,43 +57,56 @@ public class Aluno extends Pessoa {
 	}
 
 	public boolean adicionarMateria(Materia materia) {
-		if(materias.contains(materia))
-			return false;
-		materias.add(materia);
-		notas.add(Integer.MAX_VALUE);
-		//materia.adcionarAlunosCadastrados(this);
+		
+		for(AlunoMateria alma: materias) {
+			
+			if(alma.getMateria() == materia) {
+				return false;
+			}
+		}
+		
+		AlunoMateria am = new AlunoMateria(this, materia);
+		materias.add(am);
+		materia.adcionarAlunosCadastrados(am);
+		
 		return true;
 	}
 	
-	public boolean adicionarNotas(Materia materia,int nota) {
-		int a;
-		a = materias.indexOf(materia);
-		if(materias.get(a) != null) {
-			notas.set(a,nota);
-			
-			return true;
-		}
+	public boolean adicionarNotas(Materia materia,float nota) {
 		
+		for(AlunoMateria alma: materias) {
+			
+			if(alma.getMateria() == materia) {
+				
+				alma.setNota(nota);
+				return true;
+			}
+		}
 		return false;	
 	}
 	
 	public boolean removerMateria(Materia materia) {
-		if(!materias.contains(materia))
-			return false;
-		else {
-			materia.removerAlunosCadastrados(this);
-			notas.remove(materias.indexOf(materia));
-			materias.remove(materia);
+		
+		for(AlunoMateria alma: materias) {
 			
-			return true;
+			if(alma.getMateria() == materia) {
+				
+				materia.removerAlunosCadastrados(alma);
+				materias.remove(alma);
+				return true;
+			}
 		}
+		return false;	
 	}
 
 
 	@Override
 	public String toString() {
-		String out = super.toString();
-		out = out + "Aluno [materias=" + materias + ", serie=" + serie + ", tutoria=" + tutoria + ", advertencias="+ advertencias + ", periodo=" + periodo + ", notas= " + notas + " numAlunos = "+numAlunos+"]";
+		String out = "Aluno " + super.getNome() + " (RA: " + super.getRA() + ")";
+		out += " esta matriculado em:\n";
+		for(AlunoMateria am: materias) {
+			out += "* " + am.getMateria().getNome() + "\n";
+		}
 		return out;
 	}
 

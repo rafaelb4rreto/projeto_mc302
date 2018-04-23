@@ -3,8 +3,8 @@ public class Diretor extends Pessoa{
 	
 	private int salario;
 	
-	public Diretor(String nome,int idade,char sexo,String dataNascimento,String RA,String senha,int salario) {
-		super(nome,idade,sexo,dataNascimento,RA,senha);
+	public Diretor(String nome,int idade,char sexo,String dataNascimento,String senha,int salario) {
+		super(nome,idade,sexo,dataNascimento,senha);
 		this.salario = salario;
 	}
 

@@ -6,12 +6,10 @@ public class Materia {
 	private int codigo;
 	private int creditos;
 	private String sala;
-	private ArrayList<Aluno> alunosCadastrados;
+	private ArrayList<AlunoMateria> alunosCadastrados;
 	private String horario;
-	
-	
-	
 
+	
 
 	public Materia(String nome, int codigo, int creditos, String sala,String horario) {
 		this.nome = nome;
@@ -19,7 +17,7 @@ public class Materia {
 		this.creditos = creditos;
 		this.sala = sala;
 		this.horario = horario;
-		alunosCadastrados = new ArrayList<Aluno>();
+		alunosCadastrados = new ArrayList<AlunoMateria>();
 		
 	}
 
@@ -63,12 +61,12 @@ public class Materia {
 	}
 
 
-	public ArrayList<Aluno> getAlunosCadastrados() {
+	public ArrayList<AlunoMateria> getAlunosCadastrados() {
 		return alunosCadastrados;
 	}
 
 
-	public void setAlunosCadastrados(ArrayList<Aluno> alunosCadastrados) {
+	public void setAlunosCadastrados(ArrayList<AlunoMateria> alunosCadastrados) {
 		this.alunosCadastrados = alunosCadastrados;
 	}
 
@@ -82,19 +80,25 @@ public class Materia {
 		this.horario = horario;
 	}
 	
-	public boolean removerAlunosCadastrados(Aluno a) {
+	public boolean removerAlunosCadastrados(AlunoMateria a) {
 		return alunosCadastrados.remove(a);
 	}
 	
-	public boolean adcionarAlunosCadastrados(Aluno a) {
-		return alunosCadastrados.add(a);
+	public boolean adcionarAlunosCadastrados(AlunoMateria am) {
+		return alunosCadastrados.add(am);
 	}
 
 
 	@Override
 	public String toString() {
-		return "Materia [nome=" + nome + ", codigo=" + codigo + ", creditos=" + creditos + ", sala=" + sala
-				+ ", alunosCadastrados=" + alunosCadastrados.toString() + ", horario=" + horario + "]";
+		
+		String out = "Alunos cadastrados em " + getNome() + ":\n";
+		for(AlunoMateria am: alunosCadastrados) {
+			
+			out += "* " + am.getAluno().getRA() + " - ";
+			out += am.getAluno().getNome() + "\n";
+		}
+	return out;
 	}
 
 

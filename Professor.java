@@ -9,8 +9,8 @@ public class Professor extends Pessoa{
 	private static int numMaxTutorados;
 	
 
-	public Professor(String nome,int idade,char sexo,String dataNascimento,String RA,String senha,String sala,int salario) {
-		super(nome,idade,sexo,dataNascimento,RA,senha);
+	public Professor(String nome,int idade,char sexo,String dataNascimento,String senha,String sala,int salario) {
+		super(nome,idade,sexo,dataNascimento,senha);
 		materias = new ArrayList<Materia>();
 		tutorados = new ArrayList<Aluno>();
 		this.sala = sala;
