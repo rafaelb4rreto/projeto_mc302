@@ -22,7 +22,7 @@ public class Professor extends Pessoa{
 		return numMaxTutorados;
 	}
 
-	public static void setNumMaxTutorados(int numMaxTutorados) {
+	public void setNumMaxTutorados(int numMaxTutorados) {
 		Professor.numMaxTutorados = numMaxTutorados;
 	}
 
