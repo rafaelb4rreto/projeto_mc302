@@ -8,8 +8,21 @@ public class Aluno extends Pessoa {
 	private int advertencias;
 	private String periodo;
 	private static int numAlunos = 0;
+	private int suspensoes;
+	private boolean regular;
+	private static int maxAdv = 3;
+	private static int maxSusp = 3;
+	private  int maxCred;
+	private int credAtual;
 	
-	public Aluno(String nome,int idade,char sexo,String dataNascimento,String senha,int serie,boolean tutoria,int advertencias,String periodo) {
+	
+
+	
+
+
+	
+
+	public Aluno(String nome,int idade,char sexo,String dataNascimento,String senha,int serie,boolean tutoria,int advertencias,int suspensoes,String periodo) {
 		
 		super(nome,idade,sexo,dataNascimento,senha);
 		this.serie = serie;
@@ -17,9 +30,61 @@ public class Aluno extends Pessoa {
 		this.advertencias = advertencias;
 		this.periodo = periodo;
 		materias = new ArrayList<AlunoMateria>();
+		this.regular = true;
+		this.suspensoes = suspensoes;
 		numAlunos++;
+		maxCred = 20;
+		credAtual = 0;
 	}
 	
+	
+	
+	public int getCredAtual() {
+		return credAtual;
+	}
+
+
+
+	public void setCredAtual(int credAtual) {
+		this.credAtual = credAtual;
+	}
+
+
+
+	public int getMaxCred() {
+		return maxCred;
+	}
+
+	public void setMaxCred(int maxCred) {
+		this.maxCred = maxCred;
+	}
+	
+	public int getMaxAdvertencias() {
+		return maxAdv;
+	}
+	
+	public int getMaxSuspensoes() {
+		return maxSusp;
+	}
+	
+	public int getSuspensoes() {
+		return suspensoes;
+	}
+
+
+	public void setSuspensoes(int suspensoes) {
+		this.suspensoes = suspensoes;
+	}
+
+
+	public boolean isRegular() {
+		return regular;
+	}
+	
+	public void setRegular(boolean regular) {
+		this.regular = regular;
+	}
+
 	
 	public static int getNumAlunos() {
 		return numAlunos;
@@ -58,18 +123,34 @@ public class Aluno extends Pessoa {
 
 	public boolean adicionarMateria(Materia materia) {
 		
-		for(AlunoMateria alma: materias) {
 			
-			if(alma.getMateria() == materia) {
+		
+			if(credAtual + materia.getCreditos() > this.getMaxCred())
 				return false;
+			
+			if(materia.getCapacidadeMax() == materia.getCapacidadeAtual())
+				return false;
+		
+			for(AlunoMateria alma: materias) {
+				
+				if(alma.getMateria().getDia() == materia.getDia()) {
+					if(alma.getMateria().getHorario().equalsIgnoreCase(materia.getHorario()))
+						return false;
+				}
+				
+				if(alma.getMateria().getNome().equalsIgnoreCase(materia.getNome())) {
+					return false;
+				}
 			}
-		}
+			
+			
+			AlunoMateria am = new AlunoMateria(this, materia);
+			materias.add(am);
+			materia.adicionarAlunosCadastrados(am);
+			this.setCredAtual(credAtual + materia.getCreditos());
+			
+			return true;
 		
-		AlunoMateria am = new AlunoMateria(this, materia);
-		materias.add(am);
-		materia.adcionarAlunosCadastrados(am);
-		
-		return true;
 	}
 	
 	public boolean adicionarNotas(Materia materia,float nota) {
@@ -82,7 +163,7 @@ public class Aluno extends Pessoa {
 				return true;
 			}
 		}
-		return false;	
+		return false;
 	}
 	
 	public boolean removerMateria(Materia materia) {
@@ -93,6 +174,7 @@ public class Aluno extends Pessoa {
 				
 				materia.removerAlunosCadastrados(alma);
 				materias.remove(alma);
+				this.setCredAtual(this.credAtual - materia.getCreditos());
 				return true;
 			}
 		}
@@ -103,10 +185,13 @@ public class Aluno extends Pessoa {
 	@Override
 	public String toString() {
 		String out = "Aluno " + super.getNome() + " (RA: " + super.getRA() + ")";
-		out += " esta matriculado em:\n";
+		out += "\naluno regular: "+ this.isRegular();
+		out += "\n esta matriculado em:\n";
 		for(AlunoMateria am: materias) {
-			out += "* " + am.getMateria().getNome() + "\n";
+			out += "* " + am.getMateria().getNome();
+			out += " (nota: "+am.getNota()+ ")\n";
 		}
+		out += "aluno esta cursando "+credAtual+" de um maximo de "+maxCred;
 		return out;
 	}
 
