@@ -3,7 +3,7 @@ public class Diretor extends Pessoa{
 	
 	private int salario;
 	
-	public Diretor(String nome,int idade,char sexo,String dataNascimento,String senha,int salario) {
+	public Diretor(String nome,int idade,char sexo,String dataNascimento,String RA,String senha,int salario) {
 		super(nome,idade,sexo,dataNascimento,senha);
 		this.salario = salario;
 	}
@@ -21,6 +21,9 @@ public class Diretor extends Pessoa{
 	}
 	
 	
+	public void setMaxCred(Aluno a,int valor) {
+		a.setMaxCred(valor);
+	}
 	
 
 	@Override
