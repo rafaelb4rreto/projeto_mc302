@@ -10,19 +10,47 @@ public class Materia {
 	private String horario;
 	private Professor professor;
 	private Dia dia;
-
+	private int capacidadeMax;
+	private int capacidadeAtual;
 	
 
-	public Materia(String nome, String codigo, int creditos, String sala,String horario, Dia dia) {
+	public Materia(String nome, String codigo, int creditos, String sala,String horario, Dia dia,int capacidade) {
 		this.nome = nome;
 		this.codigo = codigo;
 		this.creditos = creditos;
 		this.sala = sala;
 		this.horario = horario;
 		this.dia = dia;
+		this.capacidadeMax = capacidade;
+		capacidadeAtual = 0;
 		alunosCadastrados = new ArrayList<AlunoMateria>();
-		
 	}
+
+	
+	
+	
+	public int getCapacidadeAtual() {
+		return capacidadeAtual;
+	}
+
+
+	public void setCapacidadeAtual(int capacidadeAtual) {
+		this.capacidadeAtual = capacidadeAtual;
+	}
+
+
+
+
+	public int getCapacidadeMax() {
+		return capacidadeMax;
+	}
+
+
+	public void setCapacidadeMax(int capacidade) {
+		this.capacidadeMax = capacidade;
+	}
+
+
 
 
 	public String getNome() {
@@ -99,11 +127,12 @@ public class Materia {
 	}
 
 
-	public boolean removerAlunosCadastrados(AlunoMateria a) {
-		return alunosCadastrados.remove(a);
+	public boolean removerAlunosCadastrados(AlunoMateria am) {
+		return alunosCadastrados.remove(am);
 	}
 	
-	public boolean adcionarAlunosCadastrados(AlunoMateria am) {
+	public boolean adicionarAlunosCadastrados(AlunoMateria am) {
+		capacidadeAtual++;
 		return alunosCadastrados.add(am);
 	}
 
