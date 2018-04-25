@@ -1,4 +1,3 @@
-
 public class Diretor extends Pessoa{
 	
 	private int salario;

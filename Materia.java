@@ -146,7 +146,7 @@ public class Materia {
 		out += "  Horario: " + getHorario();
 		out += "  Sala: " + getSala() + "\n";
 		out += "Numero de creditos: " + getCreditos() + "\n";
-		out += "Professor responsavel: " + getProfessor().getNome() + "\n";
+		out += "Professor responsavel: " + professor + "\n";
 		out += "Alunos cadastrados em " + getNome() + ":\n";
 		for(AlunoMateria am: alunosCadastrados) {
 			
