@@ -6,6 +6,9 @@
  *  
  *  O programa esta em desenvolvimento. Nesta versao estao implementadas algumas
  *  funcoes basicas e testes dessas funcoes; ainda serao implementadas novas funcoes.
+ *  
+ *  Para melhor entendimento do codigo, a classe Professor foi comentada em detalhes,
+ *  por isso recomendamos que ela seja a primeira a ser analisada.
  */
 
 // A funcao Main faz os testes das funcionalidades ja implementadas

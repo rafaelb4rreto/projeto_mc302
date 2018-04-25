@@ -9,7 +9,15 @@ public class AlunoMateria {
 		this.aluno = aluno;
 		this.materia = materia;
 	}
-
+	
+	@Override
+	public String toString() {
+		
+		String out = "Aluno " + aluno.getNome() + "de RA " + 
+				aluno.getRA() + "esta matriculado na materia " 
+				+ materia.getNome() + "\n";
+		return out;
+	}
 	
 	public Aluno getAluno() {
 		return aluno;
@@ -22,6 +30,7 @@ public class AlunoMateria {
 	public Materia getMateria() {
 		return materia;
 	}
+	
 	public void setMateria(Materia materia) {
 		this.materia = materia;
 	}
@@ -29,19 +38,9 @@ public class AlunoMateria {
 	public float getNota() {
 		return nota;
 	}
+	
 	public void setNota(float nota) {
 		this.nota = nota;
-	}
-
-	@Override
-	public String toString() {
-		
-		String out = "Aluno " + aluno.getNome() + "de RA " + 
-				aluno.getRA() + "esta matriculado na materia " 
-				+ materia.getNome() + "\n";
-		return out;
-	}
-
-	
+	}	
 
 }
