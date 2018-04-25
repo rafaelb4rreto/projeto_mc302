@@ -15,12 +15,6 @@ public class Aluno extends Pessoa {
 	private  int maxCred;
 	private int credAtual;
 	
-	
-
-	
-
-
-	
 
 	public Aluno(String nome,int idade,char sexo,String dataNascimento,String senha,int serie,boolean tutoria,int advertencias,int suspensoes,String periodo) {
 		

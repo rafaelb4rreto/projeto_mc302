@@ -9,7 +9,8 @@ public class Pessoa {
 	private static long numPessoas = 0;
 	
 	
-	public Pessoa(String nome,int idade,char sexo,String dataNascimento,String senha) {
+	public Pessoa
+	(String nome, int idade, char sexo, String dataNascimento, String senha) {
 		
 		numPessoas++;
 		this.nome = nome;
@@ -18,6 +19,12 @@ public class Pessoa {
 		this.dataNascimento = dataNascimento;
 		this.RA = numPessoas;
 		this.senha = senha;
+	}
+	
+	@Override
+	public String toString() {
+		return "Pessoa [nome=" + nome + ", idade=" + idade + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento
+				+ ", RA=" + RA + ", senha=" + senha + "]";
 	}
 	
 	public String getNome() {
@@ -54,12 +61,4 @@ public class Pessoa {
 		this.senha = senha;
 	}
 
-	@Override
-	public String toString() {
-		return "Pessoa [nome=" + nome + ", idade=" + idade + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento
-				+ ", RA=" + RA + ", senha=" + senha + "]";
-	}
-	
-	
-	
 }
