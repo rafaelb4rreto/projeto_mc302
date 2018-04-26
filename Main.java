@@ -16,7 +16,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		//alocacao e inicalizacao de objetos para testarmos todas as implementacoes do programa.
+		// alocacao e inicalizacao de objetos para testarmos todas as implementacoes do programa.
 		Diretor d = new Diretor("Maria",57,'F',"20/07/1960","0001","1a2b3c",20000);
 		Professor prof = new Professor("Joao",44,'M',"03/05/1974","abcd","134B",10000);
 		Aluno a1 = new Aluno("Jose",12,'M',"02/06/2005","1234",5,false,0,0,"matutino");
@@ -28,33 +28,33 @@ public class Main {
 		d.setMaxCred(a1, 4); 		 // seta como 4 o maximo de creditos que o aluno a1 pode cursar
 		a1.adicionarMateria(m1);	 // tenta adicionar as materias m1 e m2 ao aluno a1
 		a1.adicionarMateria(m2);
-		System.out.println("\n"+a1); // o resultado mostrara que o limitador de creditos esta funcionando
+		System.out.println("\n" + a1 + "\n"); // o resultado mostrara que o limitador de creditos esta funcionando
 		
 		d.setMaxCred(a1, 20);
 		a3.adicionarMateria(m1);
 		a3.adicionarMateria(m3);
-		System.out.println("\n"+a3); // o resultado mostra que o sistema consegue impedir que um mesmo 
-									 // aluno tente adicionar mais de uma materia no mesmo horario
-		System.out.println("\n"+m1); // mostra se o aluno de fato foi cadastrado na materia
+		System.out.println("\n" + a3); // o resultado mostra que o sistema consegue impedir que um mesmo 
+									   // aluno tente adicionar mais de uma materia no mesmo horario
+		System.out.println("\n" + m1+ "\n"); // mostra se o aluno de fato foi cadastrado na materia
 
 		
-		a3.adicionarNotas(m1, 9.5f); // adiciona a nota 9,5 ao aluno a3 referente a materia m1
-		System.out.println("\n"+a3); // teste de adicao de notas
+		a3.adicionarNotas(m1, 9.5f);   // adiciona a nota 9,5 ao aluno a3 referente a materia m1
+		System.out.println("\n" + a3+ "\n"); // teste de adicao de notas
 
 		prof.adicionarMateria(m1);	 // associa a materia m1 ao professor prof (ele lecionara a materia m1)
 		prof.setNumMaxTutorados(4);  // seta como 4 o numero maximo de tutorados do professor prof
-		System.out.println(prof);    // teste de limite de tutorados
-		System.out.println("\n"+m1); // teste de adicao de materias e de profs responsaveis pela materia
+		System.out.println("\n" + prof);    // teste de limite de tutorados
+		System.out.println("\n" + m1+ "\n"); // teste de adicao de materias e de profs responsaveis pela materia
 
 		
 		
 		a3.removerMateria(m1);
-		System.out.println("\n"+a3); // remocao de materias 
-		System.out.println("\n"+m1); // teste de remocao de alunos cadastrados
+		System.out.println("\n" + a3); // remocao de materias 
+		System.out.println("\n" + m1); // teste de remocao de alunos cadastrados
 		
 		
 		d.setBonus(prof, 1000);		   // seta um bonus salarial ao professor prof de 1000 reais
-		System.out.println("\n"+prof); // teste de atribuicao de bonus
+		System.out.println("\n" + prof); // teste de atribuicao de bonus
 
 	}
 

@@ -14,7 +14,8 @@ public class Materia {
 	private int capacidadeAtual;
 	
 
-	public Materia(String nome, String codigo, int creditos, String sala,String horario, Dia dia,int capacidade) {
+	public Materia
+	(String nome, String codigo, int creditos, String sala,String horario, Dia dia, int capacidade) {
 		this.nome = nome;
 		this.codigo = codigo;
 		this.creditos = creditos;
@@ -38,19 +39,20 @@ public class Materia {
 	@Override
 	public String toString() {
 		
-		String out = "Materia: " + getCodigo();
-		out += " - " + getNome() + "\n";
-		out += "Dia: " + getDia();
-		out += "  Horario: " + getHorario();
-		out += "  Sala: " + getSala() + "\n";
-		out += "Numero de creditos: " + getCreditos() + "\n";
-		out += "Professor responsavel: " + professor + "\n";
-		out += "Alunos cadastrados em " + getNome() + ":\n";
+		String out = "==) Materia " + nome + " (cod. " + codigo + ") | ";
+		out += " Creditos: " + creditos + " | " + "Professor: ";
+		
+		if (professor == null)
+			out += "VAGO\n";
+		else
+			out += professor.getNome() + "\n";
+		
+		out += "    Dia: " + dia + " | Horario: " + horario + " | Sala: " + sala + "\n";
+		out += "    Alunos cadastrados: ";
 		
 		for(AlunoMateria am: alunosCadastrados) {
 			
-			out += "* " + am.getAluno().getRA() + " - ";
-			out += am.getAluno().getNome() + "\n";
+			out += "* " + am.getAluno().getNome() + " (RA: " + am.getAluno().getRA() + ")  ";
 		}
 		
 		return out;

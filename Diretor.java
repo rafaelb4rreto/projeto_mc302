@@ -4,7 +4,7 @@ public class Diretor extends Pessoa{
 	
 	public Diretor
 	(String nome, int idade, char sexo, String dataNascimento, String RA, String senha, int salario) {
-		super(nome,idade,sexo,dataNascimento,senha);
+		super(nome, idade, sexo, dataNascimento, senha);
 		
 		this.salario = salario;
 	}
@@ -12,7 +12,8 @@ public class Diretor extends Pessoa{
 	@Override
 	public String toString() {
 		String out = super.toString();
-		out = out +"\nDiretor [salario=" + salario + "]";
+		
+		out = out +"\n    FUNCAO: Diretor | Salario: R$" + salario + "\n";
 		return out;
 	}
 

@@ -30,12 +30,20 @@ public class Professor extends Pessoa{
 			
 			// se a materia ja estiver em materias nega o pedido de adicao de materia
 			if(prma.getMateria() == materia) {
+				
+				System.out.println("Nao foi possivel add a materia " + materia.getNome() + 
+						" (cod. " + materia.getCodigo() + "): materia ja existente.");
+				
 				return false;
 			}
 		}
 		
 		// se a materia ja estiver com um professor associado, nega o pedido
 		if(materia.getProfessor() != null) {
+			
+			System.out.println("Nao foi possivel add a materia " + materia.getNome() + 
+					" (cod. " + materia.getCodigo() + "): a materia ja tem um professor.");
+			
 			return false;
 		}
 		
@@ -47,6 +55,10 @@ public class Professor extends Pessoa{
 		ProfessorMateria pm = new ProfessorMateria(this, materia);
 		materias.add(pm);
 		materia.setProfessor(this);
+		
+		System.out.println("Materia " + materia.getNome() + 
+				" (cod. " + materia.getCodigo() + ") adicionada ao professor " + this.getNome() + ".");
+		
 		return true;		
 	}
 	
@@ -60,11 +72,18 @@ public class Professor extends Pessoa{
 				
 				materia.setProfessor(null);
 				materias.remove(profma);
+				
+				System.out.println("Materia " + materia.getNome() + 
+						" (cod. " + materia.getCodigo() + ") removida do professor " + this.getNome() + ".");
+				
 				return true;
 			}
 		}
 		
 		// neste ponto a materia nao foi encontrada em materias, entao nega o pedido de remocao
+		System.out.println("Nao foi possivel remover a materia " + materia.getNome() + 
+				" (cod. " + materia.getCodigo() + "): o professor nao tem a materia.");
+		
 		return false;	
 	}
 	
@@ -72,8 +91,13 @@ public class Professor extends Pessoa{
 		
 		// antes de adicionar verifica se a quantidade de tutorados ja nao esta no maximo
 		if(tutorados.size() < numMaxTutorados) {
+			
+			System.out.println("Tutorado " + aluno.getNome() + "adicionado ao professor" + this.getNome() + ".");
+			
 			return tutorados.add(aluno);
 		}
+		
+		System.out.println("Nao foi possivel adicionar tutorado: nao ha mais vagas para esse professor");
 		
 		return false;
 	}
@@ -82,16 +106,26 @@ public class Professor extends Pessoa{
 		
 		// antes de remover verifica se o aluno eh um dos tutorados do professor
 		if(tutorados.contains(aluno)) {
+			
+			System.out.println("Tutorado " + aluno.getNome() + " removido.");
+			
 			return tutorados.remove(aluno);
 		}
+		
+		System.out.println("Nao foi possivel remover tutorado: aluno nao eh tutorado do professor");
 		
 		return false;
 	}
 	
 	@Override
 	public String toString() {
-		String out = super.toString();
-		out = out +  "\nProfessor [tutorados=" + tutorados + ", sala=" + sala + ", salario=" + salario +", materias="+ materias + "]";
+		String out = "==] Professor ";
+		out += super.toString();
+		out += "    Sala: " + sala + " | Salario: " + salario + "\n";
+		
+		//out += "    Materias lecionadas: " + materias;	-- A ser implementado
+		//out += "    Tutorados: " + tutorados ;			-- A ser implementado
+		
 		return out;
 	}
 	

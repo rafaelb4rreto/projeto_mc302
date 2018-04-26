@@ -18,13 +18,13 @@ public class Pessoa {
 		this.sexo = sexo;
 		this.dataNascimento = dataNascimento;
 		this.RA = numPessoas;
-		this.senha = senha;
+		this.senha = senha;		// senha do sistema; login: o RA da pessoa
 	}
 	
 	@Override
 	public String toString() {
-		return "Pessoa [nome=" + nome + ", idade=" + idade + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento
-				+ ", RA=" + RA + ", senha=" + senha + "]";
+		return nome + " | RA: " + RA + " | Idade: " + idade + " | Sexo: " + sexo + "\n";
+				
 	}
 	
 	public String getNome() {

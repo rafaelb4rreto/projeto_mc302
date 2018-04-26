@@ -12,8 +12,8 @@ public class ProfessorMateria {
 	@Override
 	public String toString() {
 		
-		String out = "O Professor " + professor.getNome() + "de RA " + 
-				professor.getRA() + "eh responsavel pela materia " 
+		String out = "O Professor " + professor.getNome() + " de RA " + 
+				professor.getRA() + " eh responsavel pela materia " 
 				+ materia.getNome() + "\n";
 		return out;
 	}
