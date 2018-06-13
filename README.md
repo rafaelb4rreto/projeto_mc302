@@ -16,7 +16,7 @@ DIRETOR:
 ALUNO:
 
 (TUDO REFERENTE A ELE E AOS PROFESSORES QUE ELE TEM)
-- Tem um responsável do tipo pessoa
+- Tem um responsável do tipo pessoa (Classe Pessoa vai ser abstrata?)
 - Situação acadêmica do aluno
 - Recebe e manda mensagens pros professores das matérias atuais
 - Quadro de matérias (pre-req, ementa/descrição das matérias, matrícula em matérias, matérias atuais, sala)
