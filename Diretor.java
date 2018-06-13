@@ -52,7 +52,7 @@ public class Diretor extends Pessoa{
 
 	public void setSalario(int salario) {
 		this.salario = salario;
-	}
+	} 
 	
 	public void setBonus(Professor prof,int bonus) {
 		prof.setSalario((bonus + prof.getSalario()));
