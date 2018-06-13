@@ -9,31 +9,31 @@ public class Diretor extends Pessoa{
 		this.salario = salario;
 	}
 	
-	public demitirProfessor(Professor prof){
+	public boolean demitirProfessor(Professor prof){
 			
 	}	
 	
-	public expulsarAluno(Aluno aluno){
+	public boolean expulsarAluno(Aluno aluno){
 		
 	}
 	
-	public matricularAluno(Aluno aluno){
+	public boolean matricularAluno(Aluno aluno){
 		
 	}
 	
-	public contratarProfessor(Professor prof){
+	public boolean contratarProfessor(Professor prof){
 		
 	}
 	
-	public atribuirMateriaAUmProfessor(Professor prof, Materia materia){
+	public boolean atribuirMateriaAUmProfessor(Professor prof, Materia materia){
 	//sala	
 	}
 	
-	public abrirMateria(String nome, String ementa){
+	public boolean abrirMateria(String nome, String ementa){
 	
 	}
 	
-	public fecharMateria(Materia materia){
+	public boolean fecharMateria(Materia materia){
 		
 	}
 	
