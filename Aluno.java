@@ -5,30 +5,24 @@ public class Aluno extends Pessoa {
 	private ArrayList<AlunoMateria> materias;
 	private int serie;
 	private boolean tutoria;
-	private int advertencias;
-	private String periodo;
+	private int advertencias = 0;
 	private static int numAlunos = 0;
-	private int suspensoes;
+	private int suspensoes = 0;
 	private boolean regular;
 	private static int maxAdv = 3;
 	private static int maxSusp = 3;
-	private  int maxCred;
-	private int credAtual;
+	private  int maxMaterias = 5;
+	private int nMaterias = 0;
 	
 
 	public Aluno
-	(String nome, int idade, char sexo, String dataNascimento, String senha, int serie,
-	 boolean tutoria, int advertencias, int suspensoes, String periodo) {
+	(String nome, int idade, char sexo, String dataNascimento, String senha, int serie,) {
 		
 		super(nome, idade, sexo, dataNascimento, senha);
 		
 		this.serie = serie;
-		this.tutoria = tutoria;
-		this.advertencias = advertencias;
-		this.periodo = periodo;
 		materias = new ArrayList<AlunoMateria>();
 		this.regular = true;
-		this.suspensoes = suspensoes;
 		numAlunos++;
 		maxCred = 20;
 		credAtual = 0;
