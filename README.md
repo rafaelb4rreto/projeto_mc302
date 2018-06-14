@@ -13,7 +13,14 @@ DIRETOR:
 - Criação e exclusão de matérias
 - Inclusão e expulsão de alunos e professores
 
+->  Atributos:
+ArrayList Professores (Todos da escola)
+ArrayList Alunos (Todos os alunos da escola)
+
 ALUNO:
+
+-> Arraylist Professores (Que ele tem)
+-> Diretor
 
 (TUDO REFERENTE A ELE E AOS PROFESSORES QUE ELE TEM)
 - Tem um responsável do tipo pessoa (Classe Pessoa vai ser abstrata?)
@@ -31,5 +38,12 @@ PROFESSOR:
 - Seta a média das matérias que ele leciona
 - Recebe e manda mensagem pro aluno e pro diretor
 
+
+
+RESPONSAVEL:
+
+Herda de pessoa
+atributos: email, telefone, endereço, Aluno
+verSituacaoAluno
 
 
