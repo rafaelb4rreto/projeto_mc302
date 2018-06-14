@@ -17,7 +17,7 @@ public class Diretor extends Pessoa{
 		
 	}
 	
-	public boolean matricularAluno(Aluno aluno){
+	public boolean matricularAluno(nome, dataNascimento,.....(Pessoa)){
 		
 	}
 	
