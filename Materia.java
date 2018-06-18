@@ -2,36 +2,39 @@ import java.util.ArrayList;
 
 public class Materia {
 	
-	private String nome;
-	private String codigo;
-	private int creditos;
-	private String sala;
 	private ArrayList<AlunoMateria> alunosCadastrados;
-	private String horario;
+	private String    nome;
+	private String    codigo;
+	private int		  creditos;
+	private String    sala;
+	private String 	  horario;
 	private Professor professor;
-	private Dia dia;
-	private int capacidadeMax;
-	private int capacidadeAtual;
+	private Dia 	  dia;
+	private int 	  capacidadeMax;
+	private int 	  capacidadeAtual;
 	
 
 	public Materia
 	(String nome, String codigo, int creditos, String sala,String horario, Dia dia, int capacidade) {
-		this.nome = nome;
-		this.codigo = codigo;
-		this.creditos = creditos;
-		this.sala = sala;
-		this.horario = horario;
-		this.dia = dia;
-		this.capacidadeMax = capacidade;
-		capacidadeAtual = 0;
-		alunosCadastrados = new ArrayList<AlunoMateria>();
+		
+		alunosCadastrados  = new ArrayList<AlunoMateria>();
+		
+		this.nome 		= nome;
+		this.codigo 	= codigo;
+		this.creditos	= creditos;
+		this.sala 		= sala;
+		this.horario 	= horario;
+		this.dia 		= dia;
+		this.capacidadeMax 		= capacidade;
+		this.capacidadeAtual    = 0;
 	}
 
-	public boolean removerAlunosCadastrados(AlunoMateria am) {
+	public boolean removerAlunoCadastrado(AlunoMateria am) {
+		capacidadeAtual--;
 		return alunosCadastrados.remove(am);
 	}
 	
-	public boolean adicionarAlunosCadastrados(AlunoMateria am) {
+	public boolean adicionarAlunoCadastrado(AlunoMateria am) {
 		capacidadeAtual++;
 		return alunosCadastrados.add(am);
 	}

@@ -1,23 +1,22 @@
 public abstract class Pessoa {
 	
-	private String nome;
-	private int idade;
-	private char sexo;
-	private String dataNascimento;
-	private final long RA;
-	private String senha;
-	private static long numPessoas = 0;
+	private String 	   nome;
+	private int        idade;
+	private char       sexo;
+	private String 	   dataNascimento;
+	private final  int RA;
+	private String 	   senha;
+	private static int numPessoas = 0;
 	
 	
 	public Pessoa
 	(String nome, int idade, char sexo, String dataNascimento, String senha) {
 		
-		numPessoas++;
-		this.nome = nome;
+		this.nome  = nome;
 		this.idade = idade;
-		this.sexo = sexo;
+		this.sexo  = sexo;
 		this.dataNascimento = dataNascimento;
-		this.RA = numPessoas;
+		this.RA    = ++numPessoas;
 		this.senha = senha;		// senha do sistema; login: o RA da pessoa
 	}
 	

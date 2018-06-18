@@ -7,11 +7,10 @@ DIRETOR:
 - Situação acadêmica dos alunos (ex.: faltas, notas, advertencias)
 - Situação acadêmica dos professores (ex.: turmas lecionadas, formação)
 
-- Recebe e manda mensagens pra geral
-- Manda e recebe emails dos responsaveis pelos alunos
+- Recebe e manda mensagens pra geral <<< JAMPA
 - Associação de professores <-> matérias <-> salas
-- Criação e exclusão de matérias
-- Inclusão e expulsão de alunos e professores
+- Criação e exclusão de matérias        <<< ZANGADO
+- Inclusão e expulsão de alunos e professores       <<< ZANGADO
 
 ->  Atributos:
 ArrayList Professores (Todos da escola)
@@ -23,20 +22,19 @@ ALUNO:
 -> Diretor
 
 (TUDO REFERENTE A ELE E AOS PROFESSORES QUE ELE TEM)
-- Tem um responsável do tipo pessoa (Classe Pessoa vai ser abstrata?)
+- Tem um responsável do tipo pessoa (Classe Pessoa vai ser abstrata?)   <<< JAMPA
 - Situação acadêmica do aluno
-- Recebe e manda mensagens pros professores das matérias atuais
-- Quadro de matérias (pre-req, ementa/descrição das matérias, matrícula em matérias, matérias atuais, sala)
-- Emissão de integralização (txt com as infos das matérias do ano todo)
+- Recebe e manda mensagens pros professores das matérias atuais     <<< JAMPA
+- Quadro de matérias (ementa/descrição das matérias, matrícula em matérias, matérias atuais, sala)
+- Emissão de integralização (txt com as infos das matérias do ano todo) <<< ZANGADO
 
 PROFESSOR:
 
-(TUDO REFERENTE ÀS MATÉRIAS QUE ELE LECIONA (incluindo os alunos))
-- Manda e recebe emails dos responsaveis pelos alunos
-- Edição de ementa/descrição e etc das matérias que ELE leciona
+(TUDO REFERENTE ÀS MATÉRIAS QUE ELE LECIONA (incluindo os alunos))   
+- Edição de ementa/descrição e etc das matérias que ELE leciona <<< JAMPA
 - Quadro de alunos com notas e presenças (editável), fechamento do semestre (aí mostra quem foi aprovado ou não).
-- Seta a média das matérias que ele leciona
-- Recebe e manda mensagem pro aluno e pro diretor
+- Seta a média das matérias que ele leciona <<< JAMPA
+- Recebe e manda mensagem pro aluno e pro diretor   <<< JAMPA
 
 
 

@@ -1,12 +1,12 @@
 public class AlunoMateria {
 	
-	private Aluno aluno;
+	private Aluno 	aluno;
 	private Materia materia;
-	private float nota;
+	private float 	nota;
 	
 	public AlunoMateria(Aluno aluno, Materia materia) {
 		
-		this.aluno = aluno;
+		this.aluno 	 = aluno;
 		this.materia = materia;
 	}
 	

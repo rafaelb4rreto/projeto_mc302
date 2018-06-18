@@ -1,11 +1,11 @@
 public class ProfessorMateria {
 
 	private Professor professor;
-	private Materia materia;
+	private Materia   materia;
 	
 	public ProfessorMateria(Professor professor, Materia materia) {
 		
-		this.materia = materia;
+		this.materia   = materia;
 		this.professor = professor;
 	}
 	
