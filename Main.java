@@ -4,16 +4,16 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		// alocacao e inicalizacao de objetos para testarmos todas as implementacoes do programa.
+		//alocacao e inicalizacao de objetos para testarmos todas as implementacoes do programa.
 		Diretor d = new Diretor("Maria",57,'F',"20/07/1960","0001","1a2b3c",20000);
 		
 		Professor prof1 = d.contratarProfessor("Joao",44,'M',"03/05/1974","abcd","134B",10000);
 		Professor prof2 = d.contratarProfessor("Joao",44,'M',"03/05/1974","abcd","134B",10000);
 		Aluno a1 = d.matricularAluno("Jose",12,'M',"02/06/2005","1234",5);
 		Aluno a3 = d.matricularAluno("Paulo",12,'M',"02/06/2005","1234",5);
-		Materia m1 = d.abrirMateria("Geografia","1",4,"66A","10h",Dia.SEGUNDA,30);
-		Materia m2 = d.abrirMateria("Matematica","2",5,"66B","08h",Dia.SEGUNDA,20);
-		Materia m3 = d.abrirMateria("Ciencias","3",3,"66C","10h",Dia.SEGUNDA,20);
+		Materia m1 = d.abrirMateria("Geografia","1",4,"66A","10h",Dia.SEGUNDA,30,"Materia de Geografia");
+		Materia m2 = d.abrirMateria("Matematica","2",5,"66B","08h",Dia.SEGUNDA,20,"Materia de Matematica");
+		Materia m3 = d.abrirMateria("Ciencias","3",3,"66C","10h",Dia.SEGUNDA,20,"Materia de Ciencias");
 		d.atribuirMateriaAUmProfessor(prof1, m1);
 		d.atribuirMateriaAUmProfessor(prof2, m2);
 		
@@ -46,6 +46,8 @@ public class Main {
 		d.setBonus(prof2, 1000);		   // seta um bonus salarial ao professor prof de 1000 reais
 		System.out.println("\n" + prof2); // teste de atribuicao de bonus
 
+		prof1.editarEmenta("Ementa alterada",m3);
+		
 	}
 
 }

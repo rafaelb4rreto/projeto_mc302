@@ -74,6 +74,53 @@ public class Professor extends Pessoa{
 		}
 	}
 	
+	public boolean enviarMensagem(String mensagem,Pessoa p) {
+		if(p instanceof Aluno) {
+			
+			for(int i = 0;i < this.getMaterias().size();i++) {
+				Materia m = this.getMaterias().get(i);
+				for(int j = 0;j < m.getAlunosCadastrados().size();j++) {
+					if(m.getAlunosCadastrados().get(j).getAluno().equals((Aluno)p)) {
+						System.out.println(mensagem);//escreva no arquivo
+						return true;
+					}
+				}
+			}
+		}
+		else if(p instanceof Professor) {
+			System.out.println(mensagem);
+			return true;
+		}
+		else {
+			System.out.println(mensagem);
+			return true;
+		}
+		System.out.println("Professor, voce nao tem autorizacao para isso!"); //excecao!!!!
+		return false;
+	}
+	
+	public boolean editarEmenta(String ementa,Materia materia) {
+		if(this.getMaterias().contains(materia)) {
+			materia.setEmenta(ementa);
+			return true;
+		}
+		return false;//na verdade sera gerado uma excecao
+	}
+	
+	public float mediaMateria(Materia m) {
+		float media = 0;
+		if(this.getMaterias().contains(m)) {
+			for(int i = 0;i < m.getAlunosCadastrados().size();i++) {
+				media += m.getAlunosCadastrados().get(i).getNota();
+			}
+			media = media/m.getAlunosCadastrados().size();
+			return media;
+		}
+		
+		return media;// na verdade se chegar ate aqui gera uma excecao
+	}
+	
+	
 	
 	@Override
 	public String toString() {

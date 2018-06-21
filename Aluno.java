@@ -126,6 +126,27 @@ public class Aluno extends Pessoa {
 		return false;	
 	}
 	
+public boolean enviarMensagem(String mensagem,Pessoa p) {
+		
+
+		if(p instanceof Aluno) {
+			//excecao
+		}
+		
+		else if(p instanceof Professor) {
+			
+			for(int i = 0;i < this.materias.size();i++) {
+				if(materias.get(i).getMateria().getProfessor() == (Professor)p) {
+					System.out.println(mensagem);//escreva no arquivo
+					return true;
+				}				
+			}		
+		}
+		
+		System.out.println("Voce nao tem autorizacao para isso!"); //excecao!!!!
+		return false;
+	}
+	
 	@Override
 	public String toString() {
 		String out = "Aluno: " + super.getNome() + ", n. materias: " + getMaterias().size() + "\n";

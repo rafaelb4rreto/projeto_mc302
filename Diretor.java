@@ -78,8 +78,8 @@ public class Diretor extends Pessoa{
 		return prof.removerMateria(materia);
 	}
 	
-	public Materia abrirMateria(String nome, String codigo, int creditos, String sala, String horario, Dia dia, int capacidade){
-		Materia nova_materia = new Materia(nome, codigo, creditos, sala, horario, dia, capacidade);
+	public Materia abrirMateria(String nome, String codigo, int creditos, String sala, String horario, Dia dia, int capacidade, String ementa){
+		Materia nova_materia = new Materia(nome, codigo, creditos, sala, horario, dia, capacidade, ementa);
 		materias.add(nova_materia);
 		return nova_materia;
 	}
@@ -92,6 +92,18 @@ public class Diretor extends Pessoa{
 		materia.getAlunosCadastrados().removeAll(materia.getAlunosCadastrados());
 		materia.setProfessor(null);
 		materias.remove(materia);
+	}
+	
+	public boolean enviarMensagem(String mensagem,Pessoa p) {
+		if(p instanceof Professor) {
+			System.out.println(mensagem);
+			return true;
+		}
+		else if(p instanceof Aluno) {
+			System.out.println(mensagem); //escreva no arquivo
+			return true;
+		}
+		return false;
 	}
 	
 	@Override

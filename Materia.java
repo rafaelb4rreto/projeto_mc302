@@ -12,10 +12,11 @@ public class Materia {
 	private Dia 	  dia;
 	private int 	  capacidadeMax;
 	private int 	  capacidadeAtual;
+	private String    ementa;
 	
 
 	public Materia
-	(String nome, String codigo, int creditos, String sala,String horario, Dia dia, int capacidade) {
+	(String nome, String codigo, int creditos, String sala,String horario, Dia dia, int capacidade,String ementa) {
 		
 		alunosCadastrados  = new ArrayList<AlunoMateria>();
 		
@@ -27,6 +28,7 @@ public class Materia {
 		this.dia 		= dia;
 		this.capacidadeMax 		= capacidade;
 		this.capacidadeAtual    = 0;
+		this.ementa     = ementa;
 	}
 
 	public boolean removerAlunoCadastrado(AlunoMateria am) {
@@ -57,6 +59,8 @@ public class Materia {
 			
 			out += "* " + am.getAluno().getNome() + " (RA: " + am.getAluno().getRA() + ")  ";
 		}
+		
+		out += "\nEmenta :"+ ementa;
 		
 		return out;
 	}
@@ -141,5 +145,15 @@ public class Materia {
 	public void setDia(Dia dia) {
 		this.dia = dia;
 	}
+
+	public String getEmenta() {
+		return ementa;
+	}
+
+	public void setEmenta(String ementa) {
+		this.ementa = ementa;
+	}
+	
+	
 
 }
