@@ -30,7 +30,7 @@ ALUNO:
 PROFESSOR:
 
 (TUDO REFERENTE ÀS MATÉRIAS QUE ELE LECIONA (incluindo os alunos))   
-- Edição de ementa/descrição e etc das matérias que ELE leciona <<< JAMPA *****EXCE: MATERIA NAO ENCONTRADA
+- [DONE]Edição de ementa/descrição e etc das matérias que ELE leciona <<< JAMPA *****EXCE: MATERIA NAO ENCONTRADA
 - Quadro de alunos com notas e presenças (editável), fechamento do semestre (aí mostra quem foi aprovado ou não).
 - [BUG] Seta a média das matérias que ele leciona <<< JAMPA ******EXCE: MATERIA N ENCONTRADA
 - Recebe e manda mensagem pro aluno e pro diretor   <<< JAMPA  *******EXCE: AL/DIR N ENCONTRADO
