@@ -50,5 +50,6 @@ Interface Gráfica:
 
 - Mensagens
 - Horario
-
+- Login
+- Notas
 
