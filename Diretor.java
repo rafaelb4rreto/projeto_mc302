@@ -2,7 +2,8 @@ import java.util.ArrayList;
 
 public class Diretor extends Pessoa{
 	
-	private int salario;
+	private int 	salario;
+	private int		balanco;	
 	private ArrayList<Aluno>	 alunos;
 	private ArrayList<Materia> 	 materias; 
 	private ArrayList<Professor> professores;
@@ -12,7 +13,7 @@ public class Diretor extends Pessoa{
 		super(nome, idade, sexo, dataNascimento, senha);
 		
 		this.salario = salario;
-		
+		this.balanco = 0;
 		alunos 		 = new ArrayList<Aluno>();
 		materias 	 = new ArrayList<Materia>();
 		professores  = new ArrayList<Professor>();

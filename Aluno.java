@@ -3,7 +3,8 @@ import java.util.ArrayList;
 public class Aluno extends Pessoa {
 	
 	private static int 	numAlunos = 0;
-	private ArrayList<AlunoMateria> materias;	
+	private ArrayList<AlunoMateria> materias;
+	private int 		balanco;
 	private int 		serie;
 	private int 		advertencias;
 	private int 		maxAdvertencias;
