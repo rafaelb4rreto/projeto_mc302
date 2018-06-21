@@ -85,26 +85,6 @@ public class Aluno extends Pessoa {
 	
 	}
 
-	public boolean adicionarNotas(Materia materia, float nota) {
-		
-		// percorre materias para achar a materia para adicionar a nota
-		for(AlunoMateria alma: materias) {
-			
-			if(alma.getMateria() == materia) {
-				
-				System.out.println("Nota " + nota + " adicionada a materia " + materia.getNome() +
-				" (cod. " + materia.getCodigo() + ").");
-				
-				alma.setNota(nota);
-				return true;
-			}
-		}
-		
-		// nega a adicao de nota caso o aluno nao faca a materia
-		System.out.println("Nao foi possivel adicionar nota: o aluno nao esta matriculado na materia.");
-		return false;
-	}
-
 	public boolean removerMateria(Materia materia) {
 		
 		for(AlunoMateria alma: materias) {
