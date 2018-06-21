@@ -2,8 +2,7 @@ import java.util.ArrayList;
 
 public class Diretor extends Pessoa{
 	
-	private int 	salario;
-	private int		balanco;	
+	private int salario;
 	private ArrayList<Aluno>	 alunos;
 	private ArrayList<Materia> 	 materias; 
 	private ArrayList<Professor> professores;
@@ -13,7 +12,7 @@ public class Diretor extends Pessoa{
 		super(nome, idade, sexo, dataNascimento, senha);
 		
 		this.salario = salario;
-		this.balanco = 0;
+		
 		alunos 		 = new ArrayList<Aluno>();
 		materias 	 = new ArrayList<Materia>();
 		professores  = new ArrayList<Professor>();
@@ -26,7 +25,7 @@ public class Diretor extends Pessoa{
 		return novo_aluno;		
 	}
 	
-	public boolean expulsarAluno(Aluno aluno){
+	public boolean expulsarAluno(Aluno aluno) throws EscolaException{
 		
 		if (alunos.contains(aluno)){
 			for (AlunoMateria ma: aluno.getMaterias()) {
@@ -38,10 +37,9 @@ public class Diretor extends Pessoa{
 			
 			return true;
 			
-		}else{
-			
-			return false;
 		}
+		else throw new EscolaException("Aluno nao encontrado\n");
+		
 	}
 	
 	public Professor contratarProfessor(String nome, int idade, char sexo, String dataNascimento, String senha, String sala, int salario){

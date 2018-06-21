@@ -20,6 +20,7 @@ public abstract class Pessoa {
 		this.senha = senha;		// senha do sistema; login: o RA da pessoa
 	}
 	
+	
 	@Override
 	public String toString() {
 		return nome + " | RA: " + RA + " | Idade: " + idade + " | Sexo: " + sexo + "\n";

@@ -99,12 +99,17 @@ public class Professor extends Pessoa{
 		return false;
 	}
 	
-	public boolean editarEmenta(String ementa,Materia materia) {
+	public boolean editarEmenta(String ementa,Materia materia) throws EscolaException{
+		
 		if(this.getMaterias().contains(materia)) {
+			
 			materia.setEmenta(ementa);
 			return true;
 		}
-		return false;//na verdade sera gerado uma excecao
+		else {
+			throw new EscolaException("Professor nao responsavel por esta materia\n");
+		}
+
 	}
 	
 	public float mediaMateria(Materia m) {

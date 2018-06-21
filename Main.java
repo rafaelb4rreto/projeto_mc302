@@ -46,7 +46,12 @@ public class Main {
 		d.setBonus(prof2, 1000);		   // seta um bonus salarial ao professor prof de 1000 reais
 		System.out.println("\n" + prof2); // teste de atribuicao de bonus
 
-		prof1.editarEmenta("Ementa alterada",m3);
+		try {
+			prof1.editarEmenta("Ementa alterada",m2);
+		} catch (EscolaException e) {
+			
+			System.err.println(e);
+		}
 		
 	}
 
