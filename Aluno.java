@@ -29,24 +29,20 @@ public class Aluno extends Pessoa {
 		
 	}
 	
-	public boolean adicionarMateria(Materia materia) {
+	public boolean adicionarMateria(Materia materia) throws EscolaException{
 		
 		// caso os creditos adicionais fizerem o aluno extrapolar sua cota, nega a adicao
 		if(numCreditos + materia.getCreditos() > this.getMaxCreditos()) {
 			
-			System.out.println("Nao foi possivel adicionar a materia " + materia.getNome() +
+			throw new EscolaException("Nao foi possivel adicionar a materia " + materia.getNome() +
 					" (cod. " + materia.getCodigo() + "): creditos indisponiveis para a materia.");
-			
-			return false;
 		}
 		
 		// caso a materia ja esteja lotada de alunos nega a adicao
 		if(materia.getCapacidadeMax() == materia.getCapacidadeAtual()) {
 			
-			System.out.println("Nao foi possivel adicionar a  materia " + materia.getNome() +
+			throw new EscolaException("Nao foi possivel adicionar a  materia " + materia.getNome() +
 					" (cod. " + materia.getCodigo() + "): materia lotada.");
-			
-			return false;
 		}
 	
 		for(AlunoMateria alma: materias) {
@@ -56,20 +52,17 @@ public class Aluno extends Pessoa {
 				// ... e no mesmo horario, nega a adicao
 				if(alma.getMateria().getHorario().equalsIgnoreCase(materia.getHorario())) {
 					
-					System.out.println("Nao foi possivel adicionar a materia " + materia.getNome() +
+					throw new EscolaException("Nao foi possivel adicionar a materia " + materia.getNome() +
 							" (cod. " + materia.getCodigo() + "): conflito de horario com materias ja matriculadas.");
-					
-					return false;
+			
 				}
 			}
 			
 			// caso o aluno ja faca uma materia com o mesmo nome, nega a adicao
 			if(alma.getMateria().getNome().equalsIgnoreCase(materia.getNome())) {
 				
-				System.out.println("Nao foi possivel adicionar a materia " + materia.getNome() + 
+				throw new EscolaException("Nao foi possivel adicionar a materia " + materia.getNome() + 
 						" (cod. " + materia.getCodigo() + "): o aluno ja esta matriculado na materia.");
-				
-				return false;
 			}
 		}
 		
@@ -83,6 +76,26 @@ public class Aluno extends Pessoa {
 		
 		return true;
 	
+	}
+
+	public boolean adicionarNotas(Materia materia, float nota) {
+		
+		// percorre materias para achar a materia para adicionar a nota
+		for(AlunoMateria alma: materias) {
+			
+			if(alma.getMateria() == materia) {
+				
+				System.out.println("Nota " + nota + " adicionada a materia " + materia.getNome() +
+				" (cod. " + materia.getCodigo() + ").");
+				
+				alma.setNota(nota);
+				return true;
+			}
+		}
+		
+		// nega a adicao de nota caso o aluno nao faca a materia
+		System.out.println("Nao foi possivel adicionar nota: o aluno nao esta matriculado na materia.");
+		return false;
 	}
 
 	public boolean removerMateria(Materia materia) {

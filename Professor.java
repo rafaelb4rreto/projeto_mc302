@@ -125,32 +125,6 @@ public class Professor extends Pessoa{
 		return media;// na verdade se chegar ate aqui gera uma excecao
 	}
 	
-	public boolean adicionarNotas(Aluno a,Materia materia, float nota) {
-		
-		if(materias.contains(materia)) {
-			for(int i = 0;i < materias.size();i++) {
-				if(materia.getAlunosCadastrados().get(i).getAluno() == a) {
-					materia.getAlunosCadastrados().get(i).setNota(nota);
-					System.out.println("nota = "+materia.getAlunosCadastrados().get(i).getAluno().getNome());
-					return true;
-				}
-			}
-		}
-		return false;//na verdade geraria uma excecao
-	}
-	
-	public float mediaMateria(Materia m) {
-		float media = 0;
-		if(this.getMaterias().contains(m)) {
-			for(int i = 0;i < m.getAlunosCadastrados().size();i++) {
-				media += m.getAlunosCadastrados().get(i).getNota();
-			}
-			media = media/m.getAlunosCadastrados().size();
-			return media;
-		}
-		
-		return media;// na verdade se chegar ate aqui gera uma excecao
-	}
 	
 	
 	@Override

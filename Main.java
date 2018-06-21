@@ -18,13 +18,34 @@ public class Main {
 		d.atribuirMateriaAUmProfessor(prof2, m2);
 		
 		d.setMaxCreditos(a1, 4); 		 // seta como 4 o maximo de creditos que o aluno a1 pode cursar
-		a1.adicionarMateria(m1);	 // tenta adicionar as materias m1 e m2 ao aluno a1
-		a1.adicionarMateria(m2);
+		
+		
+		try {
+			a1.adicionarMateria(m1);
+		} catch (EscolaException e) {
+			System.err.println(e);
+		}	 // tenta adicionar as materias m1 e m2 ao aluno a1
+		
+		
+		try {
+			a1.adicionarMateria(m2);
+		} catch (EscolaException e) {
+			System.err.println(e);
+		}
+		
+		
 		System.out.println("\n" + a1 + "\n"); // o resultado mostrara que o limitador de creditos esta funcionando
+		
+		
 		
 		d.setMaxCreditos(a1, 20);
 		
-		a3.adicionarMateria(m3);
+		try {
+			a3.adicionarMateria(m3);
+		} catch (EscolaException e1) {
+			System.err.println(e1);
+		}
+		
 		System.out.println("\n" + a3); // o resultado mostra que o sistema consegue impedir que um mesmo 
 									   // aluno tente adicionar mais de uma materia no mesmo horario
 		System.out.println("\n" + m1+ "\n"); // mostra se o aluno de fato foi cadastrado na materia
