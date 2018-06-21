@@ -8,9 +8,9 @@ DIRETOR:
 - Situação acadêmica dos professores (ex.: turmas lecionadas, formação)
 
 - Recebe e manda mensagens pra geral <<< JAMPA
-- Associação de professores <-> matérias <-> salas
-- Criação e exclusão de matérias        <<< ZANGADO
-- Inclusão e expulsão de alunos e professores       <<< ZANGADO
+- [DONE] Associação de professores <-> matérias <-> salas
+- [DONE] Criação e exclusão de matérias        <<< ZANGADO
+- [DONE] Inclusão e expulsão de alunos e professores       <<< ZANGADO
 
 ->  Atributos:
 ArrayList Professores (Todos da escola)
