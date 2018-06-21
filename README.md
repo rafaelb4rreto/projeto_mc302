@@ -11,6 +11,7 @@ DIRETOR:
 - Associação de professores <-> matérias <-> salas
 - Criação e exclusão de matérias        <<< ZANGADO
 - Inclusão e expulsão de alunos e professores       <<< ZANGADO
+- Balanço da escola
 
 ->  Atributos:
 ArrayList Professores (Todos da escola)
@@ -27,6 +28,7 @@ ALUNO:
 - Recebe e manda mensagens pros professores das matérias atuais     <<< JAMPA
 - Quadro de matérias (ementa/descrição das matérias, matrícula em matérias, matérias atuais, sala)
 - Emissão de integralização (txt com as infos das matérias do ano todo) <<< ZANGADO
+- Balanço do aluno
 
 PROFESSOR:
 
@@ -43,5 +45,10 @@ RESPONSAVEL:
 Herda de pessoa
 atributos: email, telefone, endereço, Aluno
 verSituacaoAluno
+
+Interface Gráfica:
+
+- Mensagens
+- Horario
 
 
