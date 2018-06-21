@@ -34,7 +34,7 @@ PROFESSOR:
 (TUDO REFERENTE ÀS MATÉRIAS QUE ELE LECIONA (incluindo os alunos))   
 - [DONE] Edição de ementa/descrição e etc das matérias que ELE leciona <<< JAMPA
 - Quadro de alunos com notas e presenças (editável), fechamento do semestre (aí mostra quem foi aprovado ou não).
-- Seta a média das matérias que ele leciona <<< JAMPA
+- [BUG]Seta a média das matérias que ele leciona <<< JAMPA
 - [DONE] Recebe e manda mensagem pro aluno e pro diretor   <<< JAMPA
 
 
