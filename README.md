@@ -7,7 +7,7 @@ DIRETOR:
 - Situação acadêmica dos alunos (ex.: faltas, notas, advertencias)
 - Situação acadêmica dos professores (ex.: turmas lecionadas, formação)
 
-- Recebe e manda mensagens pra geral <<< JAMPA
+- [DONE] Recebe e manda mensagens pra geral <<< JAMPA
 - [DONE] Associação de professores <-> matérias <-> salas
 - [DONE] Criação e exclusão de matérias        <<< ZANGADO
 - [DONE] Inclusão e expulsão de alunos e professores       <<< ZANGADO
@@ -23,9 +23,8 @@ ALUNO:
 -> Diretor
 
 (TUDO REFERENTE A ELE E AOS PROFESSORES QUE ELE TEM)
-- Tem um responsável do tipo pessoa (Classe Pessoa vai ser abstrata?)   <<< JAMPA
 - Situação acadêmica do aluno
-- Recebe e manda mensagens pros professores das matérias atuais     <<< JAMPA
+- [DONE] Recebe e manda mensagens pros professores das matérias atuais     <<< JAMPA
 - Quadro de matérias (ementa/descrição das matérias, matrícula em matérias, matérias atuais, sala)
 - Emissão de integralização (txt com as infos das matérias do ano todo) <<< ZANGADO
 - Balanço do aluno
@@ -33,10 +32,10 @@ ALUNO:
 PROFESSOR:
 
 (TUDO REFERENTE ÀS MATÉRIAS QUE ELE LECIONA (incluindo os alunos))   
-- Edição de ementa/descrição e etc das matérias que ELE leciona <<< JAMPA
+- [DONE] Edição de ementa/descrição e etc das matérias que ELE leciona <<< JAMPA
 - Quadro de alunos com notas e presenças (editável), fechamento do semestre (aí mostra quem foi aprovado ou não).
 - Seta a média das matérias que ele leciona <<< JAMPA
-- Recebe e manda mensagem pro aluno e pro diretor   <<< JAMPA
+- [DONE] Recebe e manda mensagem pro aluno e pro diretor   <<< JAMPA
 
 
 
