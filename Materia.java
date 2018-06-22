@@ -31,9 +31,13 @@ public class Materia {
 		this.ementa     = ementa;
 	}
 
-	public boolean removerAlunoCadastrado(AlunoMateria am) {
-		capacidadeAtual--;
-		return alunosCadastrados.remove(am);
+	public boolean removerAlunoCadastrado(AlunoMateria am) throws EscolaException {
+		if(alunosCadastrados.remove(am) == false)
+			throw new EscolaException("o aluno "+am.getAluno().getNome()+"nao esta cadastrado na materia");
+		else {
+			capacidadeAtual--;
+			return alunosCadastrados.remove(am);
+		}
 	}
 	
 	public boolean adicionarAlunoCadastrado(AlunoMateria am) {
