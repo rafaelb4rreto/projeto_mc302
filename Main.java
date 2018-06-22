@@ -1,4 +1,3 @@
-
 // A funcao Main faz os testes das funcionalidades ja implementadas
 public class Main {
 	
@@ -17,7 +16,7 @@ public class Main {
 		d.atribuirMateriaAUmProfessor(prof1, m1);
 		d.atribuirMateriaAUmProfessor(prof2, m2);
 		
-		d.setMaxCreditos(a1, 4); 		 // seta como 4 o maximo de creditos que o aluno a1 pode cursar
+		d.setMaxCreditos(a1,10); 		 // seta como 4 o maximo de creditos que o aluno a1 pode cursar
 		
 		
 		try {
@@ -41,7 +40,7 @@ public class Main {
 		d.setMaxCreditos(a1, 20);
 		
 		try {
-			a3.adicionarMateria(m3);
+			a3.adicionarMateria(m1);
 		} catch (EscolaException e1) {
 			System.err.println(e1);
 		}
@@ -51,7 +50,8 @@ public class Main {
 		System.out.println("\n" + m1+ "\n"); // mostra se o aluno de fato foi cadastrado na materia
 
 		
-		a3.adicionarNotas(m1, 9.5f);   // adiciona a nota 9,5 ao aluno a3 referente a materia m1
+		prof1.adicionarNotas(a1,m1, 9.5f);   // adiciona a nota 9,5 ao aluno a3 referente a materia m1
+		prof1.adicionarNotas(a3, m1, 7.5f);
 		System.out.println("\n" + a3+ "\n"); // teste de adicao de notas
 
 		
@@ -59,7 +59,7 @@ public class Main {
 		System.out.println("\n" + m1+ "\n"); // teste de adicao de materias e de profs responsaveis pela materia
 
 		
-		a3.removerMateria(m1);
+		//a3.removerMateria(m1);
 		System.out.println("\n" + a3); // remocao de materias 
 		System.out.println("\n" + m1); // teste de remocao de alunos cadastrados
 		
@@ -68,12 +68,17 @@ public class Main {
 		System.out.println("\n" + prof2); // teste de atribuicao de bonus
 
 		try {
-			prof1.editarEmenta("Ementa alterada",m2);
+			prof2.editarEmenta("Ementa alterada",m2);
 		} catch (EscolaException e) {
 			
 			System.err.println(e);
 		}
 		
+		for(int i = 0;i < m1.getAlunosCadastrados().size();i++) { //checando se a atribuição de notas esta correta
+			System.out.println(m1.getAlunosCadastrados().get(i).getNota());
+		}
+		
+		System.out.println(prof1.mediaMateria(m1)); //media dos alunos na materia m1 lecionada pelo prof1
 	}
 
 }
