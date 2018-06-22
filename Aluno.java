@@ -29,7 +29,7 @@ public class Aluno extends Pessoa {
 		
 	}
 	
-	public boolean adicionarMateria(Materia materia) throws EscolaException{
+public boolean adicionarMateria(Materia materia) throws EscolaException{
 		
 		// caso os creditos adicionais fizerem o aluno extrapolar sua cota, nega a adicao
 		if(numCreditos + materia.getCreditos() > this.getMaxCreditos()) {
@@ -77,36 +77,18 @@ public class Aluno extends Pessoa {
 		return true;
 	
 	}
-
-	public boolean adicionarNotas(Materia materia, float nota) {
-		
-		// percorre materias para achar a materia para adicionar a nota
-		for(AlunoMateria alma: materias) {
-			
-			if(alma.getMateria() == materia) {
-				
-				System.out.println("Nota " + nota + " adicionada a materia " + materia.getNome() +
-				" (cod. " + materia.getCodigo() + ").");
-				
-				alma.setNota(nota);
-				return true;
-			}
-		}
-		
-		// nega a adicao de nota caso o aluno nao faca a materia
-		System.out.println("Nao foi possivel adicionar nota: o aluno nao esta matriculado na materia.");
-		return false;
-	}
-
-	public boolean removerMateria(Materia materia) {
+	public boolean removerMateria(Materia materia) throws EscolaException{
 		
 		for(AlunoMateria alma: materias) {
 			
 			if(alma.getMateria() == materia) {
-				
-				materia.removerAlunoCadastrado(alma);
-				materias.remove(alma);
-				this.setNumCreditos(this.numCreditos - materia.getCreditos());
+				try {
+					materia.removerAlunoCadastrado(alma);
+					materias.remove(alma);
+					this.setNumCreditos(this.numCreditos - materia.getCreditos());
+				} catch(EscolaException e) {
+					System.err.println(e);
+				}
 				
 				System.out.println("Materia " + materia.getNome() +
 						" (cod. " + materia.getCodigo() + ") removida do aluno " + this.getNome() + ".");
@@ -114,16 +96,14 @@ public class Aluno extends Pessoa {
 				return true;
 			}
 		}
-				
-		System.out.println("Nao foi possivel remover materia: o aluno nao esta matriculado na materia");
-		return false;	
+		throw new EscolaException("o aluno nao esta cadastrado na materia");
 	}
 	
-public boolean enviarMensagem(String mensagem,Pessoa p) {
+public boolean enviarMensagem(String mensagem,Pessoa p) throws EscolaException{
 		
 
 		if(p instanceof Aluno) {
-			//excecao
+			throw new EscolaException("Voce nao tem autorizacao para isso!");
 		}
 		
 		else if(p instanceof Professor) {
@@ -136,8 +116,7 @@ public boolean enviarMensagem(String mensagem,Pessoa p) {
 			}		
 		}
 		
-		System.out.println("Voce nao tem autorizacao para isso!"); //excecao!!!!
-		return false;
+		throw new EscolaException("Voce nao tem autorizacao para isso!");
 	}
 	
 	@Override
