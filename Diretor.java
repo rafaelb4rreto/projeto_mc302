@@ -8,7 +8,7 @@ public class Diretor extends Pessoa{
 	private ArrayList<Professor> professores;
 	
 	public Diretor
-	(String nome, int idade, char sexo, String dataNascimento, String RA, String senha, int salario) {
+	(String nome, int idade, char sexo, String dataNascimento, String senha, int salario) {
 		super(nome, idade, sexo, dataNascimento, senha);
 		
 		this.salario = salario;
