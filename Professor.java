@@ -100,21 +100,35 @@ public class Professor extends Pessoa{
 	}
 	
 	public boolean editarEmenta(String ementa,Materia materia) throws EscolaException{
-		
-		if(this.getMaterias().contains(materia)) {
 			
-			materia.setEmenta(ementa);
-			return true;
+			if(this.getMaterias().contains(materia)) {
+				
+				materia.setEmenta(ementa);
+				return true;
+			}
+			else {
+				throw new EscolaException("Professor nao responsavel por esta materia\n");
+			}
+	
 		}
-		else {
-			throw new EscolaException("Professor nao responsavel por esta materia\n");
+	
+	
+	public boolean adicionarNotas(Aluno a,Materia materia, float nota) {
+		if(materias.contains(materia)) {
+			
+			for(int j = 0;j < materia.getAlunosCadastrados().size();j++) {
+				if(materia.getAlunosCadastrados().get(j).getAluno().getRA() == a.getRA()) {
+					materia.getAlunosCadastrados().get(j).setNota(nota);
+					return true;
+				}
+			}
 		}
-
+		return false;//na verdade geraria uma excecao
 	}
 	
 	public float mediaMateria(Materia m) {
 		float media = 0;
-		if(this.getMaterias().contains(m)) {
+		if(materias.contains(m)) {
 			for(int i = 0;i < m.getAlunosCadastrados().size();i++) {
 				media += m.getAlunosCadastrados().get(i).getNota();
 			}
