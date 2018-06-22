@@ -4,7 +4,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		//alocacao e inicalizacao de objetos para testarmos todas as implementacoes do programa.
-		Diretor d = new Diretor("Maria",57,'F',"20/07/1960","0001","1a2b3c",20000);
+		Diretor d = new Diretor("Maria",57,'F',"20/07/1960","1a2b3c",20000);
 		
 		Professor prof1 = d.contratarProfessor("Joao",44,'M',"03/05/1974","abcd","134B",10000);
 		Professor prof2 = d.contratarProfessor("Joao",44,'M',"03/05/1974","abcd","134B",10000);
