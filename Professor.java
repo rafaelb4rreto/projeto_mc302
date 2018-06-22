@@ -20,22 +20,18 @@ public class Professor extends Pessoa{
 	}
 	
 	// Associa a materia ao professor
-	public boolean adicionarMateria(Materia materia) {
+	public boolean adicionarMateria(Materia materia) throws EscolaException{
 		
 		if (materias.contains(materia)){
 			System.out.println("Nao foi possivel add a materia " + materia.getNome() + 
 					" (cod. " + materia.getCodigo() + "): materia ja existente.");
 			
-			return false;
+			throw new EscolaException("Nao foi possivel adicionar a materia " + materia.getNome() + " (cod. " + materia.getCodigo() + "): materia ja lecionada pelo professor");			
 		}
 		
 		// se a materia ja estiver com um professor associado, nega o pedido
 		if(materia.getProfessor() != null) {
-			
-			System.out.println("Nao foi possivel add a materia " + materia.getNome() + 
-					" (cod. " + materia.getCodigo() + "): a materia ja tem um professor.");
-			
-			return false;
+			throw new EscolaException("Nao foi possivel adicionar a materia " + materia.getNome() + " (cod. " + materia.getCodigo() + "): ja existe um professor responsavel pela materia");			
 		}
 		
 		/* neste ponto o pedido eh valido.
@@ -53,28 +49,24 @@ public class Professor extends Pessoa{
 	}
 	
 	// Desassocia a materia ao professor
-	public boolean removerMateria(Materia materia) {
+	public boolean removerMateria(Materia materia) throws EscolaException {
 		
 		int materia_index = materias.indexOf(materia);
 		
-		if (materia_index == -1) {
+		if (materias.contains(materia) == false) {
 			// neste ponto a materia nao foi encontrada em materias, entao nega o pedido de remocao
-			System.out.println("Nao foi possivel remover a materia " + materia.getNome() + 
-					" (cod. " + materia.getCodigo() + "): o professor nao tem a materia.");
-			
-			return false;
+			throw new EscolaException("Nao foi possivel remover a materia " + materia.getNome() + " (cod. " + materia.getCodigo() + "): o professor nao leciona a materia.");			
 		}else {
 			materias.remove(materia_index);
 			materia.setProfessor(null);
 			
-			System.out.println("Materia " + materia.getNome() + 
-					" (cod. " + materia.getCodigo() + ") removida do professor " + this.getNome() + ".");
+			System.out.println("Materia " + materia.getNome() + " (cod. " + materia.getCodigo() + ") removida do professor " + this.getNome() + ".");
 			
 			return true;
 		}
 	}
 	
-	public boolean enviarMensagem(String mensagem,Pessoa p) {
+	public boolean enviarMensagem(String mensagem,Pessoa p) throws EscolaException {
 		if(p instanceof Aluno) {
 			
 			for(int i = 0;i < this.getMaterias().size();i++) {
@@ -91,12 +83,12 @@ public class Professor extends Pessoa{
 			System.out.println(mensagem);
 			return true;
 		}
-		else {
+		else if(p instanceof Diretor) {
 			System.out.println(mensagem);
 			return true;
 		}
-		System.out.println("Professor, voce nao tem autorizacao para isso!"); //excecao!!!!
-		return false;
+		
+		throw new EscolaException("Professor, voce nao tem autorizacao para isso!");
 	}
 	
 	public boolean editarEmenta(String ementa,Materia materia) throws EscolaException{
@@ -113,20 +105,21 @@ public class Professor extends Pessoa{
 		}
 	
 	
-	public boolean adicionarNotas(Aluno a,Materia materia, float nota) {
+	public boolean adicionarNotas(Aluno a,Materia materia, float nota) throws EscolaException{
 		if(materias.contains(materia)) {
-			
 			for(int j = 0;j < materia.getAlunosCadastrados().size();j++) {
+				System.out.println("caiu "+a.getNome());
 				if(materia.getAlunosCadastrados().get(j).getAluno().getRA() == a.getRA()) {
 					materia.getAlunosCadastrados().get(j).setNota(nota);
 					return true;
 				}
 			}
+			throw new EscolaException("Aluno de RA "+a.getRA()+" nao esta cadastrado na materia "+materia.getNome()+"\n");		
 		}
-		return false;//na verdade geraria uma excecao
+			throw new EscolaException("Professor tal nao responsavel por esta materia\n");		
 	}
 	
-	public float mediaMateria(Materia m) {
+	public float mediaMateria(Materia m) throws EscolaException{
 		float media = 0;
 		if(materias.contains(m)) {
 			for(int i = 0;i < m.getAlunosCadastrados().size();i++) {
@@ -135,8 +128,8 @@ public class Professor extends Pessoa{
 			media = media/m.getAlunosCadastrados().size();
 			return media;
 		}
-		
-		return media;// na verdade se chegar ate aqui gera uma excecao
+		else
+			throw new EscolaException("Professor nao responsavel por esta materia\n");		
 	}
 	
 	
