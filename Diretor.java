@@ -25,7 +25,7 @@ public class Diretor extends Pessoa{
 		return novo_aluno;		
 	}
 	
-	public boolean expulsarAluno(Aluno aluno) throws EscolaException{
+public boolean expulsarAluno(Aluno aluno) throws EscolaException{
 		
 		if (alunos.contains(aluno)){
 			for (AlunoMateria ma: aluno.getMaterias()) {
@@ -54,7 +54,11 @@ public class Diretor extends Pessoa{
 		
 			for (Materia ma: prof.getMaterias()) {
 				//prof.removerMateria(ma);						<< Opcao 1
-				desatribuirMateriaAUmProfessor(prof, ma);	//	<< Opcao 2 (ver funcao abaixo)
+				try {
+					desatribuirMateriaAUmProfessor(prof, ma);	//	<< Opcao 2 (ver funcao abaixo)
+				}catch(EscolaException e) {
+					System.err.print(e);
+				}
 			}
 			
 			professores.remove(prof);
@@ -67,14 +71,22 @@ public class Diretor extends Pessoa{
 		}
 	}	
 	
-	// praticamente todo o trabalho de se atribuir uma materia a um professor está
-	// na funcao adicionarMateria() que está na classe professor!
-	public boolean atribuirMateriaAUmProfessor(Professor prof, Materia materia){
-		return prof.adicionarMateria(materia);
+	// praticamente todo o trabalho de se atribuir uma materia a um professor estÃ¡
+	// na funcao adicionarMateria() que estÃ¡ na classe professor!
+	public boolean atribuirMateriaAUmProfessor(Professor prof, Materia materia)throws EscolaException {
+		if( prof.adicionarMateria(materia))
+			return true;
+		else
+			throw new EscolaException("Nao foi possivel adicionar a materia " + materia.getNome() + " (cod. " + materia.getCodigo() + "): ja existe um professor responsavel pela materia");			
 	}
 	
-	public boolean desatribuirMateriaAUmProfessor(Professor prof, Materia materia) {
-		return prof.removerMateria(materia);
+	public boolean desatribuirMateriaAUmProfessor(Professor prof, Materia materia) throws EscolaException{
+		
+		if(prof.removerMateria(materia) == true)
+			return true;
+		else
+			throw new EscolaException("Nao foi possivel remover a materia " + materia.getNome() + " (cod. " + materia.getCodigo() + "): o professor nao tem a materia.");			
+
 	}
 	
 	public Materia abrirMateria(String nome, String codigo, int creditos, String sala, String horario, Dia dia, int capacidade, String ementa){
