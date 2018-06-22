@@ -48,7 +48,7 @@ public boolean expulsarAluno(Aluno aluno) throws EscolaException{
 		return novo_professor;
 	}
 	
-	public boolean demitirProfessor(Professor prof){
+	public boolean demitirProfessor(Professor prof) throws EscolaException{
 		
 		if (professores.contains(prof)) {
 		
@@ -66,9 +66,8 @@ public boolean expulsarAluno(Aluno aluno) throws EscolaException{
 			return true;
 			
 		}else{
-			
-			return false;
-		}
+			throw new EscolaException("Professor nao encontrado\n");		
+			}
 	}	
 	
 	// praticamente todo o trabalho de se atribuir uma materia a um professor estÃ¡
@@ -96,16 +95,13 @@ public boolean expulsarAluno(Aluno aluno) throws EscolaException{
 	}
 	
 	public void fecharMateria(Materia materia){
-
-		/*for (int i = materia.getAlunosCadastrados().size()-1; i >= 0; i--) {
-			materia.removerAlunosCadastrados(materia.getAlunosCadastrados().get(i));
-		}*/
+		
 		materia.getAlunosCadastrados().removeAll(materia.getAlunosCadastrados());
 		materia.setProfessor(null);
 		materias.remove(materia);
 	}
 	
-	public boolean enviarMensagem(String mensagem,Pessoa p) {
+	public boolean enviarMensagem(String mensagem,Pessoa p) throws EscolaException {
 		if(p instanceof Professor) {
 			System.out.println(mensagem);
 			return true;
@@ -114,8 +110,10 @@ public boolean expulsarAluno(Aluno aluno) throws EscolaException{
 			System.out.println(mensagem); //escreva no arquivo
 			return true;
 		}
-		return false;
+		
+		throw new EscolaException("O diretor e voce!\n");		
 	}
+
 	
 	@Override
 	public String toString() {
