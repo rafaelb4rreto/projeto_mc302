@@ -219,4 +219,12 @@ public class Diretor extends Pessoa{
 		this.professores = professores;
 	}
 	
+	public int getCaixa() {
+		return caixa;
+	}
+
+	public void setCaixa(int caixa) {
+		this.caixa = caixa;
+	}
+	
 }
