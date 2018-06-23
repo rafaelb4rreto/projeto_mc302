@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.Formatter;
 
 // professor eh uma subclasse de Pessoa
-public class Professor extends Pessoa{
+public class Professor extends Pessoa implements Salvar{
 
 	private ArrayList<Materia> materias; // array list de materias que ele leciona
 	private String  sala;				 // numero/nome/codigo da sala do professor
@@ -20,6 +21,13 @@ public class Professor extends Pessoa{
 		this.salario = salario;
 		this.pago	 = false;
 	}
+	
+	public void salvarDados(Formatter output) {
+		
+		output.format("%s %d %c %s %d %s", getNome(), getIdade(), getSexo(), getDataNascimento(), getRA(), getSenha());
+		output.format(" %s %d %b\n", sala, salario, pago);
+		
+	}	
 	
 	// Associa a materia ao professor
 	public boolean adicionarMateria(Materia materia) throws EscolaException{
