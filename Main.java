@@ -10,13 +10,6 @@ public class Main {
 		//alocacao e inicalizacao de objetos para testarmos todas as implementacoes do programa.
 		Diretor d = new Diretor("Maria",57,'F',"20/07/1960","1a2b3c",20000);
 		
-		JFrame janela = new Login();
-		//janela.pack();
-		//janela.show();
-		
-		
-		
-		
 		ArrayList<Professor> professores = new ArrayList<Professor>();
 		ArrayList<Aluno> alunos = new ArrayList<Aluno>();
 		professores.add(d.contratarProfessor("Joao",44,'M',"03/05/1974","abcd","134B",10000));
@@ -28,6 +21,8 @@ public class Main {
 		Materia m2 = d.abrirMateria("Matematica","2",5,"66B","08h",Dia.SEGUNDA,20,"Materia de Matematica");
 		//Materia m3 = d.abrirMateria("Ciencias","3",3,"66C","10h",Dia.SEGUNDA,20,"Materia de Ciencias");
 		
+		
+		
 		try { //atribui materia aos professores
 			d.atribuirMateriaAUmProfessor(professores.get(0), m1);
 			d.atribuirMateriaAUmProfessor(professores.get(1), m2);
@@ -35,9 +30,8 @@ public class Main {
 			System.err.println(e);
 		}
 		
-		
+		JFrame janela = new Login(d);
 		d.setMaxCreditos(alunos.get(0),10); 		 // seta como 4 o maximo de creditos que o aluno a1 pode cursar
-		
 		
 		try {
 			alunos.get(0).adicionarMateria(m1);
@@ -107,7 +101,7 @@ public class Main {
 		}
 		
 
-		for(int i = 0;i < m1.getAlunosCadastrados().size();i++) { //checando se a atribuição de notas esta correta
+		for(int i = 0;i < m1.getAlunosCadastrados().size();i++) { //checando se a atribuiÃ§Ã£o de notas esta correta
 			System.out.println(m1.getAlunosCadastrados().get(i).getNota());
 		}
 		
