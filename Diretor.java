@@ -53,72 +53,41 @@ public class Diretor extends Pessoa{
 		output.close();	
 	}
 	
-	public void carregarDados() {
-		
-		//Arquivo escola.txt dentro da pasta src do projeto
-		String filename = "src/escola.txt";
-		try {
-			Scanner scan = new Scanner(new File(filename));
-			Diretor d = new Diretor(scan.next(), scan.nextInt(), scan.next().charAt(0), scan.next(), scan.next(), scan.nextInt());
-			d.setCaixa(scan.nextInt());
-			d.setRA(scan.nextInt());
-			int temp = scan.nextInt();
-			for(int i=0; i<temp;i++) {
-				d.matricularAluno(scan.next(), scan.nextInt(), scan.next().charAt(0), scan.next(), scan.next(), scan.nextInt());
-				d.getAlunos().get(i).setRA(scan.nextInt());
-				d.getAlunos().get(i).setAdvertencias(scan.nextInt());
-				d.getAlunos().get(i).setSuspensoes(scan.nextInt());
-				d.getAlunos().get(i).setMaxCreditos(scan.nextInt());
-				d.getAlunos().get(i).setRegular(scan.nextBoolean());
-				d.getAlunos().get(i).setBalanco(scan.nextInt());
-				d.getAlunos().get(i).setMensalidade(scan.nextInt());
-			}
-			temp = scan.nextInt();
-			for(int i=0; i<temp;i++) {
-				d.contratarProfessor(scan.next(), scan.nextInt(), scan.next().charAt(0), scan.next(), scan.next(), scan.next(), scan.nextInt());
-				d.getProfessores().get(i).setRA(scan.nextInt());
-				d.getProfessores().get(i).setPago(scan.nextBoolean());
-			}
-			temp = scan.nextInt();	//qtd de materias
-			for(int i=0; i<temp;i++) {
-				d.abrirMateria(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.next(), Dia.valueOf(scan.next()), scan.nextInt(), scan.nextLine());
-				int tempRA = scan.nextInt();
-				for(int j=0;j<d.getProfessores().size();j++) {
-						
-					if(d.getProfessores().get(j).getRA() == tempRA) {
-						d.atribuirMateriaAUmProfessor(d.getProfessores().get(j), d.getMaterias().get(i));
-					}
-				}
-				int qtdDeAlunos = scan.nextInt();
-				for(int k=0;k<qtdDeAlunos;k++) {
-					int AlunoRA = scan.nextInt();
-					float notaAluno = scan.nextFloat();
-					for(int l=0;l<d.getAlunos().size();l++) {  //busca do aluno
-						
-						if(d.getAlunos().get(l).getRA() == AlunoRA) {
-							d.getAlunos().get(l).adicionarMateria(d.getMaterias().get(i)); //recriando o relacionamento AlunoMateria
-							d.getAlunos().get(l).getMaterias().get(d.getAlunos().get(l).getMaterias().size() - 1).setNota(notaAluno); // recoloca a nota dessa materia
-						}
-					}
-				}
-				
-			}
-			
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (EscolaException e) {
-			System.err.println(e);
-		}
-		
-	}
-
 	
 	public Aluno matricularAluno(String nome, int idade, char sexo, String dataNascimento, String senha, int serie){
 		Aluno novo_aluno = new Aluno (nome, idade, sexo, dataNascimento, senha, serie);
 		alunos.add(novo_aluno);
 		return novo_aluno;		
 	}
+	
+	public boolean advertirAluno(Aluno aluno) throws EscolaException {
+		
+		if(alunos.contains(aluno)) {
+			aluno.setAdvertencias(aluno.getAdvertencias() + 1);
+			
+			if(aluno.getAdvertencias() == 3) {
+				aluno.setAdvertencias(0);
+				suspenderAluno(aluno);
+			}
+			return true;
+		}
+		else throw new EscolaException("Aluno nao encontrado\n");
+	}
+	
+	public boolean suspenderAluno(Aluno aluno) throws EscolaException {
+		
+		if(alunos.contains(aluno)) {
+			aluno.setSuspensoes(aluno.getSuspensoes() + 1);
+			
+			if(aluno.getSuspensoes() == 3) {
+				aluno.setSuspensoes(0);
+				expulsarAluno(aluno);
+			}
+			return true;
+		}
+		else throw new EscolaException("Aluno nao encontrado\n");
+	}
+	
 	
 	public boolean expulsarAluno(Aluno aluno) throws EscolaException{
 		
