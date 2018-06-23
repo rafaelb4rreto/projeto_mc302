@@ -30,7 +30,7 @@ public class Diretor extends Pessoa{
 			e.printStackTrace();
 		}
 		
-		output.format("%s %d %c %s %d %s %d\n", getNome(), getIdade(), getSexo(), getDataNascimento(), getRA(), getSenha(), getSalario());
+		output.format("%s %d %c %s %d %s %d %d\n", getNome(), getIdade(), getSexo(), getDataNascimento(), getRA(), getSenha(), getSalario(), getCaixa());
 		
 		output.format("%d\n", alunos.size());
 		for(int i=0; i<alunos.size(); i++) {
