@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.Formatter;
 
-public class Materia {
+public class Materia implements Salvar{
 	
 	private ArrayList<AlunoMateria> alunosCadastrados;
 	private String    nome;
@@ -29,6 +30,20 @@ public class Materia {
 		this.capacidadeMax 		= capacidade;
 		this.capacidadeAtual    = 0;
 		this.ementa     = ementa;
+	}
+	
+	public void salvarDados(Formatter output) {
+		
+		output.format("%s %s %d %s %s %s %d %s\n", nome, codigo, creditos, sala, horario, dia, capacidadeMax, ementa);
+		
+		if(getProfessor() == null) output.format("0\n");
+		else output.format("%d\n", getProfessor().getRA());
+		
+		output.format("%d ", alunosCadastrados.size());
+		for(int i=0; i<alunosCadastrados.size();i++) {
+			output.format("%d %.2f ", alunosCadastrados.get(i).getAluno().getRA(), alunosCadastrados.get(i).getNota());
+		}
+		output.format("\n");
 	}
 
 	public boolean removerAlunoCadastrado(AlunoMateria am) throws EscolaException {
