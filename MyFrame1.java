@@ -8,7 +8,7 @@ public class MyFrame1 extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public MyFrame1() {
+	public MyFrame1(Diretor d) {
 		
 	super("Cadastro");
 	JTextField Id = new JTextField(10);
@@ -26,24 +26,36 @@ public class MyFrame1 extends JFrame{
 	senha.setDisplayedMnemonic('d');
 	this.getContentPane().add(senha);
 	this.getContentPane().add(aut);
-	
-	String nomeValue = Id.getText();
+
 	JButton botao = new JButton("Entrar");
 	this.getContentPane().add(botao);
+	
 
 	
 	botao.addActionListener(new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JOptionPane.showMessageDialog(null, Id.getText());			
+			int flag = 0;
+			for(int i = 0;i < d.getAlunos().size();i++) {
+				System.out.println("bd = "+d.getAlunos().get(i).getNome()+"\nbd = "+d.getAlunos().get(i).getSenha());
+				System.out.println(Id.getText()+"\n"+aut.getText());
+				if(d.getAlunos().get(i).getNome().equals(Id.getText())) {
+					System.out.println("\ncaiu\n");
+					if(d.getAlunos().get(i).getSenha().equals(aut.getText())) {
+						JOptionPane.showMessageDialog(null, "Entrada realizada com sucesso!");
+						flag = 1;
+					}	
+				}
+			}
+			
+			if(flag == 0) {
+				aut.setText("");
+				Id.setText("");
+			}
+			
 		}
 	});
-	System.out.println("Conteudo :" +nomeValue);
-	
-	
-	
-	
 	
 	
 	}
