@@ -1,21 +1,12 @@
 public class ProfessorMateria {
 
 	private Professor professor;
-	private Materia   materia;
+	private Materia materia;
 	
 	public ProfessorMateria(Professor professor, Materia materia) {
 		
-		this.materia   = materia;
+		this.materia = materia;
 		this.professor = professor;
-	}
-	
-	@Override
-	public String toString() {
-		
-		String out = "O Professor " + professor.getNome() + " de RA " + 
-				professor.getRA() + " eh responsavel pela materia " 
-				+ materia.getNome() + "\n";
-		return out;
 	}
 
 	public Professor getProfessor() {
@@ -34,4 +25,12 @@ public class ProfessorMateria {
 		this.materia = materia;
 	}
 
+	@Override
+	public String toString() {
+		
+		String out = "O Professor " + professor.getNome() + "de RA " + 
+				professor.getRA() + "eh responsavel pela materia " 
+				+ materia.getNome() + "\n";
+		return out;
+	}
 }

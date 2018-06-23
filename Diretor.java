@@ -71,8 +71,8 @@ public class Diretor extends Pessoa{
 			}
 	}	
 	
-	// praticamente todo o trabalho de se atribuir uma materia a um professor estÃ¡
-	// na funcao adicionarMateria() que estÃ¡ na classe professor!
+	// praticamente todo o trabalho de se atribuir uma materia a um professor está
+	// na funcao adicionarMateria() que está na classe professor!
 	public boolean atribuirMateriaAUmProfessor(Professor prof, Materia materia)throws EscolaException {
 		if( prof.adicionarMateria(materia))
 			return true;

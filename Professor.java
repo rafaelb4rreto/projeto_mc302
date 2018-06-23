@@ -109,7 +109,7 @@ public class Professor extends Pessoa{
 	public boolean adicionarNotas(Aluno a,Materia materia, float nota) throws EscolaException{
 		if(materias.contains(materia)) {
 			for(int j = 0;j < materia.getAlunosCadastrados().size();j++) {
-				System.out.println("caiu "+a.getNome());
+				//System.out.println("caiu "+a.getNome());
 				if(materia.getAlunosCadastrados().get(j).getAluno().getRA() == a.getRA()) {
 					materia.getAlunosCadastrados().get(j).setNota(nota);
 					return true;
