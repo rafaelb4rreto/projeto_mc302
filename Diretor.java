@@ -1,4 +1,6 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Formatter;
 
 public class Diretor extends Pessoa{
 	
@@ -17,6 +19,36 @@ public class Diretor extends Pessoa{
 		alunos 		 = new ArrayList<Aluno>();
 		materias 	 = new ArrayList<Materia>();
 		professores  = new ArrayList<Professor>();
+	}
+	
+	public void salvarDados() {
+		
+		Formatter output = null;
+		try {
+			output = new Formatter("escola.txt");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		output.format("%s %d %c %s %d %s %d\n", getNome(), getIdade(), getSexo(), getDataNascimento(), getRA(), getSenha(), getSalario());
+		
+		output.format("%d\n", alunos.size());
+		for(int i=0; i<alunos.size(); i++) {
+			alunos.get(i).salvarDados(output);
+		}
+		
+		output.format("%d\n", professores.size());
+		for(int i=0; i<professores.size(); i++) {
+			professores.get(i).salvarDados(output);
+		}
+		
+		output.format("%d\n", materias.size());
+		for(int i=0; i<materias.size(); i++) {
+			materias.get(i).salvarDados(output);
+		}
+		
+		output.flush();
+		output.close();	
 	}
 
 	
