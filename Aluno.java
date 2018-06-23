@@ -3,7 +3,9 @@ import java.util.ArrayList;
 public class Aluno extends Pessoa {
 	
 	private static int 	numAlunos = 0;
-	private ArrayList<AlunoMateria> materias;	
+	private ArrayList<AlunoMateria> materias;
+	private int 		balanco;
+	private int			mensalidade;
 	private int 		serie;
 	private int 		advertencias;
 	private int 		maxAdvertencias;
@@ -19,6 +21,8 @@ public class Aluno extends Pessoa {
 		
 		numAlunos++;
 		this.materias = new ArrayList<AlunoMateria>();
+		this.balanco		 = 0;
+		this.mensalidade	 = 500;
 		this.serie 	  		 = serie;
 		this.advertencias 	 = 0;
 		this.maxAdvertencias = 3;
@@ -195,6 +199,22 @@ public boolean enviarMensagem(String mensagem,Pessoa p) throws EscolaException{
 
 	public void setNumCreditos(int numCreditos) {
 		this.numCreditos = numCreditos;
+	}
+
+	public int getBalanco() {
+		return balanco;
+	}
+
+	public void setBalanco(int balanco) {
+		this.balanco = balanco;
+	}
+
+	public int getMensalidade() {
+		return mensalidade;
+	}
+
+	public void setMensalidade(int mensalidade) {
+		this.mensalidade = mensalidade;
 	}
 
 }

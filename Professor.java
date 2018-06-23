@@ -4,8 +4,9 @@ import java.util.ArrayList;
 public class Professor extends Pessoa{
 
 	private ArrayList<Materia> materias; // array list de materias que ele leciona
-	private String sala;				 // numero/nome/codigo da sala do professor
-	private int    salario;				 // salario mensal do professor	
+	private String  sala;				 // numero/nome/codigo da sala do professor
+	private int     salario;				 // salario mensal do professor	
+	private boolean pago;
 
 	public Professor
 	(String nome, int idade, char sexo, String dataNascimento, String senha, String sala, int salario) {
@@ -17,6 +18,7 @@ public class Professor extends Pessoa{
 		materias     = new ArrayList<Materia>();
 		this.sala    = sala;
 		this.salario = salario;
+		this.pago	 = false;
 	}
 	
 	// Associa a materia ao professor
@@ -104,7 +106,6 @@ public class Professor extends Pessoa{
 	
 		}
 	
-	
 	public boolean adicionarNotas(Aluno a,Materia materia, float nota) throws EscolaException{
 		if(materias.contains(materia)) {
 			for(int j = 0;j < materia.getAlunosCadastrados().size();j++) {
@@ -133,36 +134,35 @@ public class Professor extends Pessoa{
 	}
 	
 	
-	
 	@Override
 	public String toString() {
 		String out = "Professor: " + super.getNome() + ", n. materias: " + getMaterias().size() + "\n";
 		
 		return out;
 	}
-
+	
 	public ArrayList<Materia> getMaterias() {
 		return materias;
 	}
-
 	public void setMaterias(ArrayList<Materia> materias) {
 		this.materias = materias;
 	}
-
 	public String getSala() {
 		return sala;
 	}
-
 	public void setSala(String sala) {
 		this.sala = sala;
 	}
-
 	public int getSalario() {
 		return salario;
 	}
-
 	public void setSalario(int salario) {
 		this.salario = salario;
 	}
-
+	public boolean isPago() {
+		return pago;
+	}
+	public void setPago(boolean pago) {
+		this.pago = pago;
+	}
 }

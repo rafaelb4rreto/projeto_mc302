@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Diretor extends Pessoa{
 	
 	private int salario;
+	private int caixa;
 	private ArrayList<Aluno>	 alunos;
 	private ArrayList<Materia> 	 materias; 
 	private ArrayList<Professor> professores;
@@ -12,7 +13,7 @@ public class Diretor extends Pessoa{
 		super(nome, idade, sexo, dataNascimento, senha);
 		
 		this.salario = salario;
-		
+		this.caixa = 0;
 		alunos 		 = new ArrayList<Aluno>();
 		materias 	 = new ArrayList<Materia>();
 		professores  = new ArrayList<Professor>();
@@ -25,7 +26,7 @@ public class Diretor extends Pessoa{
 		return novo_aluno;		
 	}
 	
-public boolean expulsarAluno(Aluno aluno) throws EscolaException{
+	public boolean expulsarAluno(Aluno aluno) throws EscolaException{
 		
 		if (alunos.contains(aluno)){
 			for (AlunoMateria ma: aluno.getMaterias()) {
@@ -114,6 +115,34 @@ public boolean expulsarAluno(Aluno aluno) throws EscolaException{
 		throw new EscolaException("O diretor e voce!\n");		
 	}
 
+	public void pagarProfessor(Professor prof) {
+		if (prof.isPago() == false) {
+			this.caixa -= prof.getSalario();
+			prof.setPago(true);
+		}
+	}
+	
+	public void receberMensalidade(Aluno aluno, int valor_recebido) {
+		aluno.setBalanco(aluno.getBalanco() + valor_recebido);
+		this.caixa += valor_recebido;
+	}
+	
+	// da um input ou um output do caixa. In: valor positivo; Out: valor negativo.
+	public void inoutCaixa(int valor) {
+		this.caixa += valor;
+	}
+	
+	public void virarMes() {
+		for (Aluno aluno:this.alunos) {
+			aluno.setBalanco(aluno.getBalanco()-aluno.getMensalidade());
+		}
+		
+		for (Professor prof:this.professores) {
+			prof.setPago(false);
+		}
+		
+		System.out.println("Balanco do mes: " + this.caixa);
+	}
 	
 	@Override
 	public String toString() {
