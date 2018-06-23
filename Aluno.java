@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.Formatter;
 
-public class Aluno extends Pessoa {
+public class Aluno extends Pessoa implements Salvar{
 	
 	private static int 	numAlunos = 0;
 	private ArrayList<AlunoMateria> materias;
@@ -33,7 +34,14 @@ public class Aluno extends Pessoa {
 		
 	}
 	
-public boolean adicionarMateria(Materia materia) throws EscolaException{
+	public void salvarDados(Formatter output) {
+		
+		output.format("%s %d %c %s %d %s", getNome(), getIdade(), getSexo(), getDataNascimento(), getRA(), getSenha());
+		output.format(" %d %d %d %d %b %d %d\n", serie, advertencias, suspensoes, maxCreditos, regular, balanco, mensalidade);
+		
+	}
+	
+	public boolean adicionarMateria(Materia materia) throws EscolaException{
 		
 		// caso os creditos adicionais fizerem o aluno extrapolar sua cota, nega a adicao
 		if(numCreditos + materia.getCreditos() > this.getMaxCreditos()) {
@@ -103,7 +111,7 @@ public boolean adicionarMateria(Materia materia) throws EscolaException{
 		throw new EscolaException("o aluno nao esta cadastrado na materia");
 	}
 	
-public boolean enviarMensagem(String mensagem,Pessoa p) throws EscolaException{
+	public boolean enviarMensagem(String mensagem,Pessoa p) throws EscolaException{
 		
 
 		if(p instanceof Aluno) {
