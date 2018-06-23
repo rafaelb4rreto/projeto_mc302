@@ -4,7 +4,7 @@ public abstract class Pessoa {
 	private int        idade;
 	private char       sexo;
 	private String 	   dataNascimento;
-	private final  int RA;
+	private  int RA;
 	private String 	   senha;
 	private static int numPessoas = 0;
 	
@@ -50,6 +50,11 @@ public abstract class Pessoa {
 	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+	
+	public void setRA(int RA) {
+		this.RA = RA;
+	}
+	
 	public long getRA() {
 		return RA;
 	}

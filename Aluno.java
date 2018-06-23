@@ -36,8 +36,8 @@ public class Aluno extends Pessoa implements Salvar{
 	
 	public void salvarDados(Formatter output) {
 		
-		output.format("%s %d %c %s %d %s", getNome(), getIdade(), getSexo(), getDataNascimento(), getRA(), getSenha());
-		output.format(" %d %d %d %d %b %d %d\n", serie, advertencias, suspensoes, maxCreditos, regular, balanco, mensalidade);
+		output.format("%s %d %c %s %s %d", getNome(), getIdade(), getSexo(), getDataNascimento(), getSenha(), serie);
+		output.format(" %d %d %d %d %b %d %d\n", getRA(), advertencias, suspensoes, maxCreditos, regular, balanco, mensalidade);
 		
 	}
 	

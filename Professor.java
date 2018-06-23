@@ -24,8 +24,8 @@ public class Professor extends Pessoa implements Salvar{
 	
 	public void salvarDados(Formatter output) {
 		
-		output.format("%s %d %c %s %d %s", getNome(), getIdade(), getSexo(), getDataNascimento(), getRA(), getSenha());
-		output.format(" %s %d %b\n", sala, salario, pago);
+		output.format("%s %d %c %s %s %s %d", getNome(), getIdade(), getSexo(), getDataNascimento(), getSenha(), getSala(), getSalario());
+		output.format(" %d %b\n", getRA(), pago);
 		
 	}	
 	

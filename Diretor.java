@@ -1,6 +1,8 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.Scanner;
 
 public class Diretor extends Pessoa{
 	
@@ -25,12 +27,12 @@ public class Diretor extends Pessoa{
 		
 		Formatter output = null;
 		try {
-			output = new Formatter("escola.txt");
+			output = new Formatter("src/escola.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		
-		output.format("%s %d %c %s %d %s %d %d\n", getNome(), getIdade(), getSexo(), getDataNascimento(), getRA(), getSenha(), getSalario(), getCaixa());
+		output.format("%s %d %c %s %s %d %d %d\n", getNome(), getIdade(), getSexo(), getDataNascimento(), getSenha(), getSalario(), getCaixa(), getRA());
 		
 		output.format("%d\n", alunos.size());
 		for(int i=0; i<alunos.size(); i++) {
@@ -49,6 +51,66 @@ public class Diretor extends Pessoa{
 		
 		output.flush();
 		output.close();	
+	}
+	
+	public void carregarDados() {
+		
+		//Arquivo escola.txt dentro da pasta src do projeto
+		String filename = "src/escola.txt";
+		try {
+			Scanner scan = new Scanner(new File(filename));
+			Diretor d = new Diretor(scan.next(), scan.nextInt(), scan.next().charAt(0), scan.next(), scan.next(), scan.nextInt());
+			d.setCaixa(scan.nextInt());
+			d.setRA(scan.nextInt());
+			int temp = scan.nextInt();
+			for(int i=0; i<temp;i++) {
+				d.matricularAluno(scan.next(), scan.nextInt(), scan.next().charAt(0), scan.next(), scan.next(), scan.nextInt());
+				d.getAlunos().get(i).setRA(scan.nextInt());
+				d.getAlunos().get(i).setAdvertencias(scan.nextInt());
+				d.getAlunos().get(i).setSuspensoes(scan.nextInt());
+				d.getAlunos().get(i).setMaxCreditos(scan.nextInt());
+				d.getAlunos().get(i).setRegular(scan.nextBoolean());
+				d.getAlunos().get(i).setBalanco(scan.nextInt());
+				d.getAlunos().get(i).setMensalidade(scan.nextInt());
+			}
+			temp = scan.nextInt();
+			for(int i=0; i<temp;i++) {
+				d.contratarProfessor(scan.next(), scan.nextInt(), scan.next().charAt(0), scan.next(), scan.next(), scan.next(), scan.nextInt());
+				d.getProfessores().get(i).setRA(scan.nextInt());
+				d.getProfessores().get(i).setPago(scan.nextBoolean());
+			}
+			temp = scan.nextInt();	//qtd de materias
+			for(int i=0; i<temp;i++) {
+				d.abrirMateria(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.next(), Dia.valueOf(scan.next()), scan.nextInt(), scan.nextLine());
+				int tempRA = scan.nextInt();
+				for(int j=0;j<d.getProfessores().size();j++) {
+						
+					if(d.getProfessores().get(j).getRA() == tempRA) {
+						d.atribuirMateriaAUmProfessor(d.getProfessores().get(j), d.getMaterias().get(i));
+					}
+				}
+				int qtdDeAlunos = scan.nextInt();
+				for(int k=0;k<qtdDeAlunos;k++) {
+					int AlunoRA = scan.nextInt();
+					float notaAluno = scan.nextFloat();
+					for(int l=0;l<d.getAlunos().size();l++) {  //busca do aluno
+						
+						if(d.getAlunos().get(l).getRA() == AlunoRA) {
+							d.getAlunos().get(l).adicionarMateria(d.getMaterias().get(i)); //recriando o relacionamento AlunoMateria
+							d.getAlunos().get(l).getMaterias().get(d.getAlunos().get(l).getMaterias().size() - 1).setNota(notaAluno); // recoloca a nota dessa materia
+						}
+					}
+				}
+				
+			}
+			
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (EscolaException e) {
+			System.err.println(e);
+		}
+		
 	}
 
 	
