@@ -17,22 +17,49 @@ public class Menu extends JFrame{
 	
 	
 	
-	@SuppressWarnings("deprecation")
 	public Menu(Diretor diretor) {
 		super("Menu");
 		
-		Object[] options = {"Matricular aluno","Advertir aluno","Suspender aluno","Expulsar aluno","Contratar professor","Demitir Professor","Atribuir materias","Desatribuir materias","Abrir materia","Fechar materia","Pagar professor","Receber Mensalidade","Virar mes"};
-	
-		int r = JOptionPane.showOptionDialog(null, "O que deseja fazer?","Menu",JOptionPane.INFORMATION_MESSAGE, JOptionPane.INFORMATION_MESSAGE,null, options, options[12]);
 		
-		if(r == 0) {
+		
 			JFrame dados = new JFrame();
 			Container c = dados.getContentPane();
 			c.setLayout(new FlowLayout());
 			JTextField campoNome,campoIdade,campoSexo,campoDataNascimento,campoSenha,campoSerie;
 			JLabel nome,idade,sexo,data,senha,serie;
 			
-			campoNome = new JTextField(20);
+			JButton b1 = new JButton("Matricular Aluno");
+			JButton b2 = new JButton("Advertir Aluno");
+			JButton b3 = new JButton("Suspender Aluno");
+			JButton b4 = new JButton("Expulsar Aluno");
+			JButton b5 = new JButton("Contratar Professor");
+			JButton b6 = new JButton("Demitir Professor");
+			JButton b7 = new JButton("Atribuir Materia");
+			JButton b8 = new JButton("Desatribuir Materia");
+			JButton b9 = new JButton("Abrir Materia");
+			JButton b10 = new JButton("Fechar Materia");
+			JButton b11 = new JButton("Enviar Mensagem");
+			JButton b12 = new JButton("Pagar Professor");
+			JButton b13 = new JButton("Receber Mensalidade");
+			
+			c.add(b1);
+			c.add(b2);
+			c.add(b3);
+			c.add(b4);
+			c.add(b5);
+			c.add(b6);
+			c.add(b7);
+			c.add(b8);
+			c.add(b9);
+			c.add(b10);
+			c.add(b11);
+			c.add(b12);
+			c.add(b13);
+			
+			//b1.addActionListener(new MatriculaListener());
+			
+			
+		/*	campoNome = new JTextField(20);
 			campoIdade = new JTextField(2);
 			campoSexo = new JTextField(1);
 			campoDataNascimento = new JTextField(10);
@@ -53,81 +80,22 @@ public class Menu extends JFrame{
 			senha.setLabelFor(campoSenha);
 			serie.setLabelFor(campoSerie);
 			
-			c.add(nome);
-			c.add(campoNome);
-			c.add(idade);
-			c.add(campoIdade);
-			c.add(sexo);
-			c.add(campoSexo);
-			c.add(data);
-			c.add(campoDataNascimento);
-			c.add(senha);
-			c.add(campoSenha);
-			c.add(serie);
-			c.add(campoSerie);
-			
-			
-			JButton b = new JButton("Matricular");
-			
-			b.addActionListener(new MatriculaListener(campoNome.getText(),campoIdade.getText(),campoSexo.getText(),campoDataNascimento.getText(),campoSenha.getText(),campoSerie.getText(),diretor));
-
-			c.add(b);
-			
-			
+			dados.getContentPane().add(nome);
+			dados.getContentPane().add(campoNome);
+			dados.getContentPane().add(idade);
+			dados.getContentPane().add(campoIdade);
+			dados.getContentPane().add(sexo);
+			dados.getContentPane().add(campoSexo);
+			dados.getContentPane().add(data);
+			dados.getContentPane().add(campoDataNascimento);
+			dados.getContentPane().add(senha);
+			dados.getContentPane().add(campoSenha);
+			dados.getContentPane().add(serie);
+			dados.getContentPane().add(campoSerie);*/
 			
 			dados.pack();
 			dados.show();
-			
-			
-		}	
-		
-		else if(r == 1) {
-					
-				}	
-		
-		else if(r == 2) {
-			
-		}	
-		
-		else if(r == 3) {
-			
-		}	
-		
-		else if(r == 4) {
-			
-		}	
-		
-		else if(r == 5) {
-			
-		}	
-		
-		else if(r == 6) {
-			
-		}	
-		
-		else if(r == 7) {
-			
-		}	
-		
-		else if(r == 8) {
-			
-		}	
-		
-		else if(r == 9) {
-			
-		}	
-		
-		else if(r == 10) {
-			
-		}	
-		
-		else if(r == 11) {
-			
-		}	
-		
-		else if(r == 12) {
-			
-		}	
+	
 	}
 	
 	
