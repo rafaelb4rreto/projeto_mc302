@@ -173,7 +173,7 @@ public class Diretor extends Pessoa{
 			return true;
 		}
 		
-		throw new EscolaException("O diretor e voce!\n");		
+		else throw new EscolaException("O diretor e voce!\n");		
 	}
 
 	public void pagarProfessor(Professor prof) {
