@@ -51,7 +51,7 @@ public class Aluno extends Pessoa implements Salvar{
 		}
 		
 		// caso a materia ja esteja lotada de alunos nega a adicao
-		if(materia.getCapacidadeMax() == materia.getCapacidadeAtual()) {
+		else if(materia.getCapacidadeMax() == materia.getCapacidadeAtual()) {
 			
 			throw new EscolaException("Nao foi possivel adicionar a  materia " + materia.getNome() +
 					" (cod. " + materia.getCodigo() + "): materia lotada.");
@@ -71,7 +71,7 @@ public class Aluno extends Pessoa implements Salvar{
 			}
 			
 			// caso o aluno ja faca uma materia com o mesmo nome, nega a adicao
-			if(alma.getMateria().getNome().equalsIgnoreCase(materia.getNome())) {
+			else if(alma.getMateria().getNome().equalsIgnoreCase(materia.getNome())) {
 				
 				throw new EscolaException("Nao foi possivel adicionar a materia " + materia.getNome() + 
 						" (cod. " + materia.getCodigo() + "): o aluno ja esta matriculado na materia.");

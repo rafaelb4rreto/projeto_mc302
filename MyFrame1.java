@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.*;
 
@@ -15,7 +16,7 @@ public class MyFrame1 extends JFrame{
 	JLabel nome = new JLabel("Nome: ");
 	nome.setLabelFor(Id);
 	nome.setDisplayedMnemonic('n');
-	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.getContentPane().setLayout(new FlowLayout());
 	this.getContentPane().add(nome);
 	this.getContentPane().add(Id);
@@ -29,36 +30,9 @@ public class MyFrame1 extends JFrame{
 
 	JButton botao = new JButton("Entrar");
 	this.getContentPane().add(botao);
-	
 
 	
-	botao.addActionListener(new ActionListener() {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			int flag = 0;
-			for(int i = 0;i < d.getAlunos().size();i++) {
-				System.out.println("bd = "+d.getAlunos().get(i).getNome()+"\nbd = "+d.getAlunos().get(i).getSenha());
-				System.out.println(Id.getText()+"\n"+aut.getText());
-				if(d.getAlunos().get(i).getNome().equals(Id.getText())) {
-					System.out.println("\ncaiu\n");
-					if(d.getAlunos().get(i).getSenha().equals(aut.getText())) {
-						JOptionPane.showMessageDialog(null, "Entrada realizada com sucesso!");
-						flag = 1;
-					}	
-				}
-			}
-			
-			if(flag == 0) {
-				aut.setText("");
-				Id.setText("");
-			}
-			
-		}
-	});
-	
-	
+	botao.addActionListener(new LoginAlunoListener(Id,aut,d));
 	}
 
-	
 }

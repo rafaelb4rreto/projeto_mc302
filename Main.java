@@ -6,6 +6,7 @@ import javax.swing.*;
 
 public class Main {
 	
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		
 		//alocacao e inicalizacao de objetos para testarmos todas as implementacoes do programa.
@@ -18,7 +19,7 @@ public class Main {
 		alunos.add(d.matricularAluno("Jose",12,'M',"02/06/2005","1234",5));
 		alunos.add(d.matricularAluno("Fernando",12,'M',"02/06/2005","1234",5));
 		alunos.add(d.matricularAluno("Paulo",12,'M',"02/06/2005","1234",5));
-		Materia m1 = d.abrirMateria("Geografia","1",4,"66A","10h",Dia.SEGUNDA,30,"Materia de Geografia");
+		Materia m1 = d.abrirMateria("Geografia","1",4,"66A","10h",Dia.QUARTA,30,"Materia de Geografia");
 		Materia m2 = d.abrirMateria("Matematica","2",5,"66B","08h",Dia.SEGUNDA,20,"Materia de Matematica");
 		//Materia m3 = d.abrirMateria("Ciencias","3",3,"66C","10h",Dia.SEGUNDA,20,"Materia de Ciencias");
 		
@@ -31,10 +32,28 @@ public class Main {
 			System.err.println(e);
 		}
 		
-		JFrame janela = new Login(d);
+		Object[] option = {"aluno","Professor","Diretor"};
+		Login inicio = new Login(option,d);
+		int p = inicio.classSelection(d);
 		d.setMaxCreditos(alunos.get(0),10); 		 // seta como 4 o maximo de creditos que o aluno a1 pode cursar
 		
-		try {
+		if(p == 0) {
+			JFrame f = new MyFrame1(d);
+			f.pack();
+			f.show();
+		}
+		if(p == 1) {
+			
+		}
+		if(p == 2) {
+			JFrame fr = new MyFrame3(d);
+			fr.pack();
+			fr.show();
+		}
+		
+		System.out.println(alunos.get(0).getMaterias());
+		
+		/*try {
 			alunos.get(0).adicionarMateria(m1);
 		} catch (EscolaException e) {
 			System.err.println(e);
@@ -102,7 +121,7 @@ public class Main {
 		}
 		
 
-		for(int i = 0;i < m1.getAlunosCadastrados().size();i++) { //checando se a atribuiÃ§Ã£o de notas esta correta
+		for(int i = 0;i < m1.getAlunosCadastrados().size();i++) { //checando se a atribuição de notas esta correta
 			System.out.println(m1.getAlunosCadastrados().get(i).getNota());
 		}
 		
@@ -126,7 +145,7 @@ public class Main {
 		
 		Carregar.carregarDados();
 		
-
+		*/
 		
 	}
 }
