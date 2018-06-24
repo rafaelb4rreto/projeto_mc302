@@ -199,6 +199,109 @@ public class Menu extends JFrame{
 					}	
 				});
 			
+			b9.addActionListener(new ActionListener() {
+				
+				@SuppressWarnings("deprecation")
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JFrame materia = new JFrame("Abertura de Materia");
+					materia.setSize(800, 600);
+					materia.setLocationRelativeTo(null);
+					JTextField nometxt = new JTextField(10);
+					JLabel nome = new JLabel("Nome: ");
+					nome.setLabelFor(nometxt);
+
+					JTextField codtxt = new JTextField(5);
+					JLabel cod = new JLabel("Codigo: ");
+					cod.setLabelFor(codtxt);
+
+					JTextField credtxt = new JTextField(2);
+					JLabel cred = new JLabel("Creditos: ");
+					cred.setLabelFor(credtxt);
+					
+					JTextField salatxt = new JTextField(5);
+					JLabel sala = new JLabel("Sala: ");
+					sala.setLabelFor(salatxt);
+					
+					JTextField hortxt = new JTextField(5);
+					JLabel hor = new JLabel("Horario: ");
+					hor.setLabelFor(hortxt);
+					
+					JTextField diatxt = new JTextField(10);
+					JLabel dia = new JLabel("Dia: ");
+					dia.setLabelFor(diatxt);
+
+					JTextField captxt = new JTextField(3);
+					JLabel cap = new JLabel("Capacidade: ");
+					cap.setLabelFor(captxt);
+
+					JTextField emetxt = new JTextField(20);
+					JLabel eme = new JLabel("Ementa: ");
+					eme.setLabelFor(emetxt);
+
+					JButton b = new JButton("Adicionar");
+					materia.getContentPane().setLayout(new FlowLayout());
+
+					materia.getContentPane().add(nome);
+					materia.getContentPane().add(nometxt);
+					materia.getContentPane().add(cod);
+					materia.getContentPane().add(codtxt);
+					materia.getContentPane().add(cred);
+					materia.getContentPane().add(credtxt);
+					materia.getContentPane().add(sala);
+					materia.getContentPane().add(salatxt);
+					materia.getContentPane().add(hor);
+					materia.getContentPane().add(hortxt);
+					materia.getContentPane().add(dia);
+					materia.getContentPane().add(diatxt);
+					materia.getContentPane().add(cap);
+					materia.getContentPane().add(captxt);
+					materia.getContentPane().add(eme);
+					materia.getContentPane().add(emetxt);
+					materia.getContentPane().add(b);
+
+					
+					b.addActionListener(new Listeners.AbreMateriaListener(diretor,materia,nometxt,codtxt,credtxt,salatxt,hortxt,diatxt,captxt,emetxt));
+
+					
+					//materia.pack();
+					materia.show();
+	 			}
+			});
+			
+			b10.addActionListener(new ActionListener() {
+				
+				@SuppressWarnings("deprecation")
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JFrame materia = new JFrame("Fechamento de Materia");
+					
+					materia.setSize(400, 300);
+					materia.setLocationRelativeTo(null);
+
+					JTextField codtxt = new JTextField(5);
+					JLabel cod = new JLabel("Digite o Codigo da Materia: ");
+					cod.setLabelFor(codtxt);
+
+					JButton b = new JButton("Fechar Materia");
+					materia.getContentPane().setLayout(new FlowLayout());
+
+					materia.getContentPane().add(cod);
+					materia.getContentPane().add(codtxt);
+					materia.getContentPane().add(b);
+
+					
+					b.addActionListener(new Listeners.FechaMateriaListener(diretor,materia,codtxt));
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		/*			Professor novo_professor = new Professor(nome, idade, sexo, dataNascimento, senha, sala, salario);
 
 		 * 			campoSerie = new JTextField(1);
