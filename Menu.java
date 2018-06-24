@@ -11,12 +11,13 @@ public class Menu extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JLabel materias = new JLabel("Que materias você deseja cursar: ");
+	private JLabel materias = new JLabel("Que materias vocÃª deseja cursar: ");
 	private Aluno a;
 	private Diretor d;
 	
 	
 	
+	@SuppressWarnings("deprecation")
 	public Menu(Diretor diretor) {
 		super("Menu");
 		
@@ -25,8 +26,6 @@ public class Menu extends JFrame{
 			JFrame dados = new JFrame();
 			Container c = dados.getContentPane();
 			c.setLayout(new FlowLayout());
-			JTextField campoNome,campoIdade,campoSexo,campoDataNascimento,campoSenha,campoSerie;
-			JLabel nome,idade,sexo,data,senha,serie;
 			
 			JButton b1 = new JButton("Matricular Aluno");
 			JButton b2 = new JButton("Advertir Aluno");
@@ -56,15 +55,153 @@ public class Menu extends JFrame{
 			c.add(b12);
 			c.add(b13);
 			
-			//b1.addActionListener(new MatriculaListener());
+			b2.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					String s = JOptionPane.showInputDialog("Que aluno sera advertido?");
+					
+					for(int i = 0;i < diretor.getAlunos().size();i++) {
+						if(diretor.getAlunos().get(i).getNome().equals(s)) {
+							try {
+								diretor.advertirAluno(diretor.getAlunos().get(i));
+							}catch(EscolaException t) {
+								JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
+							}
+						}
+							
+					}
+				}	
+			});
+			
+			b3.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					String s = JOptionPane.showInputDialog("Que aluno sera suspenso?");
+					
+					for(int i = 0;i < diretor.getAlunos().size();i++) {
+						if(diretor.getAlunos().get(i).getNome().equals(s)) {
+							try {
+								diretor.suspenderAluno(diretor.getAlunos().get(i));
+								}catch(EscolaException t) {
+								JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
+							}
+						}
+							
+					}
+				}	
+			});
+			
+			b4.addActionListener (	new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					String s = JOptionPane.showInputDialog("Que aluno sera expulso?");
+					
+					for(int i = 0;i < diretor.getAlunos().size();i++) {
+						if(diretor.getAlunos().get(i).getNome().equals(s)) {
+							try {
+								diretor.expulsarAluno(diretor.getAlunos().get(i));
+								//System.out.println(diretor.getAlunos());
+								}catch(EscolaException t) {
+								JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
+							}
+						}
+							
+					}
+				}	
+			});
+			
+			b5.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JFrame newFrame = new JFrame("Dados Cadastrais");
+					Container newc = newFrame.getContentPane();
+					newc.setLayout(new GridLayout());
+					JTextField campoSalario = new JTextField(4);
+					JTextField campoNome = new JTextField(20);
+					JTextField campoIdade = new JTextField(2);
+					JTextField campoSexo = new JTextField(1);
+					JTextField campoDataNascimento = new JTextField(10);
+					JTextField campoSenha = new JTextField(10);
+					JTextField campoSala = new JTextField(4);
+					
+					JLabel nome = new JLabel("Nome");
+					JLabel idade = new JLabel("Idade");
+					JLabel sexo = new JLabel("Sexo");
+					JLabel data = new JLabel("Data de nascimento");
+					JLabel senha = new JLabel("Senha");
+					JLabel sala = new JLabel("Sala");
+					JLabel salario = new JLabel("Salario");
+					
+					nome.setLabelFor(campoNome);
+					idade.setLabelFor(campoIdade);
+					sexo.setLabelFor(campoSexo);
+					data.setLabelFor(campoDataNascimento);
+					senha.setLabelFor(campoSenha);
+					sala.setLabelFor(campoSala);
+					salario.setLabelFor(campoSalario);
+					
+					newc.add(nome);
+					newc.add(campoNome);
+					newc.add(idade);
+					newc.add(campoIdade);
+					newc.add(sexo);
+					newc.add(campoSexo);
+					newc.add(data);
+					newc.add(campoDataNascimento);
+					newc.add(senha);
+					newc.add(campoSenha);
+					newc.add(sala);
+					newc.add(campoSala);
+					newc.add(salario);
+					newc.add(campoSalario);
+					
+					JButton but = new JButton("Cadastrar");
+					newc.add(but);
+					
+					
+					but.addActionListener(	new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {		
+							diretor.contratarProfessor(campoNome.getText(), Integer.parseInt(campoIdade.getText()),campoSexo.getText().charAt(0),campoDataNascimento.getText(),campoSenha.getText(),campoSala.getText(),Integer.parseInt(campoSalario.getText()));
+						}
+					});
+					
+					newFrame.pack();
+					newFrame.show();					
+				}	
+			});
 			
 			
-		/*	campoNome = new JTextField(20);
-			campoIdade = new JTextField(2);
-			campoSexo = new JTextField(1);
-			campoDataNascimento = new JTextField(10);
-			campoSenha = new JTextField(10);
-			campoSerie = new JTextField(1);
+			b6.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					String s = JOptionPane.showInputDialog("Que professor sera demitido?");
+					int index = 0;
+					int i;
+					while(diretor.getProfessores().size() > 0) //ARRUMAR - EXCECAO DE CONCORRENCIA, POR CAUSA DO LOOP
+						if(diretor.getProfessores().get(index).getNome().equals(s)) {
+							try {
+								diretor.demitirProfessor(diretor.getProfessores().get(index));
+							}catch(EscolaException t) {
+								JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
+							}
+						}
+						else
+							index++;
+							
+							
+					}	
+				});
+			
+		/*			Professor novo_professor = new Professor(nome, idade, sexo, dataNascimento, senha, sala, salario);
+
+		 * 			campoSerie = new JTextField(1);
 			
 			nome = new JLabel("Nome: ");
 			idade = new JLabel("Idade: ");
