@@ -18,6 +18,7 @@ public class Menu extends JFrame{
 	
 	
 	
+	@SuppressWarnings("deprecation")
 	public Menu(Diretor diretor,Professor professor) {
 		JFrame dados = new JFrame();
 		Container c = dados.getContentPane();
@@ -30,6 +31,119 @@ public class Menu extends JFrame{
 		c.add(b1);
 		c.add(b2);
 		c.add(b3);
+		
+		b1.addActionListener(new ActionListener() {
+
+			@SuppressWarnings("deprecation")
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				JFrame et = new JFrame("Editar Ementa");
+				Container ct = et.getContentPane();
+				ct.setLayout(new FlowLayout());
+				
+				JTextField materia = new JTextField(5);
+				JTextField ementa = new JTextField(30);
+				
+				JLabel labelMateria = new JLabel("Materia: ");
+				JLabel labelEmenta = new JLabel("Nova Ementa: ");
+				
+				labelMateria.setLabelFor(materia);
+				labelEmenta.setLabelFor(ementa);
+				
+				ct.add(labelMateria);
+				ct.add(materia);
+				ct.add(labelEmenta);
+				ct.add(ementa);
+				
+				JButton b = new JButton("OK");
+				ct.add(b);
+				
+				b.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {						
+						for(int i = 0;i < professor.getMaterias().size();i++) {
+							if(professor.getMaterias().get(i).getCodigo().equals(materia.getText())) {
+								try {
+									professor.editarEmenta(ementa.getText(),professor.getMaterias().get(i));
+								}catch(EscolaException t) {
+									JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
+								}
+							}
+								
+						}
+						
+						
+						
+					}		
+				});
+				
+				et.setSize(500,300);
+				et.setLocationRelativeTo(null);
+				et.show();
+				
+			}
+				
+		});
+		
+		
+		b2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				JFrame et = new JFrame("Adicao de Notas");
+				Container ct = et.getContentPane();
+				ct.setLayout(new FlowLayout());
+				
+				JTextField nota = new JTextField(4);
+				JTextField materia = new JTextField(10);
+				JTextField aluno = new JTextField(6);
+				
+				
+				JLabel labelMateria = new JLabel("Codigo da Materia: ");
+				JLabel labelAluno = new JLabel("RA do Aluno: ");
+				JLabel labelNota = new JLabel("Nota: ");
+				
+				labelMateria.setLabelFor(materia);
+				labelAluno.setLabelFor(aluno);
+				labelNota.setLabelFor(nota);
+				
+				ct.add(labelMateria);
+				ct.add(materia);
+				ct.add(labelAluno);
+				ct.add(aluno);
+				ct.add(labelNota);
+				ct.add(nota);
+				
+				JButton b = new JButton("OK");
+				ct.add(b);
+				
+				b.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {						
+						for(int i = 0;i < professor.getMaterias().size();i++) {
+							if(professor.getMaterias().get(i).getCodigo().equals(materia.getText())) {
+								for(int j = 0;j < professor.getMaterias().get(i).getAlunosCadastrados().size();j++) {
+									if(professor.getMaterias().get(i).getAlunosCadastrados().get(j).getAluno().getRA() == Long.parseLong(aluno.getText())) {
+										try {
+											professor.adicionarNotas(professor.getMaterias().get(i).getAlunosCadastrados().get(j).getAluno(), professor.getMaterias().get(i), Integer.parseInt(nota.getText()));
+										}catch(EscolaException t) {
+											JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
+										}
+									}
+								}
+							}
+								
+						}	
+					}		
+				});	
+				
+				et.setSize(350,300);
+				et.show();
+			}
+		});
 		
 		dados.setSize(200,300);
 		dados.setLocationRelativeTo(null);
