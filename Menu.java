@@ -13,9 +13,29 @@ public class Menu extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JLabel materias = new JLabel("Que materias você deseja cursar: ");
 	private Aluno a;
+	private Professor p;
 	private Diretor d;
 	
 	
+	
+	public Menu(Diretor diretor,Professor professor) {
+		JFrame dados = new JFrame();
+		Container c = dados.getContentPane();
+		c.setLayout(new FlowLayout());
+		
+		JButton b1 = new JButton("Editar Ementa");
+		JButton b2 = new JButton("Adicionar Notas");
+		JButton b3 = new JButton("Calcular Media da Turma");
+		
+		c.add(b1);
+		c.add(b2);
+		c.add(b3);
+		
+		dados.setSize(200,300);
+		dados.setLocationRelativeTo(null);
+		dados.show();
+
+	}
 	
 	@SuppressWarnings("deprecation")
 	public Menu(Diretor diretor) {
@@ -184,7 +204,6 @@ public class Menu extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					String s = JOptionPane.showInputDialog("Que professor sera demitido?");
 					int index = 0;
-					int i;
 					while(diretor.getProfessores().size() > 0) //ARRUMAR - EXCECAO DE CONCORRENCIA, POR CAUSA DO LOOP
 						if(diretor.getProfessores().get(index).getNome().equals(s)) {
 							try {
@@ -306,7 +325,6 @@ public class Menu extends JFrame{
 			
 			b9.addActionListener(new ActionListener() {
 				
-				@SuppressWarnings("deprecation")
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					JFrame materia = new JFrame("Abertura de Materia");
@@ -376,7 +394,6 @@ public class Menu extends JFrame{
 			
 			b10.addActionListener(new ActionListener() {
 				
-				@SuppressWarnings("deprecation")
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					JFrame materia = new JFrame("Fechamento de Materia");
@@ -403,65 +420,6 @@ public class Menu extends JFrame{
 	
 				}
 			});
-	
-			b12.addActionListener(new ActionListener() {
-				
-				@SuppressWarnings("deprecation")
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					JFrame materia = new JFrame("Pagar Professor");
-					
-					materia.setSize(500, 300);
-					materia.setLocationRelativeTo(null);
-
-					JComboBox<String> jc = new JComboBox<String>();
-					
-					
-					JLabel prof = new JLabel("Selecione o Professor: ");
-					prof.setLabelFor(jc);
-					
-					for(Professor p: diretor.getProfessores()) 	jc.addItem(p.getNome());
-
-					JButton b = new JButton("Pagar");
-					
-					materia.getContentPane().setLayout(new FlowLayout());
-					materia.getContentPane().add(prof);
-					materia.getContentPane().add(jc);
-					materia.getContentPane().add(b);
-					b.addActionListener(new ActionListener() {
-						
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							
-							try{
-								for(Professor p: diretor.getProfessores()) {
-								
-									if(p.getNome().equals(jc.getSelectedItem())) {
-									
-										diretor.pagarProfessor(p);
-										JOptionPane.showMessageDialog(null, "Professor "+p.getNome()+" pago com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
-										return;
-									}
-								
-								
-								}	
-							}catch(Exception e1){
-								JOptionPane.showMessageDialog(null, "Este Professor ja recebeu seu salario neste mes!", null, JOptionPane.ERROR_MESSAGE);
-							}		
-							
-						}
-					});
-					//materia.pack();
-					materia.show();
-	 			}
-			});
-	
-		
-		
-		
-		
-		
-		
 	}
 	
 	
