@@ -639,7 +639,7 @@ public class Menu extends JFrame{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					
-					JFrame jf = new JFrame("Atribuicao");
+					JFrame jf = new JFrame("Desatribuicao");
 					jf.setSize(600, 200);
 					jf.setLocationRelativeTo(null);
 					Container con = jf.getContentPane();
@@ -781,7 +781,7 @@ public class Menu extends JFrame{
 					b.addActionListener(new Listeners.FechaMateriaListener(diretor,materia,codtxt));
 			
 
-			dados.show();
+					materia.show();
 	
 				}
 			});
