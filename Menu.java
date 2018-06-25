@@ -141,6 +141,55 @@ public class Menu extends JFrame{
 			}
 		});
 		
+		
+		b3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFrame nf = new JFrame("Media Materia");
+				Container c = nf.getContentPane();
+				c.setLayout(new FlowLayout());
+				
+				JTextField tf = new JTextField(5) ;
+				JLabel jl = new JLabel("Cod. da Materia: ");
+				JButton jb = new JButton("OK");
+				
+				jl.setLabelFor(tf);
+				
+				c.add(jl);
+				c.add(tf);
+				c.add(jb);
+				
+				jb.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						for(int i = 0;i < professor.getMaterias().size();i++) {
+							if(professor.getMaterias().get(i).getCodigo().equals(tf.getText()))
+								try {
+									professor.mediaMateria(professor.getMaterias().get(i));
+								}catch(EscolaException t) {
+									JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
+								}
+						}
+						
+					}
+					
+				});
+				
+				nf.setSize(200,200);
+				nf.setLocationRelativeTo(null);
+				nf.show();
+						
+				
+				
+				
+				
+				
+			}
+			
+		});
+		
 		dados.setSize(200,300);
 		dados.setLocationRelativeTo(null);
 		dados.show();
