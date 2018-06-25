@@ -7,6 +7,7 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 
 public class Menu extends JFrame{
 	
@@ -30,7 +31,6 @@ public class Menu extends JFrame{
 		
 		String 	   horario_info;
 		String	   materia_info = "";
-		int 	   coluna_dia;
 		int		   linha_horario;
 		
 		JButton b1 = new JButton("Editar Ementa");
@@ -106,7 +106,7 @@ public class Menu extends JFrame{
 					if (ma.getDia().valor == j) {
 						
 						materia_info  = ma.getNome() + " / Cod.: " + ma.getCodigo();
-						coluna_dia 	  = ma.getDia().valor;
+						//coluna_dia 	  = ma.getDia().valor;
 						
 						if (ma.getHorario() == "08h" && i == 0) {
 							linha_horario = 1;
@@ -191,6 +191,8 @@ public class Menu extends JFrame{
 							if(professor.getMaterias().get(i).getCodigo().equals(materia.getText())) {
 								try {
 									professor.editarEmenta(ementa.getText(),professor.getMaterias().get(i));
+									JOptionPane.showMessageDialog(null, "Ementa alterada com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
+									return;
 								}catch(EscolaException t) {
 									JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
 								}
@@ -253,6 +255,8 @@ public class Menu extends JFrame{
 									if(professor.getMaterias().get(i).getAlunosCadastrados().get(j).getAluno().getRA() == Long.parseLong(aluno.getText())) {
 										try {
 											professor.adicionarNotas(professor.getMaterias().get(i).getAlunosCadastrados().get(j).getAluno(), professor.getMaterias().get(i), Integer.parseInt(nota.getText()));
+											JOptionPane.showMessageDialog(null, "A nota foi atribuida ao aluno com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
+											return;
 										}catch(EscolaException t) {
 											JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
 										}
@@ -295,7 +299,10 @@ public class Menu extends JFrame{
 						for(int i = 0;i < professor.getMaterias().size();i++) {
 							if(professor.getMaterias().get(i).getCodigo().equals(tf.getText()))
 								try {
-									professor.mediaMateria(professor.getMaterias().get(i));
+									DecimalFormat media2f = new DecimalFormat("#.##");
+									float media = professor.mediaMateria(professor.getMaterias().get(i));
+									JOptionPane.showMessageDialog(null, "A media nesse materia eh: "+media2f.format(media)+" !", null, JOptionPane.INFORMATION_MESSAGE);
+									return;
 								}catch(EscolaException t) {
 									JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
 								}
@@ -683,25 +690,56 @@ public class Menu extends JFrame{
 			
 			
 			b6.addActionListener(new ActionListener() {
-
+				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					String s = JOptionPane.showInputDialog("Que professor sera demitido?");
-					int index = 0;
-					while(diretor.getProfessores().size() > 0) //ARRUMAR - EXCECAO DE CONCORRENCIA, POR CAUSA DO LOOP
-						if(diretor.getProfessores().get(index).getNome().equals(s)) {
-							try {
-								diretor.demitirProfessor(diretor.getProfessores().get(index));
-							}catch(EscolaException t) {
-								JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
-							}
+					JFrame materia = new JFrame("Que Professor sera demitido?");
+					
+					materia.setSize(500, 300);
+					materia.setLocationRelativeTo(null);
+
+					JComboBox<String> jc = new JComboBox<String>();
+					
+					
+					JLabel prof = new JLabel("Selecione o Professor: ");
+					prof.setLabelFor(jc);
+					
+					for(Professor k: diretor.getProfessores()) 	jc.addItem(k.getNome());
+
+					JButton b = new JButton("Demitir");
+					
+					materia.getContentPane().setLayout(new FlowLayout());
+					materia.getContentPane().add(prof);
+					materia.getContentPane().add(jc);
+					materia.getContentPane().add(b);
+					b.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							
+							try{
+								for(Professor pr: diretor.getProfessores()) {
+								
+									if(pr.getNome().equals(jc.getSelectedItem())) {
+									
+										diretor.demitirProfessor(pr);
+										JOptionPane.showMessageDialog(null, "Professor "+pr.getNome()+" foi demitido da escola!", null, JOptionPane.INFORMATION_MESSAGE);
+										return;
+									}
+									
+								
+								}
+								throw new EscolaException("Professor ja demitido da escola");
+							}catch(Exception e1){
+								JOptionPane.showMessageDialog(null, e1, null, JOptionPane.ERROR_MESSAGE);
+							}		
+							
 						}
-						else
-							index++;
-							
-							
-					}	
-				});
+					});
+					//materia.pack();
+					materia.show();
+	 			}
+			});
 			
 			b7.addActionListener(new ActionListener() {
 
@@ -1095,7 +1133,6 @@ public class Menu extends JFrame{
 		Container[][] aula_grid = new AulaButton[5][5];
 		String 	   horario_info;
 		String	   materia_info = "";
-		int 	   coluna_dia;
 		int		   linha_horario;
 		Materia ma_buff = null;
 		
@@ -1131,7 +1168,7 @@ public class Menu extends JFrame{
 					if (ma.getMateria().getDia().valor == j) {
 						
 						materia_info  = ma.getMateria().getNome() + " / Cod.: " + ma.getMateria().getCodigo();
-						coluna_dia 	  = ma.getMateria().getDia().valor;
+						//coluna_dia 	  = ma.getMateria().getDia().valor;
 						
 						if (ma.getMateria().getHorario() == "08h" && i == 0) {
 							linha_horario = 1;

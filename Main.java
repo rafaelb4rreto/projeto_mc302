@@ -80,13 +80,11 @@ public class Main {
 		d.setMaxCreditos(alunos.get(0), 20);
 		d.setMaxCreditos(alunos.get(1), 20);
 		d.setMaxCreditos(alunos.get(2), 20);
-
 		
 		try {
 			alunos.get(2).adicionarMateria(m1);
 			alunos.get(1).adicionarMateria(m1);
 			alunos.get(1).adicionarMateria(m2);
-
 		} catch (EscolaException e1) {
 			System.err.println(e1);
 		}
@@ -95,21 +93,17 @@ public class Main {
 									   // aluno tente adicionar mais de uma materia no mesmo horario
 		System.out.println("\n" + m1+ "\n"); // mostra se o aluno de fato foi cadastrado na materia
 		System.out.println("num de alunos cadastrados "+m1.getAlunosCadastrados().size());
-
 		try {
 			professores.get(0).adicionarNotas(alunos.get(0),m1, 9.5f);   // adiciona a nota 9,5 ao aluno a3 referente a materia m1
 			professores.get(0).adicionarNotas(alunos.get(2), m1, 7.5f);
 			professores.get(0).adicionarNotas(alunos.get(1), m1, 7.5f);
-
 		} catch (EscolaException e) {
 			System.err.println(e);
 		}
 		
-
 		
 		System.out.println("\n" + professores.get(0));    
 		System.out.println("\n" + m1+ "\n"); // teste de adicao de materias e de profs responsaveis pela materia
-
 		
 		//alunos.get(2).removerMateria(m1);
 		System.out.println("\n" + alunos.get(2)); // remocao de materias 
@@ -118,7 +112,6 @@ public class Main {
 		
 		d.setBonus(professores.get(1), 1000);		   // seta um bonus salarial ao professor prof de 1000 reais
 		System.out.println("\n" + professores.get(1)); // teste de atribuicao de bonus
-
 		try {
 			professores.get(1).editarEmenta("Ementa alterada",m2);
 		} catch (EscolaException e) {
@@ -126,7 +119,6 @@ public class Main {
 			System.err.println(e);
 		}
 		
-
 		for(int i = 0;i < m1.getAlunosCadastrados().size();i++) { //checando se a atribui��o de notas esta correta
 			System.out.println(m1.getAlunosCadastrados().get(i).getNota());
 		}

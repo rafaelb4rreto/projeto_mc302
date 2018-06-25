@@ -1,4 +1,3 @@
-
 public class EscolaException extends Exception{
 
 	/**
