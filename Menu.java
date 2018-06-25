@@ -37,9 +37,8 @@ public class Menu extends JFrame{
 			JButton b8 = new JButton("Desatribuir Materia");
 			JButton b9 = new JButton("Abrir Materia");
 			JButton b10 = new JButton("Fechar Materia");
-			JButton b11 = new JButton("Enviar Mensagem");
-			JButton b12 = new JButton("Pagar Professor");
-			JButton b13 = new JButton("Receber Mensalidade");
+			JButton b11 = new JButton("Pagar Professor");
+			JButton b12 = new JButton("Receber Mensalidade");
 			
 			c.add(b1);
 			c.add(b2);
@@ -53,7 +52,9 @@ public class Menu extends JFrame{
 			c.add(b10);
 			c.add(b11);
 			c.add(b12);
-			c.add(b13);
+			
+			dados.pack();
+			dados.show();
 			
 			b2.addActionListener(new ActionListener() {
 
@@ -199,6 +200,110 @@ public class Menu extends JFrame{
 					}	
 				});
 			
+			b7.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JFrame jf = new JFrame("Atribuicao");
+					Container con = jf.getContentPane();
+					con.setLayout(new GridLayout());
+					
+					JTextField codMat = new JTextField(5);
+					JTextField RAp = new JTextField(10);
+					JLabel codigo = new JLabel("Codigo da materia");
+					JLabel pr = new JLabel("Professor");
+					
+					codigo.setLabelFor(codMat);
+					pr.setLabelFor(RAp);
+					
+					con.add(codigo);
+					con.add(codMat);
+					con.add(pr);
+					con.add(RAp);
+					
+					JButton jb = new JButton("PRONTO");
+					
+					con.add(jb);
+					
+
+					jb.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							for(int i = 0;i < diretor.getProfessores().size();i++) {
+								if(diretor.getProfessores().get(i).getNome().equals(RAp.getText())) {
+									for(int j = 0;j < diretor.getMaterias().size();j++) {
+										if(diretor.getMaterias().get(j).getCodigo().equals(codMat.getText())) {
+											try {
+												diretor.atribuirMateriaAUmProfessor(diretor.getProfessores().get(i),diretor.getMaterias().get(j));
+											}catch(EscolaException t) {
+												JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
+											}
+										}
+									}
+								}
+							}
+								
+						}	
+					});
+
+					jf.pack();
+					jf.show();	
+				}
+			});
+					
+					
+			b8.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JFrame jf = new JFrame("Atribuicao");
+					Container con = jf.getContentPane();
+					con.setLayout(new GridLayout());
+					
+					JTextField codMat = new JTextField(5);
+					JTextField RAp = new JTextField(10);
+					JLabel codigo = new JLabel("Codigo da materia");
+					JLabel pr = new JLabel("Professor");
+					
+					codigo.setLabelFor(codMat);
+					pr.setLabelFor(RAp);
+					
+					con.add(codigo);
+					con.add(codMat);
+					con.add(pr);
+					con.add(RAp);
+					
+					JButton jb = new JButton("PRONTO");
+					
+					con.add(jb);
+					jb.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							for(int i = 0;i < diretor.getProfessores().size();i++) {
+								if(diretor.getProfessores().get(i).getNome().equals(RAp.getText())) {
+									for(int j = 0;j < diretor.getMaterias().size();j++) {
+										if(diretor.getMaterias().get(j).getCodigo().equals(codMat.getText())) {
+											try {
+												diretor.desatribuirMateriaAUmProfessor(diretor.getProfessores().get(i),diretor.getMaterias().get(j));
+											}catch(EscolaException t) {
+												JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
+											}
+										}
+									}
+								}
+							}
+						}
+					});
+					
+					jf.pack();
+					jf.show();	
+					}	
+				});	
+
+			
+			
 			b9.addActionListener(new ActionListener() {
 				
 				@SuppressWarnings("deprecation")
@@ -292,50 +397,12 @@ public class Menu extends JFrame{
 
 					
 					b.addActionListener(new Listeners.FechaMateriaListener(diretor,materia,codtxt));
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*			Professor novo_professor = new Professor(nome, idade, sexo, dataNascimento, senha, sala, salario);
-
-		 * 			campoSerie = new JTextField(1);
-			
-			nome = new JLabel("Nome: ");
-			idade = new JLabel("Idade: ");
-			sexo = new JLabel("Sexo: ");
-			data = new JLabel("Data de nascimento: ");
-			senha = new JLabel("Senha: ");
-			serie = new JLabel("Serie: ");
-			
-			nome.setLabelFor(campoNome);
-			idade.setLabelFor(campoIdade);
-			sexo.setLabelFor(campoSexo);
-			data.setLabelFor(campoDataNascimento);
-			senha.setLabelFor(campoSenha);
-			serie.setLabelFor(campoSerie);
-			
-			dados.getContentPane().add(nome);
-			dados.getContentPane().add(campoNome);
-			dados.getContentPane().add(idade);
-			dados.getContentPane().add(campoIdade);
-			dados.getContentPane().add(sexo);
-			dados.getContentPane().add(campoSexo);
-			dados.getContentPane().add(data);
-			dados.getContentPane().add(campoDataNascimento);
-			dados.getContentPane().add(senha);
-			dados.getContentPane().add(campoSenha);
-			dados.getContentPane().add(serie);
-			dados.getContentPane().add(campoSerie);*/
 			
 			dados.pack();
 			dados.show();
 	
+				}
+			});
 	}
 	
 	
@@ -359,10 +426,6 @@ public class Menu extends JFrame{
 		
 		this.pack();
 		this.show();
-		
-		//c.getComponent(0).setSize(100,100);
-		//c.getComponent(1).setSize(100,100);
-		//c.getComponent(2).setSize(100,100);
 		
 		botao1.addActionListener(new ActionListener() {
 			
