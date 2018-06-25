@@ -11,7 +11,7 @@ public class Menu extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JLabel materias = new JLabel("Que materias você deseja cursar: ");
+	private JLabel materias = new JLabel("Que materias vocÃª deseja cursar: ");
 	private Aluno a;
 	private Professor p;
 	private Diretor d;
@@ -189,6 +189,91 @@ public class Menu extends JFrame{
 			
 			dados.pack();
 			dados.show();
+		
+			b1.addActionListener(new ActionListener() {
+				
+				@SuppressWarnings("deprecation")
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JFrame materia = new JFrame("Matricular Aluno");
+					materia.setSize(800, 600);
+					materia.setLocationRelativeTo(null);
+					
+					JTextField nometxt = new JTextField(10);
+					JLabel nome = new JLabel("Nome: ");
+					nome.setLabelFor(nometxt);
+
+					JTextField idatxt = new JTextField(5);
+					JLabel ida = new JLabel("Idade: ");
+					ida.setLabelFor(idatxt);
+
+					JRadioButton m = new JRadioButton("Masculino");
+					JRadioButton f = new JRadioButton("Feminino");
+					JLabel sex = new JLabel("Sexo: ");
+					sex.setLabelFor(m);
+					ButtonGroup group = new ButtonGroup();
+					group.add(m);
+					group.add(f);
+					
+					JTextField datatxt = new JTextField(5);
+					JLabel data = new JLabel("Data de nascimento: ");
+					data.setLabelFor(datatxt);
+					
+					JTextField sentxt = new JTextField(5);
+					JLabel sen = new JLabel("Senha: ");
+					sen.setLabelFor(sentxt);
+					
+					JTextField sertxt = new JTextField(10);
+					JLabel ser = new JLabel("Serie: ");
+					ser.setLabelFor(sertxt);
+
+					JButton b = new JButton("Matricular");
+					materia.getContentPane().setLayout(new FlowLayout());
+
+					materia.getContentPane().add(nome);
+					materia.getContentPane().add(nometxt);
+					materia.getContentPane().add(ida);
+					materia.getContentPane().add(idatxt);
+					materia.getContentPane().add(sex);
+					materia.getContentPane().add(m);
+					materia.getContentPane().add(f);
+					materia.getContentPane().add(data);
+					materia.getContentPane().add(datatxt);
+					materia.getContentPane().add(sen);
+					materia.getContentPane().add(sentxt);
+					materia.getContentPane().add(ser);
+					materia.getContentPane().add(sertxt);
+					materia.getContentPane().add(b);
+
+					
+					b.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+							
+							try {
+								char sexo;
+								if(m.isSelected()) sexo = 'M';
+								else sexo = 'F';
+								diretor.matricularAluno(nometxt.getText(), Integer.parseInt(idatxt.getText()), sexo, datatxt.getText(), sentxt.getText(), Integer.parseInt(sertxt.getText()));
+								JOptionPane.showMessageDialog(null, "Aluno matriculado com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
+							}catch(Exception e) {
+								JOptionPane.showMessageDialog(null, "Dados incorretos\nConfira os campos", null, JOptionPane.ERROR_MESSAGE);
+							}
+							
+							for(Aluno a: diretor.getAlunos())System.out.println(diretor.getAlunos());
+						
+						}
+						
+						
+					});
+
+					
+					//materia.pack();
+					materia.show();
+	 			}
+			});	
+		
 			
 			b2.addActionListener(new ActionListener() {
 
