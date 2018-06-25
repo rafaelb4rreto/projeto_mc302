@@ -22,7 +22,7 @@ public class Menu extends JFrame{
 	@SuppressWarnings("deprecation")
 	public Menu(Diretor diretor,Professor professor) {
 		
-		super("Professor" + professor.getRA());
+		super("Professor");
 		
 		GridLayout grid;
 		
@@ -78,84 +78,7 @@ public class Menu extends JFrame{
 		this.getContentPane().add(new JLabel(""));
 
 		
-		// Painel de horarios
 		
-		this.getContentPane().add(new JLabel("---"));
-		for (int i = Dia.SEGUNDA.valor; i <= Dia.SEXTA.valor; i++) {
-			this.getContentPane().add(new JLabel(Dia.values()[i-1].nome_string));
-		}
-		
-		for (int i = 0; i < 5; i++) {
-			if (i == 0) {
-				horario_info = "08h - 10h\n";
-			}else if (i == 1) {
-				horario_info = "10h - 12h\n";
-			}else if (i == 2) {
-				horario_info = "12h - 14h\n";
-			}else if (i == 3) {
-				horario_info = "14h - 16h\n";
-			}else
-				horario_info = "16h - 18h\n";
-			
-			this.getContentPane().add(new JLabel(horario_info));
-			
-			for (int j = Dia.SEGUNDA.valor; j <= Dia.SEXTA.valor; j++) {
-				linha_horario = -1;
-				for (Materia ma : professor.getMaterias()) {
-					
-					if (ma.getDia().valor == j) {
-						
-						materia_info  = ma.getNome() + " / Cod.: " + ma.getCodigo();
-						//coluna_dia 	  = ma.getDia().valor;
-						
-						if (ma.getHorario() == "08h" && i == 0) {
-							linha_horario = 1;
-							ma_buff = ma;
-						}else if (ma.getHorario() == "10h" && i == 1) {
-							linha_horario = 2;
-							ma_buff = ma;
-						}else if (ma.getHorario() == "14h" && i == 3) {
-							linha_horario = 4;
-							ma_buff = ma;
-						}else if (ma.getHorario() == "16h" && i == 4) {
-							linha_horario = 5;
-							ma_buff = ma;
-						}
-					}
-				}
-				if (linha_horario != -1) {
-					aula_grid[i][j-1] = new AulaButton("", ma_buff);
-					((AulaButton)aula_grid[i][j-1]).setLayout(new BorderLayout());
-					((AulaButton) aula_grid[i][j-1]).add(BorderLayout.NORTH,  new JLabel(horario_info + " / " + "Sala: " + ma_buff.getSala()));
-					((AulaButton) aula_grid[i][j-1]).add(BorderLayout.CENTER, new JLabel(materia_info));
-					((AulaButton) aula_grid[i][j-1]).add(BorderLayout.SOUTH,  new JLabel("N. alunos: " + ma_buff.getCapacidadeAtual()));
-					this.getContentPane().add(aula_grid[i][j-1]);
-					
-					((AulaButton) aula_grid[i][j-1]).addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							
-							loop:
-							for (int a = 0; a < 5; a++) {
-								for (int b = 0; b < 5; b++) {
-									if (e.getSource() == (AulaButton)aula_grid[a][b]) {
-										JFrame f = new AulaFrame(((AulaButton)aula_grid[a][b]).getMateria(), professor);
-										f.setLocationRelativeTo(null);
-										f.pack();
-										f.show();
-										break loop;
-									}
-										
-								}
-							}
-							
-						}
-					});
-				}else {
-					this.getContentPane().add(new JButton(""));
-				}
-			}		
-		}
 		
 		b1.addActionListener(new ActionListener() {
 
@@ -1100,110 +1023,23 @@ public class Menu extends JFrame{
 	@SuppressWarnings("deprecation")
 	public Menu(Diretor diretor,Aluno aluno) {
 		super("Aluno");
-		GridLayout grid = new GridLayout(0, 6);
 		this.setSize(300, 200);
 		this.setLocationRelativeTo(null);
 		Container c = this.getContentPane();
-		c.setLayout(grid);
+		c.setLayout(new FlowLayout());
 
 		JButton botao1 = new JButton("Adicionar Materia");
 		JButton botao2 = new JButton("Remover Materia");
 		
-		Container[][] aula_grid = new AulaButton[5][5];
+		/*Container[][] aula_grid = new AulaButton[5][5];
 		String 	   horario_info;
 		String	   materia_info = "";
 		int		   linha_horario;
-		Materia ma_buff = null;
+		Materia ma_buff = null;*/
 		
 		c.add(botao1);
 		c.add(botao2);
-		c.add(new JLabel(""));
-		c.add(new JLabel(""));
-		c.add(new JLabel(""));
-		
-		this.getContentPane().add(new JLabel("---"));
-		for (int i = Dia.SEGUNDA.valor; i <= Dia.SEXTA.valor; i++) {
-			this.getContentPane().add(new JLabel(Dia.values()[i-1].nome_string));
-		}
-		
-		for (int i = 0; i < 5; i++) {
-			if (i == 0) {
-				horario_info = "08h - 10h\n";
-			}else if (i == 1) {
-				horario_info = "10h - 12h\n";
-			}else if (i == 2) {
-				horario_info = "12h - 14h\n";
-			}else if (i == 3) {
-				horario_info = "14h - 16h\n";
-			}else
-				horario_info = "16h - 18h\n";
-			
-			this.getContentPane().add(new JLabel(horario_info));
-			
-			for (int j = Dia.SEGUNDA.valor; j <= Dia.SEXTA.valor; j++) {
-				linha_horario = -1;
-				for (AlunoMateria ma : aluno.getMaterias()) {
-					
-					if (ma.getMateria().getDia().valor == j) {
-						
-						materia_info  = ma.getMateria().getNome() + " / Cod.: " + ma.getMateria().getCodigo();
-						//coluna_dia 	  = ma.getMateria().getDia().valor;
-						
-						if (ma.getMateria().getHorario() == "08h" && i == 0) {
-							linha_horario = 1;
-							ma_buff = ma.getMateria();
-						}else if (ma.getMateria().getHorario() == "10h" && i == 1) {
-							linha_horario = 2;
-							ma_buff = ma.getMateria();
-						}else if (ma.getMateria().getHorario() == "14h" && i == 3) {
-							linha_horario = 4;
-							ma_buff = ma.getMateria();
-						}else if (ma.getMateria().getHorario() == "16h" && i == 4) {
-							linha_horario = 5;
-							ma_buff = ma.getMateria();
-						}
-					}
-				}
-				if (linha_horario != -1) {
-					aula_grid[i][j-1] = new AulaButton("", ma_buff);
-					((AulaButton)aula_grid[i][j-1]).setLayout(new BorderLayout());
-					((AulaButton) aula_grid[i][j-1]).add(BorderLayout.NORTH,  new JLabel(horario_info + " / " + "Sala: " + ma_buff.getSala()));
-					((AulaButton) aula_grid[i][j-1]).add(BorderLayout.CENTER, new JLabel(materia_info));
-					((AulaButton) aula_grid[i][j-1]).add(BorderLayout.SOUTH,  new JLabel("N. alunos: " + ma_buff.getCapacidadeAtual()));
-					this.getContentPane().add(aula_grid[i][j-1]);
-					
-					((AulaButton) aula_grid[i][j-1]).addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							
-							loop:
-							for (int a = 0; a < 5; a++) {
-								for (int b = 0; b < 5; b++) {
-									if (e.getSource() == (AulaButton)aula_grid[a][b]) {
-										JFrame f = new AulaFrame(((AulaButton)aula_grid[a][b]).getMateria(), aluno);
-										f.setLocationRelativeTo(null);
-										f.pack();
-										f.show();
-										break loop;
-									}
-										
-								}
-							}
-							
-						}
-					});
-				}else {
-					this.getContentPane().add(new JButton(""));
-				}
-		
-			}
-		}
-
-
-		this.pack();
-		this.show();
-		
-		botao1.addActionListener(new ActionListener() {
+			botao1.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1215,7 +1051,7 @@ public class Menu extends JFrame{
 				JLabel cod = new JLabel("Codigo da materia: ");
 				cod.setLabelFor(txt);
 				JButton b = new JButton("Adicionar");
-				materia.getContentPane().setLayout(new FlowLayout());
+				materia.getContentPane().setLayout(new GridLayout());
 
 				materia.getContentPane().add(cod);
 				materia.getContentPane().add(txt);
@@ -1235,7 +1071,7 @@ public class Menu extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				
 				JFrame materia = new JFrame("Escolha de Materias");
-				materia.setSize(600, 200);
+				materia.setSize(300, 200);
 				materia.setLocationRelativeTo(null);
 				JTextField txt = new JTextField(10);
 				JLabel cod = new JLabel("Codigo da materia: ");
@@ -1250,11 +1086,15 @@ public class Menu extends JFrame{
 				b.addActionListener(new Listeners.RemoveMateriaListener(materia,txt,diretor,aluno));
 				
 				
-	//			materia.pack();
+				materia.pack();
 				materia.show();
 			}
 			
 		});
+		
+		this.show();
+		
+		
 		
 	}
 	
