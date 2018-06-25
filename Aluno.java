@@ -111,26 +111,6 @@ public class Aluno extends Pessoa implements Salvar{
 		throw new EscolaException("o aluno nao esta cadastrado na materia");
 	}
 	
-	public boolean enviarMensagem(String mensagem,Pessoa p) throws EscolaException{
-		
-
-		if(p instanceof Aluno) {
-			throw new EscolaException("Voce nao tem autorizacao para isso!");
-		}
-		
-		else if(p instanceof Professor) {
-			
-			for(int i = 0;i < this.materias.size();i++) {
-				if(materias.get(i).getMateria().getProfessor() == (Professor)p) {
-					System.out.println(mensagem);//escreva no arquivo
-					return true;
-				}				
-			}		
-		}
-		
-		throw new EscolaException("Voce nao tem autorizacao para isso!");
-	}
-	
 	@Override
 	public String toString() {
 		String out = "Aluno: " + super.getNome() + ", n. materias: " + getMaterias().size() + "\n";

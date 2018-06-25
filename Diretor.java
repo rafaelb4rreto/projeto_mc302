@@ -224,18 +224,6 @@ public class Diretor extends Pessoa{
 		else throw new EscolaException("Materia nao encontrada");
 	}
 	
-	public boolean enviarMensagem(String mensagem,Pessoa p) throws EscolaException {
-		if(p instanceof Professor) {
-			System.out.println(mensagem);
-			return true;
-		}
-		else if(p instanceof Aluno) {
-			System.out.println(mensagem); //escreva no arquivo
-			return true;
-		}
-		
-		else throw new EscolaException("O diretor e voce!\n");		
-	}
 
 	public void pagarProfessor(Professor prof) throws EscolaException {
 		
@@ -246,27 +234,6 @@ public class Diretor extends Pessoa{
 		else throw new EscolaException("Professor ja esta pago nesse mes!");
 	}
 	
-	public void receberMensalidade(Aluno aluno, int valor_recebido) {
-		aluno.setBalanco(aluno.getBalanco() + valor_recebido);
-		this.caixa += valor_recebido;
-	}
-	
-	// da um input ou um output do caixa. In: valor positivo; Out: valor negativo.
-	public void inoutCaixa(int valor) {
-		this.caixa += valor;
-	}
-	
-	public void virarMes() {
-		for (Aluno aluno:this.alunos) {
-			aluno.setBalanco(aluno.getBalanco()-aluno.getMensalidade());
-		}
-		
-		for (Professor prof:this.professores) {
-			prof.setPago(false);
-		}
-		
-		System.out.println("Balanco do mes: " + this.caixa);
-	}
 	
 	@Override
 	public String toString() {
