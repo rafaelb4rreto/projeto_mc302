@@ -26,60 +26,60 @@ public class Diretor extends Pessoa{
 	//Carrega arquivo escola.txt dentro da pasta src do projeto
 	public void carregarDados() {
 				
-				String filename = "src/escola.txt";
-				try {
-					Scanner scan = new Scanner(new File(filename));
-					int temp = scan.nextInt(); //numero de alunos
-					for(int i=0; i<temp;i++) { //matricular e ajustar cada aluno
-						this.matricularAluno(scan.next(), scan.nextInt(), scan.next().charAt(0), scan.next(), scan.next(), scan.nextInt());
-						this.getAlunos().get(i).setRA(scan.nextInt());
-						this.getAlunos().get(i).setAdvertencias(scan.nextInt());
-						this.getAlunos().get(i).setSuspensoes(scan.nextInt());
-						this.getAlunos().get(i).setMaxCreditos(scan.nextInt());
-						this.getAlunos().get(i).setRegular(scan.nextBoolean());
-						this.getAlunos().get(i).setBalanco(scan.nextInt());
-						this.getAlunos().get(i).setMensalidade(scan.nextInt());
-					}
-					temp = scan.nextInt(); //numero de professores
-					for(int i=0; i<temp;i++) {
-						this.contratarProfessor(scan.next(), scan.nextInt(), scan.next().charAt(0), scan.next(), scan.next(), scan.next(), scan.nextInt());
-						this.getProfessores().get(i).setRA(scan.nextInt());
-						this.getProfessores().get(i).setPago(scan.nextBoolean());
-					}
-					temp = scan.nextInt();	//numero de materias
-					for(int i=0; i<temp;i++) {
-						this.abrirMateria(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.next(), Dia.valueOf(scan.next()), scan.nextInt(), scan.nextLine());
-						int tempRA = scan.nextInt();
-						for(int j=0;j<this.getProfessores().size();j++) {
-								
-							if(this.getProfessores().get(j).getRA() == tempRA) {
-								this.atribuirMateriaAUmProfessor(this.getProfessores().get(j), this.getMaterias().get(i));
-							}
-						}
-						int qtdDeAlunos = scan.nextInt();
-						for(int k=0;k<qtdDeAlunos;k++) { //para cada aluno, recriar o relacionamento
-							int alunoRA = scan.nextInt();
-							float notaAluno = scan.nextFloat();
-							for(int l=0;l<this.getAlunos().size();l++) {  //busca do aluno
-								
-								if(this.getAlunos().get(l).getRA() == alunoRA) {
-									this.getAlunos().get(l).adicionarMateria(this.getMaterias().get(i)); //recriando o relacionamento AlunoMateria
-									this.getAlunos().get(l).getMaterias().get(this.getAlunos().get(l).getMaterias().size() - 1).setNota(notaAluno); // recoloca a nota dessa materia
-								}
-							}
-						}
+		String filename = "src/escola.txt";
+		try {
+			Scanner scan = new Scanner(new File(filename));
+			int temp = scan.nextInt(); //numero de alunos
+			for(int i=0; i<temp;i++) { //matricular e ajustar cada aluno
+				this.matricularAluno(scan.next(), scan.nextInt(), scan.next().charAt(0), scan.next(), scan.next(), scan.nextInt());
+				this.getAlunos().get(i).setRA(scan.nextInt());
+				this.getAlunos().get(i).setAdvertencias(scan.nextInt());
+				this.getAlunos().get(i).setSuspensoes(scan.nextInt());
+				this.getAlunos().get(i).setMaxCreditos(scan.nextInt());
+				this.getAlunos().get(i).setRegular(scan.nextBoolean());
+				this.getAlunos().get(i).setBalanco(scan.nextInt());
+				this.getAlunos().get(i).setMensalidade(scan.nextInt());
+			}
+			temp = scan.nextInt(); //numero de professores
+			for(int i=0; i<temp;i++) {
+				this.contratarProfessor(scan.next(), scan.nextInt(), scan.next().charAt(0), scan.next(), scan.next(), scan.next(), scan.nextInt());
+				this.getProfessores().get(i).setRA(scan.nextInt());
+				this.getProfessores().get(i).setPago(scan.nextBoolean());
+			}
+			temp = scan.nextInt();	//numero de materias
+			for(int i=0; i<temp;i++) {
+				this.abrirMateria(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.next(), Dia.valueOf(scan.next()), scan.nextInt(), scan.nextLine());
+				int tempRA = scan.nextInt();
+				for(int j=0;j<this.getProfessores().size();j++) {
 						
+					if(this.getProfessores().get(j).getRA() == tempRA) {
+						this.atribuirMateriaAUmProfessor(this.getProfessores().get(j), this.getMaterias().get(i));
 					}
-							
-					scan.close();
-					
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (EscolaException e) {
-					System.err.println(e);
+				}
+				int qtdDeAlunos = scan.nextInt();
+				for(int k=0;k<qtdDeAlunos;k++) { //para cada aluno, recriar o relacionamento
+					int alunoRA = scan.nextInt();
+					float notaAluno = scan.nextFloat();
+					for(int l=0;l<this.getAlunos().size();l++) {  //busca do aluno
+						
+						if(this.getAlunos().get(l).getRA() == alunoRA) {
+							this.getAlunos().get(l).adicionarMateria(this.getMaterias().get(i)); //recriando o relacionamento AlunoMateria
+							this.getAlunos().get(l).getMaterias().get(this.getAlunos().get(l).getMaterias().size() - 1).setNota(notaAluno); // recoloca a nota dessa materia
+						}
+					}
 				}
 				
 			}
+					
+			scan.close();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (EscolaException e) {
+			System.err.println(e);
+		}
+		
+	}
 	
 	public void salvarDados() {
 		
