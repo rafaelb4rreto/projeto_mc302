@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.FlowLayout;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class MyFrame3 extends JFrame{
@@ -28,9 +29,36 @@ public class MyFrame3 extends JFrame{
 		this.getContentPane().add(senha);
 		this.getContentPane().add(aut);
 		
-		JButton botao = new JButton("Entrar");
-		this.getContentPane().add(botao);
+		JButton botao1 = new JButton("Entrar");
+		JButton botao2 = new JButton("Voltar");
+		this.getContentPane().add(botao2);
+		this.getContentPane().add(botao1);
 		
-		botao.addActionListener(new LoginDiretorListener(Id,aut,d));
+		botao1.addActionListener(new Listeners.LoginDiretorListener(Id,aut,d));
+		botao2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Object[] option = {"aluno","Professor","Diretor"};
+				Login inicio = new Login(option,d);
+				int p = inicio.classSelection(d);
+				if(p == 0) {
+					JFrame f = new MyFrame1(d);
+					f.pack();
+					f.show();
+				}
+				if(p == 1) {
+					
+				}
+				if(p == 2) {
+					JFrame fr = new MyFrame3(d);
+					fr.pack();
+					fr.show();
+				}
+				
+			}
+			
+		});
+		
 	}
 }

@@ -21,7 +21,7 @@ public class Main {
 		alunos.add(d.matricularAluno("Paulo",12,'M',"02/06/2005","1234",5));
 		Materia m1 = d.abrirMateria("Geografia","1",4,"66A","10h",Dia.QUARTA,30,"Materia de Geografia");
 		Materia m2 = d.abrirMateria("Matematica","2",5,"66B","08h",Dia.SEGUNDA,20,"Materia de Matematica");
-		//Materia m3 = d.abrirMateria("Ciencias","3",3,"66C","10h",Dia.SEGUNDA,20,"Materia de Ciencias");
+		Materia m3 = d.abrirMateria("Ciencias","3",3,"66C","10h",Dia.SEGUNDA,20,"Materia de Ciencias");
 		
 		
 		
@@ -35,23 +35,28 @@ public class Main {
 		Object[] option = {"aluno","Professor","Diretor"};
 		Login inicio = new Login(option,d);
 		int p = inicio.classSelection(d);
-		d.setMaxCreditos(alunos.get(0),10); 		 // seta como 4 o maximo de creditos que o aluno a1 pode cursar
+		//d.setMaxCreditos(alunos.get(0),10); 		 // seta como 4 o maximo de creditos que o aluno a1 pode cursar
 		
 		if(p == 0) {
 			JFrame f = new MyFrame1(d);
-			f.pack();
+			f.setSize(200,300);
+			f.setLocationRelativeTo(null);
 			f.show();
 		}
 		if(p == 1) {
-			
+			JFrame fra = new MyFrame2(d);
+			fra.setSize(200,300);
+			fra.setLocationRelativeTo(null);
+			fra.show();
 		}
 		if(p == 2) {
 			JFrame fr = new MyFrame3(d);
-			fr.pack();
+			fr.setSize(200,300);
+			fr.setLocationRelativeTo(null);
 			fr.show();
 		}
 		
-		System.out.println(alunos.get(0).getMaterias());
+		//System.out.println(alunos.get(0).getMaterias());
 		
 		/*try {
 			alunos.get(0).adicionarMateria(m1);

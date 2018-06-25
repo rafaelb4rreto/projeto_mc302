@@ -11,7 +11,7 @@ public class Menu extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JLabel materias = new JLabel("Que materias vocÃª deseja cursar: ");
+	private JLabel materias = new JLabel("Que materias você deseja cursar: ");
 	private Aluno a;
 	private Professor p;
 	private Diretor d;

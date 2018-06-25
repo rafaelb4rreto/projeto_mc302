@@ -31,27 +31,9 @@ public class MyFrame2 extends JFrame{
 		JButton botao = new JButton("Entrar");
 		this.getContentPane().add(botao);
 		
-		botao.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int flag = 0;
-				for(int i = 0;i < d.getProfessores().size();i++) {
-					if(d.getProfessores().get(i).getNome().equals(Id.getText())) {
-						if(d.getProfessores().get(i).getSenha().equals(aut.getText())) {
-							JOptionPane.showMessageDialog(null, "Entrada realizada com sucesso!");
-							flag = 1;
-						}	
-					}
-				}
-				
-				if(flag == 0) {
-					aut.setText("");
-					Id.setText("");
-				}
-				
-			}
-		});
+		botao.addActionListener(new Listeners.LoginProfessorListener(Id,aut,d));
+		
+		
 	}
 
 }
