@@ -403,6 +403,65 @@ public class Menu extends JFrame{
 	
 				}
 			});
+	
+			b12.addActionListener(new ActionListener() {
+				
+				@SuppressWarnings("deprecation")
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JFrame materia = new JFrame("Pagar Professor");
+					
+					materia.setSize(500, 300);
+					materia.setLocationRelativeTo(null);
+
+					JComboBox<String> jc = new JComboBox<String>();
+					
+					
+					JLabel prof = new JLabel("Selecione o Professor: ");
+					prof.setLabelFor(jc);
+					
+					for(Professor p: diretor.getProfessores()) 	jc.addItem(p.getNome());
+
+					JButton b = new JButton("Pagar");
+					
+					materia.getContentPane().setLayout(new FlowLayout());
+					materia.getContentPane().add(prof);
+					materia.getContentPane().add(jc);
+					materia.getContentPane().add(b);
+					b.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							
+							try{
+								for(Professor p: diretor.getProfessores()) {
+								
+									if(p.getNome().equals(jc.getSelectedItem())) {
+									
+										diretor.pagarProfessor(p);
+										JOptionPane.showMessageDialog(null, "Professor "+p.getNome()+" pago com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
+										return;
+									}
+								
+								
+								}	
+							}catch(Exception e1){
+								JOptionPane.showMessageDialog(null, "Este Professor ja recebeu seu salario neste mes!", null, JOptionPane.ERROR_MESSAGE);
+							}		
+							
+						}
+					});
+					//materia.pack();
+					materia.show();
+	 			}
+			});
+	
+		
+		
+		
+		
+		
+		
 	}
 	
 	
