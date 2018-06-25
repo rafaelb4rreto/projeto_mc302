@@ -6,12 +6,12 @@ Paulo 12 M 02/06/2005 1234 5 6 0 0 20 true 0 500
 Joao 44 M 03/05/1974 abcd 134B 10000 2 false
 Cleber 44 M 03/05/1974 abcd 134B 10000 3 false
 3
-Geografia 1 4 66A 10h QUARTA 30 Materia de Geografia
+Geografia 1 4 66A 10h QUARTA 30  Materia de Geografia
 2
-3 4 6.00 5 7.00 6 8.00  
-Matematica 2 5 66B 14h SEGUNDA 20 Materia de Matematica
+3 4 6.00 5 7.00 6 8.00 
+Matematica 2 5 66B 14h SEGUNDA 20  Materia de Matematica
 3
 0 
-Ciencias 3 3 66C 08h SEGUNDA 20 Materia de Ciencias
+Ciencias 3 3 66C 08h SEGUNDA 20  Materia de Ciencias
 2
 0 

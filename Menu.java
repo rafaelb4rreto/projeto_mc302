@@ -780,7 +780,7 @@ public class Menu extends JFrame{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					JFrame materia = new JFrame("Abertura de Materia");
-					materia.setSize(800, 600);
+					materia.setSize(550, 300);
 					materia.setLocationRelativeTo(null);
 					JTextField nometxt = new JTextField(10);
 					JLabel nome = new JLabel("Nome: ");
