@@ -21,18 +21,19 @@ public class Main {
 		alunos.add(d.matricularAluno("Paulo",12,'M',"02/06/2005","1234",5));
 		Materia m1 = d.abrirMateria("Geografia","1",4,"66A","10h",Dia.QUARTA,30,"Materia de Geografia");
 		Materia m2 = d.abrirMateria("Matematica","2",5,"66B","08h",Dia.SEGUNDA,20,"Materia de Matematica");
-		Materia m3 = d.abrirMateria("Ciencias","3",3,"66C","10h",Dia.SEGUNDA,20,"Materia de Ciencias");
+		Materia m3 = d.abrirMateria("Ciencias","3",3,"66C","08h",Dia.SEGUNDA,20,"Materia de Ciencias");
 		
 		
 		
 		try { //atribui materia aos professores
 			d.atribuirMateriaAUmProfessor(professores.get(0), m1);
 			d.atribuirMateriaAUmProfessor(professores.get(1), m2);
+			d.atribuirMateriaAUmProfessor(professores.get(0), m3);
 		} catch(EscolaException e) {
 			System.err.println(e);
 		}
 		
-		Object[] option = {"aluno","Professor","Diretor"};
+		Object[] option = {"Aluno","Professor","Diretor"};
 		Login inicio = new Login(option,d);
 		int p = inicio.classSelection(d);
 		//d.setMaxCreditos(alunos.get(0),10); 		 // seta como 4 o maximo de creditos que o aluno a1 pode cursar
@@ -126,7 +127,7 @@ public class Main {
 		}
 		
 
-		for(int i = 0;i < m1.getAlunosCadastrados().size();i++) { //checando se a atribuição de notas esta correta
+		for(int i = 0;i < m1.getAlunosCadastrados().size();i++) { //checando se a atribuiï¿½ï¿½o de notas esta correta
 			System.out.println(m1.getAlunosCadastrados().get(i).getNota());
 		}
 		

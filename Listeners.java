@@ -111,6 +111,40 @@ public class Listeners  {
 	
 
 }
+	
+	public static class LoginProfessorListener implements ActionListener{
+
+		private JTextField campo1,campo2;
+		private Diretor d;
+		
+		public LoginProfessorListener(JTextField Id,JTextField aut,Diretor d) {
+			this.campo1 = Id;
+			this.campo2 = aut;
+			this.d = d;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int flag = 0;
+			for(int i = 0;i < d.getProfessores().size();i++) {
+				if(d.getProfessores().get(i).getNome().equals(campo1.getText())) {
+					if(d.getProfessores().get(i).getSenha().equals(campo2.getText())) {
+						Professor professor = d.getProfessores().get(i);
+						new Menu(d,professor);
+						flag = 1;
+					}	
+				}
+			}
+			
+			if(flag == 0) {
+				campo2.setText("");
+				campo1.setText("");
+			}
+			
+		}
+		
+
+	}
 
 	public static class AdicionaMateriaListener implements ActionListener{
 		private JTextField campo;

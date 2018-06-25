@@ -1,7 +1,5 @@
 import javax.swing.*;
-import java.awt.FlowLayout;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 
 public class Login extends JFrame {
 	/**
@@ -16,8 +14,9 @@ public class Login extends JFrame {
 	}
 	
 	public int classSelection(Diretor d) {
-		int answer = JOptionPane.showOptionDialog(null,"Que área gostaria de fazer login?","Tela de inicio", JOptionPane.INFORMATION_MESSAGE, JOptionPane.INFORMATION_MESSAGE,null, classes, classes[2]);
-
+		
+		int answer = JOptionPane.showOptionDialog(null,"Que area gostaria de fazer login?","Tela de inicio", JOptionPane.INFORMATION_MESSAGE, JOptionPane.INFORMATION_MESSAGE,null, classes, classes[2]);
+		
 		return answer;
 	}
 	
