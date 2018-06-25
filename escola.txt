@@ -10,6 +10,6 @@ Cleber 44 M 03/05/1974 abcd 134B 11000 3 false
 Geografia 1 4 66A 10h SEGUNDA 30 Materia de Geografia
 2
 3 4 9.50 6 7.50 5 7.50 
-Matematica 2 5 66B 08h SEGUNDA 20 Ementa alterada
+Matematica 2 5 66B 08h SEGUNDA 20 Matematica Avancada
 3
 2 4 0.00 5 0.00 
