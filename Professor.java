@@ -33,9 +33,6 @@ public class Professor extends Pessoa implements Salvar{
 	public boolean adicionarMateria(Materia materia) throws EscolaException{
 		
 		if (materias.contains(materia)){
-			System.out.println("Nao foi possivel add a materia " + materia.getNome() + 
-					" (cod. " + materia.getCodigo() + "): materia ja existente.");
-			
 			throw new EscolaException("Nao foi possivel adicionar a materia " + materia.getNome() + " (cod. " + materia.getCodigo() + "): materia ja lecionada pelo professor");			
 		}
 		

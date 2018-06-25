@@ -168,6 +168,7 @@ public class Listeners  {
 					try {
 						flag = 1;
 						aluno.adicionarMateria(d.getMaterias().get(i));
+						JOptionPane.showMessageDialog(null, "Materia "+d.getMaterias().get(i).getNome()+" adicionada", null, JOptionPane.INFORMATION_MESSAGE);
 						campo.setText("");
 					}catch(EscolaException f) {
 						JOptionPane.showMessageDialog(m,f,"Erro",JOptionPane.WARNING_MESSAGE);
@@ -201,6 +202,7 @@ public class Listeners  {
 				try {
 					flag = 1;
 					aluno.removerMateria(d.getMaterias().get(i));
+					JOptionPane.showMessageDialog(null, "Materia "+d.getMaterias().get(i).getNome()+" removida", null, JOptionPane.INFORMATION_MESSAGE);
 					campo.setText("");
 				}catch(EscolaException f) {
 					JOptionPane.showMessageDialog(m,f,"Erro",JOptionPane.WARNING_MESSAGE);

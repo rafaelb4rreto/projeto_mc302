@@ -349,7 +349,7 @@ public class Menu extends JFrame{
 			JButton b9 = new JButton("Abrir Materia");
 			JButton b10 = new JButton("Fechar Materia");
 			JButton b11 = new JButton("Pagar Professor");
-			JButton b12 = new JButton("Ver Integrantes da Escola");
+			JButton b12 = new JButton("Ver Escola");
 			JButton b13 = new JButton("Salvar Dados");
 			JButton b14 = new JButton("Carregar Dados");
 			
@@ -779,6 +779,7 @@ public class Menu extends JFrame{
 										if(diretor.getMaterias().get(j).getCodigo().equals(codMat.getText())) {
 											try {
 												diretor.atribuirMateriaAUmProfessor(diretor.getProfessores().get(i),diretor.getMaterias().get(j));
+												JOptionPane.showMessageDialog(null, "Materia "+diretor.getMaterias().get(j).getNome()+" atribuida ao Professor " +diretor.getProfessores().get(i).getNome(), null, JOptionPane.INFORMATION_MESSAGE);
 											}catch(EscolaException t) {
 												JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
 											}
@@ -833,6 +834,7 @@ public class Menu extends JFrame{
 										if(diretor.getMaterias().get(j).getCodigo().equals(codMat.getText())) {
 											try {
 												diretor.desatribuirMateriaAUmProfessor(diretor.getProfessores().get(i),diretor.getMaterias().get(j));
+												JOptionPane.showMessageDialog(null, "Materia "+diretor.getMaterias().get(j).getNome()+" desatribuida do Professor " +diretor.getProfessores().get(i).getNome(), null, JOptionPane.INFORMATION_MESSAGE);
 											}catch(EscolaException t) {
 												JOptionPane.showMessageDialog(null, t, "Erro", JOptionPane.WARNING_MESSAGE);
 											}
@@ -1014,7 +1016,6 @@ public class Menu extends JFrame{
 					JLabel prof = new JLabel("Professores");
 					JTextArea jprof = new JTextArea(5,3);
 		//			prof.setLabelFor(jprof);
-					String profs = "";
 					for(Professor p : diretor.getProfessores()) {
 						jprof.append("*Nome: "+ p.getNome()+ " -  RA: " + p.getRA()+"\n\n") ;
 					}
@@ -1035,11 +1036,11 @@ public class Menu extends JFrame{
 					materia.add(al);
 					materia.add(jal);
 					jal.append(als);
-		//			jal.setText(als);
+					//jal.setText(als);
 					
 					JLabel mat = new JLabel("Materias");
 
-	//				mat.setLabelFor(jmat);
+					//mat.setLabelFor(jmat);
 					String mats = "";
 					for(Materia m : diretor.getMaterias()) {
 						mats += m + "\n\n" ;
@@ -1048,7 +1049,7 @@ public class Menu extends JFrame{
 					materia.add(mat);
 					materia.add(jmat);
 					jmat.append(mats);
-	//				jmat.setText(mats);
+					//jmat.setText(mats);
 					
 					materia.pack();
 					materia.show();
