@@ -1007,77 +1007,55 @@ public class Menu extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					JFrame materia = new JFrame("Ver Escola");
 					
-					materia.setSize(500, 300);
+					materia.getContentPane().setLayout(new GridLayout(0,2));
+	//				materia.setSize(800, 400);
 					materia.setLocationRelativeTo(null);
 
 					JLabel prof = new JLabel("Professores");
-					JTextArea jprof = new JTextArea(5,20);
-					prof.setLabelFor(jprof);
+					JTextArea jprof = new JTextArea(5,3);
+		//			prof.setLabelFor(jprof);
 					String profs = "";
 					for(Professor p : diretor.getProfessores()) {
-						profs += "Nome: "+ p.getNome()+ " -  RA: " + p.getRA()+"\n" ;
+						jprof.append("*Nome: "+ p.getNome()+ " -  RA: " + p.getRA()+"\n\n") ;
 					}
-					jprof.setText(profs);
-					
-					JLabel al = new JLabel("Alunos");
-					JTextArea jal = new JTextArea(5,20);
-					al.setLabelFor(jal);
-					String als = "";
-					for(Aluno a : diretor.getAlunos()) {
-						als += "Nome: "+ a.getNome()+ " -  RA: " + a.getRA()+"\n" ;
-					}
-					jal.setText(als);
-					
-					JLabel mat = new JLabel("Materias");
-					JTextArea jmat = new JTextArea(5,20);
-					mat.setLabelFor(jmat);
-					String mats = "";
-					for(Materia m : diretor.getMaterias()) {
-						mats += m + "\n" ;
-					}
-					jmat.setText(mats);
-					
+
+			//		jprof.append(profs);
 					materia.add(prof);
 					materia.add(jprof);
+				//	jprof.setText(profs);
+				
+					
+					JLabel al = new JLabel("Alunos");
+					
+					String als = "";
+					for(Aluno a : diretor.getAlunos()) {
+						als += "*Nome: "+ a.getNome()+ " -  RA: " + a.getRA()+"\n\n" ;
+					}
+					JTextArea jal = new JTextArea();
 					materia.add(al);
 					materia.add(jal);
+					jal.append(als);
+		//			jal.setText(als);
+					
+					JLabel mat = new JLabel("Materias");
+
+	//				mat.setLabelFor(jmat);
+					String mats = "";
+					for(Materia m : diretor.getMaterias()) {
+						mats += m + "\n\n" ;
+					}
+					JTextArea jmat = new JTextArea();
 					materia.add(mat);
 					materia.add(jmat);
+					jmat.append(mats);
+	//				jmat.setText(mats);
 					
-					
-				/*	for(Professor p: diretor.getProfessores()) 	jc.addItem(p.getNome());
-
-					JButton b = new JButton("Pagar");
-					
-					materia.getContentPane().setLayout(new FlowLayout());
-					materia.getContentPane().add(prof);
-					materia.getContentPane().add(jc);
-					materia.getContentPane().add(b);
-					b.addActionListener(new ActionListener() {
-						
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							
-							try{
-								for(Professor p: diretor.getProfessores()) {
-								
-									if(p.getNome().equals(jc.getSelectedItem())) {
-									
-										diretor.pagarProfessor(p);
-										JOptionPane.showMessageDialog(null, "Professor "+p.getNome()+" pago com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
-										return;
-									}
-								
-								
-								}	
-							}catch(Exception e1){
-								JOptionPane.showMessageDialog(null, "Este Professor ja recebeu seu salario neste mes!", null, JOptionPane.ERROR_MESSAGE);
-							}		
-							
-						}
-					});*/
-					//materia.pack();
+					materia.pack();
 					materia.show();
+					
+					
+				
+
 	 			}
 			});
 			
