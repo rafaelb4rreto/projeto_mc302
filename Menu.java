@@ -1,5 +1,8 @@
 import javax.swing.*;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -17,17 +20,142 @@ public class Menu extends JFrame{
 	
 	@SuppressWarnings("deprecation")
 	public Menu(Diretor diretor,Professor professor) {
-		JFrame dados = new JFrame("Professor");
-		Container c = dados.getContentPane();
-		c.setLayout(new FlowLayout());
+		
+		super("Professor" + professor.getRA());
+		
+		GridLayout grid;
+		
+		JLabel nome, ra, salario, pago;
+		Component[][] aula_grid;
+		
+		String 	   horario_info;
+		String	   materia_info = "";
+		int 	   coluna_dia;
+		int		   linha_horario;
 		
 		JButton b1 = new JButton("Editar Ementa");
 		JButton b2 = new JButton("Adicionar Notas");
 		JButton b3 = new JButton("Calcular Media da Turma");
 		
-		c.add(b1);
-		c.add(b2);
-		c.add(b3);
+		Materia ma_buff = null;
+		
+		nome 	= new JLabel();		
+		ra 		= new JLabel("RA: " + professor.getRA());
+		salario = new JLabel("Salario: " + professor.getSalario());
+		pago 	= new JLabel();
+		
+		grid 	  = new GridLayout(0, 6);	
+		aula_grid = new AulaButton[5][5];
+		
+		if (professor.getSexo() == 'M')
+			nome.setText("Professor " + professor.getNome());
+		else if (professor.getSexo() == 'F')
+			nome.setText("Professora " + professor.getNome());
+		else
+			nome.setText("Professor(a) " + professor.getNome());
+		
+		if (professor.isPago() == true) {
+			pago.setText(" Salário PAGO ");
+			pago.setBorder(BorderFactory.createLineBorder(Color.green));
+		}else {
+			pago.setText(" Salário NÃO PAGO ");
+			pago.setBorder(BorderFactory.createLineBorder(Color.red));
+		}
+		
+		this.getContentPane().setLayout(grid);
+		this.getContentPane().add(nome);
+		this.getContentPane().add(ra);
+		this.getContentPane().add(salario);
+		this.getContentPane().add(pago);
+		this.getContentPane().add(new JLabel(""));
+		this.getContentPane().add(new JLabel(""));
+		
+		this.getContentPane().add(b1);
+		this.getContentPane().add(b2);
+		this.getContentPane().add(b3);
+		this.getContentPane().add(new JLabel(""));
+		this.getContentPane().add(new JLabel(""));
+		this.getContentPane().add(new JLabel(""));
+
+		
+		// Painel de horarios
+		
+		this.getContentPane().add(new JLabel("---"));
+		for (int i = Dia.SEGUNDA.valor; i <= Dia.SEXTA.valor; i++) {
+			this.getContentPane().add(new JLabel(Dia.values()[i-1].nome_string));
+		}
+		
+		for (int i = 0; i < 5; i++) {
+			if (i == 0) {
+				horario_info = "08h - 10h\n";
+			}else if (i == 1) {
+				horario_info = "10h - 12h\n";
+			}else if (i == 2) {
+				horario_info = "12h - 14h\n";
+			}else if (i == 3) {
+				horario_info = "14h - 16h\n";
+			}else
+				horario_info = "16h - 18h\n";
+			
+			this.getContentPane().add(new JLabel(horario_info));
+			
+			for (int j = Dia.SEGUNDA.valor; j <= Dia.SEXTA.valor; j++) {
+				linha_horario = -1;
+				for (Materia ma : professor.getMaterias()) {
+					
+					if (ma.getDia().valor == j) {
+						
+						materia_info  = ma.getNome() + " / Cod.: " + ma.getCodigo();
+						coluna_dia 	  = ma.getDia().valor;
+						
+						if (ma.getHorario() == "08h" && i == 0) {
+							linha_horario = 1;
+							ma_buff = ma;
+						}else if (ma.getHorario() == "10h" && i == 1) {
+							linha_horario = 2;
+							ma_buff = ma;
+						}else if (ma.getHorario() == "14h" && i == 3) {
+							linha_horario = 4;
+							ma_buff = ma;
+						}else if (ma.getHorario() == "16h" && i == 4) {
+							linha_horario = 5;
+							ma_buff = ma;
+						}
+					}
+				}
+				if (linha_horario != -1) {
+					aula_grid[i][j-1] = new AulaButton("", ma_buff);
+					((AulaButton)aula_grid[i][j-1]).setLayout(new BorderLayout());
+					((AulaButton) aula_grid[i][j-1]).add(BorderLayout.NORTH,  new JLabel(horario_info + " / " + "Sala: " + ma_buff.getSala()));
+					((AulaButton) aula_grid[i][j-1]).add(BorderLayout.CENTER, new JLabel(materia_info));
+					((AulaButton) aula_grid[i][j-1]).add(BorderLayout.SOUTH,  new JLabel("N. alunos: " + ma_buff.getCapacidadeAtual()));
+					this.getContentPane().add(aula_grid[i][j-1]);
+					
+					((AulaButton) aula_grid[i][j-1]).addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							
+							loop:
+							for (int a = 0; a < 5; a++) {
+								for (int b = 0; b < 5; b++) {
+									if (e.getSource() == (AulaButton)aula_grid[a][b]) {
+										JFrame f = new AulaFrame(((AulaButton)aula_grid[a][b]).getMateria(), professor);
+										f.setLocationRelativeTo(null);
+										f.pack();
+										f.show();
+										break loop;
+									}
+										
+								}
+							}
+							
+						}
+					});
+				}else {
+					this.getContentPane().add(new JButton(""));
+				}
+			}		
+		}
 		
 		b1.addActionListener(new ActionListener() {
 
@@ -182,17 +310,13 @@ public class Menu extends JFrame{
 				nf.show();
 						
 				
-				
-				
-				
-				
 			}
 			
 		});
 		
-		dados.setSize(200,300);
-		dados.setLocationRelativeTo(null);
-		dados.show();
+		this.setLocationRelativeTo(null);
+		this.pack();
+		this.show();
 
 	}
 	
@@ -218,7 +342,7 @@ public class Menu extends JFrame{
 			JButton b9 = new JButton("Abrir Materia");
 			JButton b10 = new JButton("Fechar Materia");
 			JButton b11 = new JButton("Pagar Professor");
-			JButton b12 = new JButton("Ver Escola");
+			JButton b12 = new JButton("Ver Integrantes da Escola");
 			JButton b13 = new JButton("Salvar Dados");
 			JButton b14 = new JButton("Carregar Dados");
 			
@@ -639,7 +763,7 @@ public class Menu extends JFrame{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					
-					JFrame jf = new JFrame("Desatribuicao");
+					JFrame jf = new JFrame("Atribuicao");
 					jf.setSize(600, 200);
 					jf.setLocationRelativeTo(null);
 					Container con = jf.getContentPane();
@@ -781,7 +905,7 @@ public class Menu extends JFrame{
 					b.addActionListener(new Listeners.FechaMateriaListener(diretor,materia,codtxt));
 			
 
-					materia.show();
+			dados.show();
 	
 				}
 			});
@@ -845,52 +969,77 @@ public class Menu extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					JFrame materia = new JFrame("Ver Escola");
 					
-					materia.getContentPane().setLayout(new GridLayout(0,2));
-		//			materia.setSize(500, 500);
+					materia.setSize(500, 300);
 					materia.setLocationRelativeTo(null);
 
 					JLabel prof = new JLabel("Professores");
-
-		//			prof.setLabelFor(jprof);
+					JTextArea jprof = new JTextArea(5,20);
+					prof.setLabelFor(jprof);
 					String profs = "";
 					for(Professor p : diretor.getProfessores()) {
-						profs += "*Nome: "+ p.getNome()+ " -  RA: " + p.getRA()+"\n\n" ;
+						profs += "Nome: "+ p.getNome()+ " -  RA: " + p.getRA()+"\n" ;
 					}
-					JTextArea jprof = new JTextArea(profs);
-					materia.add(prof);
-					materia.add(jprof);
 					jprof.setText(profs);
-				
 					
 					JLabel al = new JLabel("Alunos");
-					
+					JTextArea jal = new JTextArea(5,20);
+					al.setLabelFor(jal);
 					String als = "";
 					for(Aluno a : diretor.getAlunos()) {
-						als += "*Nome: "+ a.getNome()+ " -  RA: " + a.getRA()+"\n\n" ;
+						als += "Nome: "+ a.getNome()+ " -  RA: " + a.getRA()+"\n" ;
 					}
-					JTextArea jal = new JTextArea(als);
-					materia.add(al);
-					materia.add(jal);
 					jal.setText(als);
 					
 					JLabel mat = new JLabel("Materias");
-
-	//				mat.setLabelFor(jmat);
+					JTextArea jmat = new JTextArea(5,20);
+					mat.setLabelFor(jmat);
 					String mats = "";
 					for(Materia m : diretor.getMaterias()) {
-						mats += m + "\n\n" ;
+						mats += m + "\n" ;
 					}
-					JTextArea jmat = new JTextArea(mats);
-					materia.add(mat);
-					materia.add(jmat);
 					jmat.setText(mats);
 					
-					materia.pack();
-					materia.show();
+					materia.add(prof);
+					materia.add(jprof);
+					materia.add(al);
+					materia.add(jal);
+					materia.add(mat);
+					materia.add(jmat);
 					
 					
-				
+				/*	for(Professor p: diretor.getProfessores()) 	jc.addItem(p.getNome());
 
+					JButton b = new JButton("Pagar");
+					
+					materia.getContentPane().setLayout(new FlowLayout());
+					materia.getContentPane().add(prof);
+					materia.getContentPane().add(jc);
+					materia.getContentPane().add(b);
+					b.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							
+							try{
+								for(Professor p: diretor.getProfessores()) {
+								
+									if(p.getNome().equals(jc.getSelectedItem())) {
+									
+										diretor.pagarProfessor(p);
+										JOptionPane.showMessageDialog(null, "Professor "+p.getNome()+" pago com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
+										return;
+									}
+								
+								
+								}	
+							}catch(Exception e1){
+								JOptionPane.showMessageDialog(null, "Este Professor ja recebeu seu salario neste mes!", null, JOptionPane.ERROR_MESSAGE);
+							}		
+							
+						}
+					});*/
+					//materia.pack();
+					materia.show();
 	 			}
 			});
 			
@@ -927,8 +1076,6 @@ public class Menu extends JFrame{
 					}		
 	 			}
 			});
-
-
 			
 	}
 	
@@ -936,19 +1083,108 @@ public class Menu extends JFrame{
 	@SuppressWarnings("deprecation")
 	public Menu(Diretor diretor,Aluno aluno) {
 		super("Aluno");
-		
+		GridLayout grid = new GridLayout(0, 6);
 		this.setSize(300, 200);
 		this.setLocationRelativeTo(null);
 		Container c = this.getContentPane();
-		c.setLayout(new FlowLayout());
+		c.setLayout(grid);
 
 		JButton botao1 = new JButton("Adicionar Materia");
 		JButton botao2 = new JButton("Remover Materia");
 		
+		Container[][] aula_grid = new AulaButton[5][5];
+		String 	   horario_info;
+		String	   materia_info = "";
+		int 	   coluna_dia;
+		int		   linha_horario;
+		Materia ma_buff = null;
+		
 		c.add(botao1);
 		c.add(botao2);
+		c.add(new JLabel(""));
+		c.add(new JLabel(""));
+		c.add(new JLabel(""));
+		
+		this.getContentPane().add(new JLabel("---"));
+		for (int i = Dia.SEGUNDA.valor; i <= Dia.SEXTA.valor; i++) {
+			this.getContentPane().add(new JLabel(Dia.values()[i-1].nome_string));
+		}
+		
+		for (int i = 0; i < 5; i++) {
+			if (i == 0) {
+				horario_info = "08h - 10h\n";
+			}else if (i == 1) {
+				horario_info = "10h - 12h\n";
+			}else if (i == 2) {
+				horario_info = "12h - 14h\n";
+			}else if (i == 3) {
+				horario_info = "14h - 16h\n";
+			}else
+				horario_info = "16h - 18h\n";
+			
+			this.getContentPane().add(new JLabel(horario_info));
+			
+			for (int j = Dia.SEGUNDA.valor; j <= Dia.SEXTA.valor; j++) {
+				linha_horario = -1;
+				for (AlunoMateria ma : aluno.getMaterias()) {
+					
+					if (ma.getMateria().getDia().valor == j) {
+						
+						materia_info  = ma.getMateria().getNome() + " / Cod.: " + ma.getMateria().getCodigo();
+						coluna_dia 	  = ma.getMateria().getDia().valor;
+						
+						if (ma.getMateria().getHorario() == "08h" && i == 0) {
+							linha_horario = 1;
+							ma_buff = ma.getMateria();
+						}else if (ma.getMateria().getHorario() == "10h" && i == 1) {
+							linha_horario = 2;
+							ma_buff = ma.getMateria();
+						}else if (ma.getMateria().getHorario() == "14h" && i == 3) {
+							linha_horario = 4;
+							ma_buff = ma.getMateria();
+						}else if (ma.getMateria().getHorario() == "16h" && i == 4) {
+							linha_horario = 5;
+							ma_buff = ma.getMateria();
+						}
+					}
+				}
+				if (linha_horario != -1) {
+					aula_grid[i][j-1] = new AulaButton("", ma_buff);
+					((AulaButton)aula_grid[i][j-1]).setLayout(new BorderLayout());
+					((AulaButton) aula_grid[i][j-1]).add(BorderLayout.NORTH,  new JLabel(horario_info + " / " + "Sala: " + ma_buff.getSala()));
+					((AulaButton) aula_grid[i][j-1]).add(BorderLayout.CENTER, new JLabel(materia_info));
+					((AulaButton) aula_grid[i][j-1]).add(BorderLayout.SOUTH,  new JLabel("N. alunos: " + ma_buff.getCapacidadeAtual()));
+					this.getContentPane().add(aula_grid[i][j-1]);
+					
+					((AulaButton) aula_grid[i][j-1]).addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							
+							loop:
+							for (int a = 0; a < 5; a++) {
+								for (int b = 0; b < 5; b++) {
+									if (e.getSource() == (AulaButton)aula_grid[a][b]) {
+										JFrame f = new AulaFrame(((AulaButton)aula_grid[a][b]).getMateria(), aluno);
+										f.setLocationRelativeTo(null);
+										f.pack();
+										f.show();
+										break loop;
+									}
+										
+								}
+							}
+							
+						}
+					});
+				}else {
+					this.getContentPane().add(new JButton(""));
+				}
+		
+			}
+		}
 
-	//	this.pack();
+
+		this.pack();
 		this.show();
 		
 		botao1.addActionListener(new ActionListener() {
@@ -970,7 +1206,7 @@ public class Menu extends JFrame{
 				materia.getContentPane().add(b);
 				
 				b.addActionListener(new Listeners.AdicionaMateriaListener(materia,txt,diretor,aluno));
-
+				
 				
 	//			materia.pack();
 				materia.show();
@@ -997,12 +1233,13 @@ public class Menu extends JFrame{
 				
 				b.addActionListener(new Listeners.RemoveMateriaListener(materia,txt,diretor,aluno));
 				
+				
 	//			materia.pack();
 				materia.show();
 			}
 			
 		});
-
+		
 	}
 	
 }
