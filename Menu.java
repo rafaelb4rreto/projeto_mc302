@@ -945,7 +945,7 @@ public class Menu extends JFrame{
 					b.addActionListener(new Listeners.FechaMateriaListener(diretor,materia,codtxt));
 			
 
-			dados.show();
+					materia.show();
 	
 				}
 			});

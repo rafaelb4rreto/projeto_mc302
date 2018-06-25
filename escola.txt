@@ -1,15 +1,17 @@
-Maria 57 F 20/07/1960 1a2b3c 20000 0 1
 3
 Jose 12 M 02/06/2005 1234 5 4 0 0 20 true 0 500
 Fernando 12 M 02/06/2005 1234 5 5 0 0 20 true 0 500
 Paulo 12 M 02/06/2005 1234 5 6 0 0 20 true 0 500
 2
 Joao 44 M 03/05/1974 abcd 134B 10000 2 false
-Cleber 44 M 03/05/1974 abcd 134B 11000 3 false
-2
-Geografia 1 4 66A 10h SEGUNDA 30 Materia de Geografia
-2
-3 4 9.50 6 7.50 5 7.50 
-Matematica 2 5 66B 08h SEGUNDA 20 Matematica Avancada
+Cleber 44 M 03/05/1974 abcd 134B 10000 3 false
 3
-2 4 0.00 5 0.00 
+Geografia 1 4 66A 10h QUARTA 30 Materia de Geografia
+2
+3 4 6.00 5 7.00 6 8.00  
+Matematica 2 5 66B 14h SEGUNDA 20 Materia de Matematica
+3
+0 
+Ciencias 3 3 66C 08h SEGUNDA 20 Materia de Ciencias
+2
+0 

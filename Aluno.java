@@ -28,7 +28,7 @@ public class Aluno extends Pessoa implements Salvar{
 		this.advertencias 	 = 0;
 		this.maxAdvertencias = 3;
 		this.suspensoes 	 = 0;
-		this.maxCreditos 	 = 5;
+		this.maxCreditos 	 = 20;
 		this.numCreditos 	 = 0;
 		this.regular  		 = true;
 		

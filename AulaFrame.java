@@ -67,7 +67,6 @@ public class AulaFrame extends JFrame {
 		nota = new JLabel("NOTA: " + alunoMateria.getNota());
 		
 		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(new GridLayout(0, 1));
 		this.getContentPane().add(nome_codigo_materia);
 		this.getContentPane().add(creditos);
