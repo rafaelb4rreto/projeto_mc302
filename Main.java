@@ -12,7 +12,7 @@ public class Main {
 		//alocacao e inicalizacao de objetos para testarmos todas as implementacoes do programa.
 		Diretor d = new Diretor("Maria",57,'F',"20/07/1960","1a2b3c",20000);
 		
-		ArrayList<Professor> professores = new ArrayList<Professor>();
+		/*ArrayList<Professor> professores = new ArrayList<Professor>();
 		ArrayList<Aluno> alunos = new ArrayList<Aluno>();
 		professores.add(d.contratarProfessor("Joao",44,'M',"03/05/1974","abcd","134B",10000));
 		professores.add(d.contratarProfessor("Cleber",44,'M',"03/05/1974","abcd","134B",10000));
@@ -31,7 +31,7 @@ public class Main {
 			d.atribuirMateriaAUmProfessor(professores.get(0), m3);
 		} catch(EscolaException e) {
 			System.err.println(e);
-		}
+		}*/
 		
 		Object[] option = {"Aluno","Professor","Diretor"};
 		Login inicio = new Login(option,d);
